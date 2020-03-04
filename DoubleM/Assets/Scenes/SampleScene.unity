@@ -810,10 +810,10 @@ GameObject:
   - component: {fileID: 1639545144}
   - component: {fileID: 1639545143}
   - component: {fileID: 1639545146}
-  - component: {fileID: 1639545145}
   - component: {fileID: 1639545147}
+  - component: {fileID: 1639545145}
   m_Layer: 0
-  m_Name: Player
+  m_Name: MainPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
