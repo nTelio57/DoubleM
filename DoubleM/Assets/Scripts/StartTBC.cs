@@ -30,7 +30,7 @@ public class StartTBC : MonoBehaviour
         return victoryLootPass;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!loaded)
         {
@@ -39,7 +39,7 @@ public class StartTBC : MonoBehaviour
                 fighterPass = fighters;
                 victoryLootPass = victoryLoot;
             }
-                
+
             loaded = true;
             SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
         }
