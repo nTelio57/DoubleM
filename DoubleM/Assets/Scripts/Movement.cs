@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Joystick joystick;
+    Joystick joystick;
     public Rigidbody2D rb;
     public Animator animator;
     public float speed;
     Vector2 movement;
     float memoryMovementX;
-    
+
+    void Start()
+    {
+        joystick = JoystickManager.currentJoystick;
+    }
+
     void Update()
     {
-        movement.x = joystick.Horizontal;
-        movement.y = joystick.Vertical;
+        movement.x = JoystickManager.currentJoystick.Horizontal;
+        movement.y = JoystickManager.currentJoystick.Vertical;
 
         if (movement.x != 0)
             memoryMovementX = movement.x;
 
-        animator.SetFloat("Speed", joystick.Direction.sqrMagnitude);
+        animator.SetFloat("Speed", JoystickManager.currentJoystick.Direction.sqrMagnitude);
         animator.SetFloat("Horizontal", memoryMovementX);
     }
 

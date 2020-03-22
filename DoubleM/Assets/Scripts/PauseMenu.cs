@@ -7,20 +7,28 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenu;
+    public Canvas thisScenesCanvas;
+    public JoystickManager controls;
+    
 
-    // Update is called once per frame
-    void Update()
+    public void onMenuClick()
     {
-        
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
-    public void setGameOnPause(bool value)
+    public void onOptionsCLick()
+    {
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+    }
+
+    public void onPauseClick(bool value)
     {
         if (value)
             Pause();
         else
             Resume();
     }
+    
 
     public void Resume()
     {
@@ -35,4 +43,5 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
+    
 }
