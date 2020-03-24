@@ -4896,6 +4896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371181907173185141}
   - component: {fileID: 5015027453938689572}
+  - component: {fileID: 8074296240426643830}
   m_Layer: 0
   m_Name: Bonus capture point
   m_TagString: Untagged
@@ -4935,3 +4936,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.82
+--- !u!114 &8074296240426643830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539533364412822884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8236a66889717a242982c4f079fc5c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSending: 1
+  TBCScene: 
+  fighters: []
+  victoryLoot: 0

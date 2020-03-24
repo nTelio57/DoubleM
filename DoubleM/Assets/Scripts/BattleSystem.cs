@@ -101,8 +101,9 @@ public class BattleSystem : MonoBehaviour
         {
             vault.addMoney(starter.getVictoryLoot());
         }
-        Debug.Log("Yo");
         SceneManager.UnloadSceneAsync("TBC");
+        if (StartTBC.nextScenePass != "")
+            SceneManager.LoadScene(StartTBC.nextScenePass, LoadSceneMode.Single);
     }
 
     void PlayerTurn()

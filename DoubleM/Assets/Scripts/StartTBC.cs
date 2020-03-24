@@ -9,6 +9,9 @@ public class StartTBC : MonoBehaviour
     bool loaded = false;
     public string TBCScene;
 
+    public static string nextScenePass;
+    public string nextScene;
+
     public Fighter[] fighters;
     static public Fighter[] fighterPass;
 
@@ -29,6 +32,7 @@ public class StartTBC : MonoBehaviour
     {
         return victoryLootPass;
     }
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -38,6 +42,7 @@ public class StartTBC : MonoBehaviour
             {
                 fighterPass = fighters;
                 victoryLootPass = victoryLoot;
+                nextScenePass = nextScene;
             }
 
             loaded = true;
