@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBox;
     public Text nameText;
     public Text dialogueText;
+    public Animator animator;
     private Queue<string> sentences;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         dialogueBox.SetActive(true);
+        animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -45,7 +47,14 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        dialogueBox.SetActive(false);
+        animator.SetBool("IsOpen", false);
+        StartCoroutine(SetActive(false));
+    }
+
+    IEnumerator SetActive(bool value)
+    {
+        yield return new WaitForSeconds(2);
+        dialogueBox.SetActive(value);
     }
 
     // Update is called once per frame

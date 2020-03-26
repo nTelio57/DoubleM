@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Fighter
 {
-    public Sprite sprite;
+    public GameObject enemyPrefab;
+    //public Sprite sprite;
+    public Animator animator;
     public bool flipSpriteOnX = false;
     public string name;
     public int maxHP;

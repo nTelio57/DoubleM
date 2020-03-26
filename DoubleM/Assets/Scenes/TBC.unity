@@ -688,7 +688,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1001
+  m_SortingOrder: 101
   m_TargetDisplay: 0
 --- !u!224 &683319929
 RectTransform:
@@ -963,7 +963,7 @@ MonoBehaviour:
   starter: {fileID: 935565701}
   vault: {fileID: 935565702}
   playerPrefab:
-  - {fileID: 4676215144542369528, guid: ec525086cc34ffc40b6182bdc7b22cfb, type: 3}
+  - {fileID: 675715974219255341, guid: a7e4753acc37bc240bf6acdea2d68088, type: 3}
   enemyPrefab: {fileID: 7272254699455118024, guid: 1a3f33265d808fc4db90a49298270015,
     type: 3}
   fighters: []
@@ -988,7 +988,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935565701
 MonoBehaviour:
@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSending: 0
   TBCScene: 
+  nextScene: 
   fighters: []
   victoryLoot: 0
 --- !u!114 &935565702
@@ -1169,7 +1170,7 @@ PrefabInstance:
     - target: {fileID: 6694911033802694531, guid: c0f717f3f55ea6f4d8e502033c4cf372,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.36
       objectReference: {fileID: 0}
     - target: {fileID: 6694911033802694531, guid: c0f717f3f55ea6f4d8e502033c4cf372,
         type: 3}
@@ -2189,12 +2190,12 @@ PrefabInstance:
     - target: {fileID: 7889216673695248087, guid: fd1368f83d79ad949af227f0bb39e739,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 999
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7889216675210057230, guid: fd1368f83d79ad949af227f0bb39e739,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1000
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7889216675544806752, guid: fd1368f83d79ad949af227f0bb39e739,
         type: 3}
@@ -2234,7 +2235,7 @@ PrefabInstance:
     - target: {fileID: 7889216675544806752, guid: fd1368f83d79ad949af227f0bb39e739,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7889216675544806752, guid: fd1368f83d79ad949af227f0bb39e739,
         type: 3}

@@ -32,6 +32,8 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    GameObject player, enemy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject player = Instantiate(playerPrefab[playerIndex], playerBattleStation);
+        player = Instantiate(playerPrefab[playerIndex], playerBattleStation);
         playerUnit = player.GetComponent<Unit>();
 
-        GameObject enemy = Instantiate(enemyPrefab, enemyBattleStation);
-        enemy.GetComponent<SpriteRenderer>().sprite = fighters[enemyIndex].sprite;
+        //GameObject enemy = Instantiate(enemyPrefab, enemyBattleStation);
+        enemy = Instantiate(fighters[enemyIndex].enemyPrefab, enemyBattleStation);
+       // enemy.GetComponent<SpriteRenderer>().sprite = fighters[enemyIndex].sprite;
         enemy.GetComponent<SpriteRenderer>().flipX = fighters[enemyIndex].flipSpriteOnX;
         enemyUnit = enemy.GetComponent<Unit>();
         enemyUnit.unitName = fighters[enemyIndex].name;
@@ -67,11 +70,15 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
+        player.GetComponent<Animator>().SetBool("IsAttacking", true);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+        
+        
+        yield return new WaitForSeconds(1);
+        player.GetComponent<Animator>().SetBool("IsAttacking", false);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
-        yield return new WaitForSeconds(2);
-
+        yield return new WaitForSeconds(1);
         if (isDead)
         {
             state = BattleState.WON;
@@ -119,11 +126,14 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         EnableButtons(false);
+        enemy.GetComponent<Animator>().SetBool("IsAttacking", true);
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
-        playerHUD.SetHP(playerUnit.currentHP);
-
+        
+        
         yield return new WaitForSeconds(1);
-
+        enemy.GetComponent<Animator>().SetBool("IsAttacking", false);
+        playerHUD.SetHP(playerUnit.currentHP);
+        yield return new WaitForSeconds(1);
         if (isDead)
         {
             state = BattleState.LOST;
