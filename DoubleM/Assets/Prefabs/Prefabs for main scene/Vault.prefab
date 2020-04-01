@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d788e968283edd843836ec404fbc758b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadOnStart: 1
+  loadOnStart: 0
   startingMoney: 300

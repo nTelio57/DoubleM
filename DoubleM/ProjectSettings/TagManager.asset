@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Grid
+    uniqueID: 2372473503
+    locked: 0
+  - name: Turn-based combat scene
+    uniqueID: 4171778739
+    locked: 0
+  - name: Canvas
+    uniqueID: 4098751903
+    locked: 0
