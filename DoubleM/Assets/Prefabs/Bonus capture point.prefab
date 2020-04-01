@@ -4948,8 +4948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8236a66889717a242982c4f079fc5c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victories: 0
+  isCaptured: 0
   isSending: 1
   TBCScene: 
-  nextScene: 
   fighters: []
   victoryLoot: 0

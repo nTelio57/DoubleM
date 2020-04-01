@@ -8,7 +8,7 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
 public class BattleSystem : MonoBehaviour
 {
-    public StartTBC starter;
+    public CapturePoint starter;
     public Vault vault;
 
     public GameObject[] playerPrefab;
@@ -107,10 +107,9 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             vault.addMoney(starter.getVictoryLoot());
+            CapturePoint.currentCapturePoint.Victory();
         }
         SceneManager.UnloadSceneAsync("TBC");
-        if (StartTBC.nextScenePass != "")
-            SceneManager.LoadScene(StartTBC.nextScenePass, LoadSceneMode.Single);
     }
 
     void PlayerTurn()

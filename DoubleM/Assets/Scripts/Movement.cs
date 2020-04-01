@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     public float maxStamina;
     public float staminaGainedOnRest;
     public float staminaLostOnRun;
+    [Range(0.9f,1)]
+    public float distanceFromCenterToRun = 0.95f;
     Vector2 movement;
     float memoryMovementX;
     bool isRunning;
@@ -29,7 +31,6 @@ public class Movement : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        Debug.Log(timer);
         movement.x = JoystickManager.currentJoystick.Horizontal;
         movement.y = JoystickManager.currentJoystick.Vertical;
 
@@ -37,17 +38,18 @@ public class Movement : MonoBehaviour
         {
             memoryMovementX = movement.x;
         }
-        else
+
+        if (movement.x == 0 && movement.y == 0)
         {
             resetNeeded = false;
         }
 
-        if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= 0.95 && stamina > 0 && !resetNeeded)
+        if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina > 0 && !resetNeeded)
         {
             isRunning = true;
             animator.SetBool("isRunning", true);
         }
-        else if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= 0.95 && stamina == 0)
+        else if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina == 0)
         {
             resetNeeded = true;
             isRunning = false;
@@ -84,11 +86,6 @@ public class Movement : MonoBehaviour
         }
         else {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-        }
-
-        if (stamina < maxStamina)
-        {
-            //stamina += 0.5f;
         }
             
 

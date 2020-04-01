@@ -139,6 +139,11 @@ MonoBehaviour:
   rb: {fileID: 7731338215161485524}
   animator: {fileID: 7731338215161485523}
   speed: 5
+  runSpeed: 10
+  maxStamina: 10
+  staminaGainedOnRest: 0.5
+  staminaLostOnRun: 1
+  distanceFromCenterToRun: 0.99
 --- !u!95 &7731338215161485523
 Animator:
   serializedVersion: 3
