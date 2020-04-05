@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
         StartCoroutine(SetActive(false));
@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator SetActive(bool value)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         dialogueBox.SetActive(value);
     }
 

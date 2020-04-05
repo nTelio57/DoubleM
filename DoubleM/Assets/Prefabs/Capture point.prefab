@@ -4853,8 +4853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victories: 0
+  isCaptured: 0
   isSending: 1
   TBCScene: 
-  nextScene: 
   fighters: []
   victoryLoot: 0
