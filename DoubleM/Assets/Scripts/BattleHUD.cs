@@ -7,17 +7,18 @@ public class BattleHUD : MonoBehaviour
 {
     public Text nameText;
     public Text hpText;
-    private Unit unit;
+    private Fighter fighter;
+    
 
-    public void setHUD(Unit u)
+    public void setHUD(Fighter f)
     {
-        this.unit = u;
-        nameText.text = unit.unitName;
-        hpText.text = unit.currentHP + "/" + unit.maxHP;
+        fighter = f;
+        nameText.text = fighter.name;
+        hpText.text = fighter.currentHP + "/" + fighter.maxHP;
     }
 
     public void SetHP(int hp)
     {
-        hpText.text = unit.currentHP + "/" + unit.maxHP;
+        hpText.text = fighter.currentHP + "/" + fighter.maxHP;
     }
 }

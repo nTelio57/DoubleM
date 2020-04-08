@@ -4853,6 +4853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victories: 0
+  reward: 0
+  mainPoint: 1
   isCaptured: 0
   isSending: 1
   TBCScene: 

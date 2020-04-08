@@ -13,6 +13,7 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject[] playerPrefab;
     public GameObject enemyPrefab;
+    private Fighter[] heroes;
     public Fighter[] fighters;
     public int playerIndex = 0;
     public int enemyIndex = 0;
@@ -38,27 +39,30 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         fighters = starter.getFighters();
+        heroes = Heroes.getHeroArray();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
     }
 
     IEnumerator SetupBattle()
     {
-        player = Instantiate(playerPrefab[playerIndex], playerBattleStation);
+        //player = Instantiate(playerPrefab[playerIndex], playerBattleStation);
+
+        player = Instantiate(heroes[playerIndex].prefab, playerBattleStation);
         playerUnit = player.GetComponent<Unit>();
 
         //GameObject enemy = Instantiate(enemyPrefab, enemyBattleStation);
-        enemy = Instantiate(fighters[enemyIndex].enemyPrefab, enemyBattleStation);
+        enemy = Instantiate(fighters[enemyIndex].prefab, enemyBattleStation);
        // enemy.GetComponent<SpriteRenderer>().sprite = fighters[enemyIndex].sprite;
         enemy.GetComponent<SpriteRenderer>().flipX = fighters[enemyIndex].flipSpriteOnX;
-        enemyUnit = enemy.GetComponent<Unit>();
+      /*  enemyUnit = enemy.GetComponent<Unit>();
         enemyUnit.unitName = fighters[enemyIndex].name;
         enemyUnit.maxHP = fighters[enemyIndex].maxHP;
         enemyUnit.currentHP = fighters[enemyIndex].maxHP;
-        enemyUnit.damage = fighters[enemyIndex].attackDamage;
+        enemyUnit.damage = fighters[enemyIndex].attackDamage;*/
 
-        playerHUD.setHUD(playerUnit);
-        enemyHUD.setHUD(enemyUnit);
+        playerHUD.setHUD(heroes[playerIndex]);
+        enemyHUD.setHUD(fighters[enemyIndex]);
 
         EnableButtons(false);
 
@@ -71,12 +75,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         player.GetComponent<Animator>().SetBool("IsAttacking", true);
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+        bool isDead = fighters[enemyIndex].TakeDamage(heroes[playerIndex].attackDamage);
         
         
         yield return new WaitForSeconds(1);
         player.GetComponent<Animator>().SetBool("IsAttacking", false);
-        enemyHUD.SetHP(enemyUnit.currentHP);
+        enemyHUD.SetHP(fighters[enemyIndex].currentHP);
 
         yield return new WaitForSeconds(1);
         if (isDead)
@@ -92,8 +96,8 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal()
     {
-        playerUnit.Heal(5);
-        playerHUD.SetHP(playerUnit.currentHP);
+        heroes[playerIndex].Heal(5);
+        playerHUD.SetHP(heroes[playerIndex].currentHP);
 
         yield return new WaitForSeconds(2);
 
@@ -104,6 +108,19 @@ public class BattleSystem : MonoBehaviour
 
     void EndBattle()
     {
+        if (CapturePoint.currentCapturePoint.reward == BattleReward.Attack)
+            for (int i = 0; i < Heroes.count; i++)
+                Heroes.getHero(i).attackDamage += 7;
+        
+        if (CapturePoint.currentCapturePoint.reward == BattleReward.Health)
+            for (int i = 0; i < Heroes.count; i++)
+            {
+                Heroes.getHero(i).maxHP += 10;
+                Heroes.getHero(i).currentHP += 10;
+            }
+
+
+
         if (state == BattleState.WON)
         {
             vault.addMoney(starter.getVictoryLoot());
@@ -126,12 +143,12 @@ public class BattleSystem : MonoBehaviour
     {
         EnableButtons(false);
         enemy.GetComponent<Animator>().SetBool("IsAttacking", true);
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+        bool isDead = heroes[playerIndex].TakeDamage(fighters[enemyIndex].attackDamage);
         
         
         yield return new WaitForSeconds(1);
         enemy.GetComponent<Animator>().SetBool("IsAttacking", false);
-        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetHP(heroes[playerIndex].currentHP);
         yield return new WaitForSeconds(1);
         if (isDead)
         {

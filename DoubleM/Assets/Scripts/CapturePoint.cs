@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum BattleReward { None, Health, Attack, DodgeChance, Money, Armor}
+
 public class CapturePoint : MonoBehaviour
 {
     public static CapturePoint currentCapturePoint;
     CapturePointManager manager;
     static int attempts = 0;
     public int victories = 0;
+    public BattleReward reward;
+    public bool mainPoint;
     public bool isCaptured = false;
     public bool isSending = true;
     bool loaded = false;
@@ -44,7 +48,8 @@ public class CapturePoint : MonoBehaviour
     {
         victories++;
         isCaptured = true;
-        manager.setCapturePointTaken();
+        if(mainPoint)
+            manager.setCapturePointTaken();
     }
     
 

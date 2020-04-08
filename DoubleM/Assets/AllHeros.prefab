@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6388535578254266564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6388535578254266567}
+  - component: {fileID: 6388535578254266566}
+  - component: {fileID: 6388535578254266565}
+  m_Layer: 0
+  m_Name: AllHeros
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6388535578254266567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388535578254266564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6388535578254266566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388535578254266564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4696aaf04c2254545a5091fcf7dab95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroesList:
+  - prefab: {fileID: 675715974219255341, guid: a7e4753acc37bc240bf6acdea2d68088, type: 3}
+    animator: {fileID: 8578183423554186889, guid: a7e4753acc37bc240bf6acdea2d68088,
+      type: 3}
+    flipSpriteOnX: 0
+    name: Ninja
+    maxHP: 50
+    currentHP: 50
+    attackDamage: 15
+  - prefab: {fileID: 5537679778283992139, guid: ab554756be948e144a0ff1b0546d1f49,
+      type: 3}
+    animator: {fileID: 7226675161984236125, guid: ab554756be948e144a0ff1b0546d1f49,
+      type: 3}
+    flipSpriteOnX: 0
+    name: Archer
+    maxHP: 30
+    currentHP: 30
+    attackDamage: 13
+  - prefab: {fileID: 4928478484351328428, guid: 71b53d86aa9a9a344a030141b6c16e69,
+      type: 3}
+    animator: {fileID: 5862798833510661815, guid: 71b53d86aa9a9a344a030141b6c16e69,
+      type: 3}
+    flipSpriteOnX: 0
+    name: Sorcerer
+    maxHP: 35
+    currentHP: 35
+    attackDamage: 10
+  - prefab: {fileID: 893272183091011007, guid: 85ee35d477770a24e87a5cd6e631616e, type: 3}
+    animator: {fileID: 893272183091011006, guid: 85ee35d477770a24e87a5cd6e631616e,
+      type: 3}
+    flipSpriteOnX: 1
+    name: Warrior
+    maxHP: 50
+    currentHP: 50
+    attackDamage: 6
+--- !u!114 &6388535578254266565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388535578254266564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233dcb579c5fada409de281cc7a15170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
