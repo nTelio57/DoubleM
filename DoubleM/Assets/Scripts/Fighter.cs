@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class Fighter
@@ -13,6 +14,8 @@ public class Fighter
     public int maxHP;
     public int currentHP;
     public int attackDamage;
+    public float critChance;
+    public UnityEvent passive;
 
     public bool TakeDamage(int dmg)
     {

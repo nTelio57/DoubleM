@@ -23,9 +23,6 @@ public class BattleSystem : MonoBehaviour
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
-    Unit playerUnit;
-    Unit enemyUnit;
-
     public Text dialogueText;
 
     public BattleHUD playerHUD;
@@ -42,24 +39,16 @@ public class BattleSystem : MonoBehaviour
         heroes = Heroes.getHeroArray();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+
+        FindObjectOfType<AudioManager>().Play("Background2");
     }
 
     IEnumerator SetupBattle()
     {
-        //player = Instantiate(playerPrefab[playerIndex], playerBattleStation);
-
         player = Instantiate(heroes[playerIndex].prefab, playerBattleStation);
-        playerUnit = player.GetComponent<Unit>();
-
-        //GameObject enemy = Instantiate(enemyPrefab, enemyBattleStation);
+        
         enemy = Instantiate(fighters[enemyIndex].prefab, enemyBattleStation);
-       // enemy.GetComponent<SpriteRenderer>().sprite = fighters[enemyIndex].sprite;
         enemy.GetComponent<SpriteRenderer>().flipX = fighters[enemyIndex].flipSpriteOnX;
-      /*  enemyUnit = enemy.GetComponent<Unit>();
-        enemyUnit.unitName = fighters[enemyIndex].name;
-        enemyUnit.maxHP = fighters[enemyIndex].maxHP;
-        enemyUnit.currentHP = fighters[enemyIndex].maxHP;
-        enemyUnit.damage = fighters[enemyIndex].attackDamage;*/
 
         playerHUD.setHUD(heroes[playerIndex]);
         enemyHUD.setHUD(fighters[enemyIndex]);
@@ -74,9 +63,13 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
+        float critChanceRoll = Random.value * 100;
+        float damage = heroes[playerIndex].attackDamage;
+        if (critChanceRoll <= heroes[playerIndex].critChance)
+            damage *= 2;
+
         player.GetComponent<Animator>().SetBool("IsAttacking", true);
-        bool isDead = fighters[enemyIndex].TakeDamage(heroes[playerIndex].attackDamage);
-        
+        bool isDead = fighters[enemyIndex].TakeDamage((int)damage);
         
         yield return new WaitForSeconds(1);
         player.GetComponent<Animator>().SetBool("IsAttacking", false);
@@ -108,21 +101,19 @@ public class BattleSystem : MonoBehaviour
 
     void EndBattle()
     {
-        if (CapturePoint.currentCapturePoint.reward == BattleReward.Attack)
-            for (int i = 0; i < Heroes.count; i++)
-                Heroes.getHero(i).attackDamage += 7;
-        
-        if (CapturePoint.currentCapturePoint.reward == BattleReward.Health)
-            for (int i = 0; i < Heroes.count; i++)
-            {
-                Heroes.getHero(i).maxHP += 10;
-                Heroes.getHero(i).currentHP += 10;
-            }
-
-
-
         if (state == BattleState.WON)
         {
+            if (CapturePoint.currentCapturePoint.reward == BattleReward.Attack)
+                for (int i = 0; i < Heroes.count; i++)
+                    Heroes.getHero(i).attackDamage += 7;
+
+            if (CapturePoint.currentCapturePoint.reward == BattleReward.Health)
+                for (int i = 0; i < Heroes.count; i++)
+                {
+                    Heroes.getHero(i).maxHP += 10;
+                    Heroes.getHero(i).currentHP += 10;
+                }
+
             vault.addMoney(starter.getVictoryLoot());
             CapturePoint.currentCapturePoint.Victory();
         }
@@ -142,6 +133,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         EnableButtons(false);
+        PlaySound("Attack1");
         enemy.GetComponent<Animator>().SetBool("IsAttacking", true);
         bool isDead = heroes[playerIndex].TakeDamage(fighters[enemyIndex].attackDamage);
         
@@ -163,6 +155,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton()
     {
+        PlaySound("Attack1");
         if (state != BattleState.PLAYERTURN)
             return;
 
@@ -177,6 +170,25 @@ public class BattleSystem : MonoBehaviour
 
         EnableButtons(false);
         StartCoroutine(PlayerHeal());
+    }
+
+    public void OnFleeButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        state = BattleState.LOST;
+        EndBattle();
+    }
+
+    public void OnDefendButton()
+    {
+        
+    }
+
+    void PlaySound(string name)
+    {
+        FindObjectOfType<AudioManager>().Play(name);
     }
 
 }

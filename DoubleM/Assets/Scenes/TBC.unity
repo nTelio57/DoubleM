@@ -747,7 +747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -90, y: -64.594604}
+  m_AnchoredPosition: {x: -90, y: -65}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763947513
@@ -1080,6 +1080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victories: 0
+  reward: 0
+  mainPoint: 0
   isCaptured: 0
   isSending: 0
   TBCScene: 
@@ -1147,7 +1149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -90, y: -114.594604}
+  m_AnchoredPosition: {x: -90, y: -115}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971921521
@@ -1561,7 +1563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Counter attack
+  m_Text: Flee
 --- !u!222 &1396869424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1601,7 +1603,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428058953}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1428058955
 Camera:
   m_ObjectHideFlags: 0
@@ -1909,7 +1911,7 @@ GameObject:
   - component: {fileID: 2108618033}
   - component: {fileID: 2108618032}
   m_Layer: 5
-  m_Name: ButtonCounter
+  m_Name: ButtonFlee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1932,7 +1934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 90, y: -64.594604}
+  m_AnchoredPosition: {x: 90, y: -115}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2108618032
@@ -1977,7 +1979,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2108618033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 935565699}
+        m_MethodName: OnFleeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2108618033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,7 +2063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 90, y: -114.594604}
+  m_AnchoredPosition: {x: 90, y: -65}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2143881854

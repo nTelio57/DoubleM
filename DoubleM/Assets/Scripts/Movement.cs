@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Background1");
         joystick = JoystickManager.currentJoystick;
         stamina = maxStamina;
         resetNeeded = false;

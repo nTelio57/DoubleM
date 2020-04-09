@@ -50,6 +50,8 @@ public class CapturePoint : MonoBehaviour
         isCaptured = true;
         if(mainPoint)
             manager.setCapturePointTaken();
+        FindObjectOfType<AudioManager>().Stop("Background2");
+        FindObjectOfType<AudioManager>().Play("Background1");
     }
     
 
@@ -66,6 +68,7 @@ public class CapturePoint : MonoBehaviour
 
             loaded = true;
             attempts++;
+            FindObjectOfType<AudioManager>().Stop("Background1");
             SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
         }
     }
