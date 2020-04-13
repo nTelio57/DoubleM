@@ -57,7 +57,7 @@ public class CapturePoint : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!loaded)
+        if (!loaded && !isCaptured)
         {
             if (isSending)
             {
@@ -71,6 +71,11 @@ public class CapturePoint : MonoBehaviour
             FindObjectOfType<AudioManager>().Stop("Background1");
             SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        loaded = false;
     }
 
 }

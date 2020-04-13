@@ -16,6 +16,10 @@ public class Fighter
     public int attackDamage;
     public float critChance;
     public UnityEvent passive;
+    public Ability AbilityOne;
+    public Ability AbilityTwo;
+    public Ability AbilityThree;
+    public Ability AbilityFour;
 
     public bool TakeDamage(int dmg)
     {
