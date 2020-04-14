@@ -34,4 +34,10 @@ public class Heroes : MonoBehaviour
     {
         return fighters;
     }
+
+    public static void ResetCooldowns()
+    {
+        for (int i = 0; i < count; i++)
+            fighters[i].resetCooldowns();
+    }
 }

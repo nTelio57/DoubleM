@@ -16,6 +16,7 @@ public class CapturePoint : MonoBehaviour
     public bool isCaptured = false;
     public bool isSending = true;
     bool loaded = false;
+    public ParticleSystem particles;
     public string TBCScene;
 
     public Fighter[] fighters;
@@ -46,6 +47,7 @@ public class CapturePoint : MonoBehaviour
 
     public void Victory()
     {
+        particles.Stop();
         victories++;
         isCaptured = true;
         if(mainPoint)

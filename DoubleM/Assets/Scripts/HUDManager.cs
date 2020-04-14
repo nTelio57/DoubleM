@@ -11,6 +11,7 @@ public class HUDManager : MonoBehaviour
     public Text capturePointText;
     public string level;
     public Text levelText;
+    public Text chancesText;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,6 @@ public class HUDManager : MonoBehaviour
         moneyText.text = vault.getMoney()+"";
         capturePointText.text = capturePointManager.getCapturedPointsAmount()+" / " + capturePointManager.getCapturePointsTotalAmount();
         levelText.text = level;
+        chancesText.text = vault.getChances() + "";
     }
 }

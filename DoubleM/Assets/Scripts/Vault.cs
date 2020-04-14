@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Vault : MonoBehaviour
 {
+    public int chances = 3;
     public bool loadOnStart = false;
     static int money;
     public int startingMoney;
 
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (loadOnStart)
         {
             money = startingMoney;
@@ -25,5 +27,15 @@ public class Vault : MonoBehaviour
     public int getMoney()
     {
         return money;
+    }
+
+    public int getChances()
+    {
+        return chances;
+    }
+
+    public void addChances(int amount)
+    {
+        chances += amount;
     }
 }

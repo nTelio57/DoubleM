@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum RequiredSelection { friendly, enemies}
+public enum RequiredSelection { friendly, enemies, self, otherAllies}
 
 [System.Serializable]
 public class Ability
