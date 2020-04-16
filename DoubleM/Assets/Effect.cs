@@ -35,8 +35,6 @@ public class Effect
     public void decrementDuration()
     {
         duration--;
-        if (duration <= 0)
-            isActive = false;
     }
 
     public bool Equals(Effect e)

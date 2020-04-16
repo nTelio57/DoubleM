@@ -16,11 +16,37 @@ public class Fighter
     public int attackDamage;
     public float critChance;
     public bool isTargetable = true;
-    public List<Effect> effects = new List<Effect>();
+    public int battleStationIndex;
+    public List<Effect> effects;
     public Ability AbilityOne;
     public Ability AbilityTwo;
     public Ability AbilityThree;
     public Ability AbilityFour;
+
+    public Fighter(Fighter f)
+    {
+        prefab = f.prefab;
+        animator = f.animator;
+        flipSpriteOnX = f.flipSpriteOnX;
+        name = f.name;
+        maxHP = f.maxHP;
+        currentHP = f.currentHP;
+        attackDamage = f.attackDamage;
+        critChance = f.critChance;
+        isTargetable = f.isTargetable;
+        effects = new List<Effect>();
+        AbilityOne = new Ability(f.AbilityOne);
+        AbilityTwo = new Ability(f.AbilityTwo);
+        AbilityThree = new Ability(f.AbilityThree);
+        AbilityFour = new Ability(f.AbilityFour);
+    }
+
+    public void setBattleStation(int index)
+    {
+        Debug.Log(currentHP + " : " + battleStationIndex);
+        battleStationIndex = index;
+        Debug.Log(currentHP + " : " + battleStationIndex);
+    }
 
     public bool TakeDamage(int dmg)
     {
@@ -58,8 +84,26 @@ public class Fighter
         if (AbilityFour.cooldownCurrently > 0)
             AbilityFour.cooldownCurrently--;
 
-        foreach (Effect e in effects)
-            e.decrementDuration();
+        Debug.Log(effects.Count);
+
+        try
+        {
+            Debug.Log("----------");
+            foreach (Effect e in effects)
+            {
+                Debug.Log(e.name);
+                e.decrementDuration();
+                if (e.duration <= 0)
+                    effects.Remove(e);
+            }
+            Debug.Log("----------");
+        }
+        catch (UnityException e)
+        {
+            Debug.Log(e.Message);
+        }
+        
+            
     }
 
     public void resetCooldowns()

@@ -12,7 +12,7 @@ public class BattleSystem : MonoBehaviour
     public CapturePoint starter;
     Vault vault;
     
-    private Fighter[] heroes;
+    //private Fighter[] heroes;
     public Fighter[] fighters;
     public int playerIndex = 0;
     public int enemyIndex = 0;
@@ -44,7 +44,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         fighters = starter.getFighters();
-        heroes = Heroes.getHeroArray();
+        //heroes = Heroes.getHeroArray();
         vault = FindObjectOfType<Vault>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
@@ -57,9 +57,10 @@ public class BattleSystem : MonoBehaviour
     {
         player = new GameObject[Heroes.count];
         enemy = new GameObject[fighters.Length];
-        
+        setBattleStationIndexes();
+
          for(int i = 0; i < Heroes.count; i++)
-           player[i] = Instantiate(heroes[i].prefab, heroBattleStation[i]);
+           player[i] = Instantiate(Heroes.getHero(i).prefab, heroBattleStation[i]);
          
         for (int i = 0; i < fighters.Length; i++)
         {
@@ -68,20 +69,19 @@ public class BattleSystem : MonoBehaviour
         }
         
 
-        playerHUD.setHUD(heroes[playerIndex]);
+        playerHUD.setHUD(Heroes.getHero(0));
         enemyHUD.setHUD(fighters[enemyIndex]);
 
         EnableButtons(false);
 
         yield return new WaitForSeconds(2);
 
+        setBattleStationIndexes();
         battleText.fontSize = 30;
+        
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
-
-    
-
     
 
     void EndBattle()
@@ -124,11 +124,18 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
-        setAbilityNames();
-        for (int i = 0; i < Heroes.count; i++)
-            heroes[i].DecrementCooldowns();
-
         setCurrentFighters();
+        setAbilityNames();
+        //for (int i = 0; i < Heroes.count; i++)
+        //    Heroes.getHero(i).DecrementCooldowns();
+        //Heroes.getHero(playerIndex).DecrementCooldowns();
+        
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Debug.Log(Heroes.getHero(i).battleStationIndex+"");
+        }
+
+
         EnableButtons(true);
     }
 
@@ -143,24 +150,33 @@ public class BattleSystem : MonoBehaviour
         EnableButtons(false);
         PlaySound("Attack1");
         bool isDead = false;
-        
-        if (heroes[playerIndex].effects.Contains(Effect.Untargetable))
-        {
 
+        int targetIndex = targetIndexForEnemy();
+        
+        if (targetIndex == -1)
+        {
+            
         }
         else {
             enemy[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", true);
             int damage = fighters[enemyIndex].attackDamage;
-            isDead = heroes[playerIndex].TakeDamage(damage);
-            setBattleText("<color=red>Enemy</color> hits <color=blue>" + heroes[playerIndex].name + "</color> for <color=red>" + damage + "</color> damage", 2);
+            isDead = Heroes.getHero(targetIndex).TakeDamage(damage);
+            setBattleText("<color=red>Enemy</color> hits <color=blue>" + Heroes.getHero(targetIndex).name + "</color> for <color=red>" + damage + "</color> damage", 2);
             yield return new WaitForSeconds(1);
             enemy[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
 
         updateHuds();
-        
+
+        if (enemyIndex < fighters.Length - 1)
+            enemyIndex++;
+        else
+            enemyIndex = 0;
+
+        removeDeadheroes();
+
         yield return new WaitForSeconds(1);
-        if (isDead)
+        if (isPlayerDefeated())
         {
             state = BattleState.LOST;
             EndBattle();
@@ -176,9 +192,9 @@ public class BattleSystem : MonoBehaviour
         if (selectedAbility.requiredSelection == RequiredSelection.enemies)
             enemyCurrentFighter = fighters[index];
         else if (selectedAbility.requiredSelection == RequiredSelection.friendly)
-            friendlyCurrentFighter = heroes[index];
+            friendlyCurrentFighter = Heroes.getHero(index);
         else if (selectedAbility.requiredSelection == RequiredSelection.self)
-            friendlyCurrentFighter = heroes[index];
+            friendlyCurrentFighter = Heroes.getHero(index);
 
         selectedAbility.ability.Invoke();
         selectedAbility.cooldownCurrently = selectedAbility.cooldown;
@@ -191,17 +207,17 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAbilityOneButton()
     {
-        if (state != BattleState.PLAYERTURN || heroes[playerIndex].AbilityOne.cooldownCurrently != 0)
+        if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + heroes[playerIndex].AbilityOne.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" +Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently + "</color> turns", 1);
             return;
         }
             
 
         EnableButtons(false);
-        selectedAbility = heroes[playerIndex].AbilityOne;
+        selectedAbility = Heroes.getHero(playerIndex).AbilityOne;
 
-        if (heroes[playerIndex].AbilityOne.requiredSelection == RequiredSelection.enemies)
+        if (Heroes.getHero(playerIndex).AbilityOne.requiredSelection == RequiredSelection.enemies)
             setEnemySelectionButtonsVisible(true);
         
     }
@@ -210,65 +226,67 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAbilityTwoButton()
     {
-        if (state != BattleState.PLAYERTURN || heroes[playerIndex].AbilityTwo.cooldownCurrently != 0)
+        if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + heroes[playerIndex].AbilityTwo.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently + "</color> turns", 1);
             return;
         }
 
         EnableButtons(false);
-        selectedAbility = heroes[playerIndex].AbilityTwo;
-        
-        if (heroes[playerIndex].AbilityTwo.requiredSelection == RequiredSelection.enemies)
+        selectedAbility = Heroes.getHero(playerIndex).AbilityTwo;
+
+        if (Heroes.getHero(playerIndex).AbilityTwo.requiredSelection == RequiredSelection.enemies)
             setEnemySelectionButtonsVisible(true);
-        else if(heroes[playerIndex].AbilityTwo.requiredSelection == RequiredSelection.friendly)
+        else if(Heroes.getHero(playerIndex).AbilityTwo.requiredSelection == RequiredSelection.friendly)
             setFriendlySelectionButtonsVisible(true);
+        else if (Heroes.getHero(playerIndex).AbilityTwo.requiredSelection == RequiredSelection.self)
+            setSelfSelectionButtonVisible(true);
     }
 
     public void OnAbilityThreeButton()
     {
-        if (state != BattleState.PLAYERTURN || heroes[playerIndex].AbilityThree.cooldownCurrently != 0)
+        if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + heroes[playerIndex].AbilityThree.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently + "</color> turns", 1);
             return;
         }
 
         EnableButtons(false);
-        selectedAbility = heroes[playerIndex].AbilityThree;
+        selectedAbility = Heroes.getHero(playerIndex).AbilityThree;
 
-        if (heroes[playerIndex].AbilityThree.requiredSelection == RequiredSelection.enemies)
+        if (Heroes.getHero(playerIndex).AbilityThree.requiredSelection == RequiredSelection.enemies)
             setEnemySelectionButtonsVisible(true);
-        else if (heroes[playerIndex].AbilityThree.requiredSelection == RequiredSelection.friendly)
+        else if (Heroes.getHero(playerIndex).AbilityThree.requiredSelection == RequiredSelection.friendly)
             setFriendlySelectionButtonsVisible(true);
-        else if (heroes[playerIndex].AbilityThree.requiredSelection == RequiredSelection.self)
+        else if (Heroes.getHero(playerIndex).AbilityThree.requiredSelection == RequiredSelection.self)
             setSelfSelectionButtonVisible(true);
     }
 
     public void OnAbilityFourButton()
     {
-        if (state != BattleState.PLAYERTURN || heroes[playerIndex].AbilityFour.cooldownCurrently != 0)
+        if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + heroes[playerIndex].AbilityFour.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently + "</color> turns", 1);
             return;
         }
 
         EnableButtons(false);
-        selectedAbility = heroes[playerIndex].AbilityFour;
+        selectedAbility = Heroes.getHero(playerIndex).AbilityFour;
 
-        if (heroes[playerIndex].AbilityFour.requiredSelection == RequiredSelection.enemies)
+        if (Heroes.getHero(playerIndex).AbilityFour.requiredSelection == RequiredSelection.enemies)
             setEnemySelectionButtonsVisible(true);
-        else if (heroes[playerIndex].AbilityFour.requiredSelection == RequiredSelection.friendly)
+        else if (Heroes.getHero(playerIndex).AbilityFour.requiredSelection == RequiredSelection.friendly)
             setFriendlySelectionButtonsVisible(true);
-        else if (heroes[playerIndex].AbilityFour.requiredSelection == RequiredSelection.self)
+        else if (Heroes.getHero(playerIndex).AbilityFour.requiredSelection == RequiredSelection.self)
             setSelfSelectionButtonVisible(true);
     }
 
     void setCurrentFighters()
     {
-        friendlyCurrentFighter = heroes[playerIndex];
+        friendlyCurrentFighter = Heroes.getHero(playerIndex);
         enemyCurrentFighter = fighters[enemyIndex];
 
-        friendlyCurrentPrefab = player[playerIndex];
+        friendlyCurrentPrefab = player[Heroes.getHero(playerIndex).battleStationIndex];
         enemyCurrentPrefab = enemy[enemyIndex];
     }
 
@@ -284,6 +302,9 @@ public class BattleSystem : MonoBehaviour
     IEnumerator changeTurn(int waitTime)
     {
         updateHuds();
+
+        playerIndex = nextHeroIndex(playerIndex);
+
         yield return new WaitForSeconds(waitTime);
         
         if (isEnemyDefeated())
@@ -299,15 +320,41 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+    int nextHeroIndex(int currentIndex)
+    {
+        if (currentIndex < Heroes.count - 1)
+            currentIndex++;
+        else
+            currentIndex = 0;
+
+        if (Heroes.getHero(currentIndex).currentHP > 0)
+            return currentIndex;
+
+        return nextHeroIndex(currentIndex);
+    }
+
     void updateHuds()
     {
-        playerHUD.SetHP(heroes[playerIndex].currentHP);
+        playerHUD.SetHP(Heroes.getHero(playerIndex).currentHP);
         enemyHUD.SetHP(fighters[enemyIndex].currentHP);
+
+        printInfo();
     }
 
     void PlaySound(string name)
     {
         FindObjectOfType<AudioManager>().Play(name);
+    }
+
+    bool isPlayerDefeated()
+    {
+        int sum = 0;
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            if (Heroes.getHero(i).currentHP <= 0)
+                sum++;
+        }
+        return sum == Heroes.count;
     }
 
     bool isEnemyDefeated()
@@ -328,7 +375,11 @@ public class BattleSystem : MonoBehaviour
             if (value && fighters[i].currentHP <= 0)
                 continue;
             else
+            {
+                enemyBattleStation[i].GetComponent<SpriteRenderer>().enabled = value;
                 enemySelectButtons[i].gameObject.SetActive(value);
+            }
+
         }
     }
 
@@ -336,24 +387,35 @@ public class BattleSystem : MonoBehaviour
     {
         for (int i = 0; i < Heroes.count; i++)
         {
-            if (value && heroes[i].currentHP <= 0)
+            if (value && Heroes.getHero(i).currentHP <= 0)
                 continue;
             else
-                friendlySelectButtons[i].gameObject.SetActive(value);
+            {
+                //friendlySelectButtons[i].gameObject.SetActive(value);
+                //heroBattleStation[i].GetComponent<SpriteRenderer>().enabled = value;
+                Debug.Log("Index: " + Heroes.getHero(i).battleStationIndex);
+                friendlySelectButtons[Heroes.getHero(i).battleStationIndex].gameObject.SetActive(value);
+                heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
+            }
+                
         }
     }
 
     void setSelfSelectionButtonVisible(bool value)
     {
-        friendlySelectButtons[playerIndex].gameObject.SetActive(value);
+        // friendlySelectButtons[playerIndex].gameObject.SetActive(value);
+        //heroBattleStation[playerIndex].GetComponent<SpriteRenderer>().enabled = value;
+        Debug.Log(playerIndex + " : " + Heroes.getHero(playerIndex).battleStationIndex);
+        friendlySelectButtons[Heroes.getHero(playerIndex).battleStationIndex].gameObject.SetActive(value);
+        heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
     }
 
     void setAbilityNames()
     {
-        buttonTexts[0].text = heroes[playerIndex].AbilityOne.name;
-        buttonTexts[1].text = heroes[playerIndex].AbilityTwo.name;
-        buttonTexts[2].text = heroes[playerIndex].AbilityThree.name;
-        buttonTexts[3].text = heroes[playerIndex].AbilityFour.name;
+        buttonTexts[0].text = Heroes.getHero(playerIndex).AbilityOne.name;
+        buttonTexts[1].text = Heroes.getHero(playerIndex).AbilityTwo.name;
+        buttonTexts[2].text = Heroes.getHero(playerIndex).AbilityThree.name;
+        buttonTexts[3].text = Heroes.getHero(playerIndex).AbilityFour.name;
     }
 
     public void setBattleText(string text, int duration)
@@ -361,5 +423,57 @@ public class BattleSystem : MonoBehaviour
         battleText.text = text;
         battleTextTimer.setTimer(duration);
     }
-    
+
+
+    int targetIndexForEnemy()
+    {
+        int index = -1;
+        int leastHp = int.MaxValue;
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            if (Heroes.getHero(i).currentHP <= leastHp && Heroes.getHero(i).currentHP > 0 && !Heroes.getHero(i).effects.Contains(Effect.Untargetable))
+            {
+                leastHp = Heroes.getHero(i).currentHP;
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    void printInfo()
+    {
+        Debug.Log("Heroes");
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Debug.Log(i + " Health: " + Heroes.getHero(i).currentHP);
+            Debug.Log(i + " Station: " + Heroes.getHero(i).battleStationIndex);
+            Debug.Log(i + " Cooldown 1: " + Heroes.getHero(i).AbilityOne.cooldownCurrently);
+            Debug.Log(i + " Cooldown 2: " + Heroes.getHero(i).AbilityTwo.cooldownCurrently);
+            Debug.Log(i + " Cooldown 3: " + Heroes.getHero(i).AbilityThree.cooldownCurrently);
+            Debug.Log(i + " Cooldown 4: " + Heroes.getHero(i).AbilityFour.cooldownCurrently);
+        }
+    }
+
+    void removeDeadheroes()
+    {
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            if (Heroes.getHero(i).currentHP <= 0)
+            {
+                Heroes.RemoveHero(i);
+                Destroy(player[i]);
+            }
+                
+        }
+    }
+
+    void setBattleStationIndexes()
+    {
+        Debug.Log("Count " + Heroes.count);
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Heroes.getHero(i).setBattleStation(i);
+        }
+    }
+
 }

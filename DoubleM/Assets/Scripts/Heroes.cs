@@ -13,16 +13,33 @@ public class Heroes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxCapacity = 4;
+        maxCapacity = 5;
         fighters = new Fighter[maxCapacity];
         count = 0;
 
-        AddHero(AllHeros.GetFighter(0));
+        Fighter f = new Fighter(AllHeros.GetFighter(0));
+        Fighter f2 = new Fighter(AllHeros.GetFighter(0));
+        Fighter f3 = new Fighter(AllHeros.GetFighter(0));
+        Fighter f4 = new Fighter(AllHeros.GetFighter(0));
+        AddHero(f);
+        AddHero(f2);
+        AddHero(f3);
+        // AddHero(AllHeros.GetFighter(0));
+        // AddHero(AllHeros.GetFighter(0));
     }
 
     public static void AddHero(Fighter hero)
     {
         fighters[count++] = hero;
+    }
+
+    public static void RemoveHero(int index)
+    {
+        for (int i = index; i < count - 1; i++)
+        {
+            fighters[i] = fighters[i + 1];
+        }
+        count--;
     }
 
     public static Fighter getHero(int index)

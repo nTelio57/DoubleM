@@ -15,4 +15,13 @@ public class Ability
     public RequiredSelection requiredSelection;
     public UnityEvent ability;
 
+    public Ability(Ability a)
+    {
+        name = a.name;
+        cooldown = a.cooldown;
+        cooldownCurrently = a.cooldownCurrently;
+        requiredSelection = a.requiredSelection;
+        ability = a.ability;
+    }
+
 }
