@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public void OnPlayClick()
     {
         SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+        SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
     }
 
     public void OnOptionsClick()

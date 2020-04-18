@@ -16,20 +16,29 @@ public class Heroes : MonoBehaviour
         maxCapacity = 5;
         fighters = new Fighter[maxCapacity];
         count = 0;
-
-        Fighter f = new Fighter(AllHeros.GetFighter(0));
+        Debug.Log("LOADED");
+        /*Fighter f = new Fighter(AllHeros.GetFighter(0));
         Fighter f2 = new Fighter(AllHeros.GetFighter(0));
         Fighter f3 = new Fighter(AllHeros.GetFighter(0));
         Fighter f4 = new Fighter(AllHeros.GetFighter(0));
         AddHero(f);
         AddHero(f2);
-        AddHero(f3);
+        AddHero(f3);*/
         // AddHero(AllHeros.GetFighter(0));
         // AddHero(AllHeros.GetFighter(0));
     }
 
+    void Update()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Debug.Log("Hero " + i);
+        }
+    }
+
     public static void AddHero(Fighter hero)
     {
+        Debug.Log("Added ");
         fighters[count++] = hero;
     }
 

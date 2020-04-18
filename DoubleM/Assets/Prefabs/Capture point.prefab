@@ -4857,6 +4857,7 @@ MonoBehaviour:
   mainPoint: 1
   isCaptured: 0
   isSending: 1
+  particles: {fileID: 4544071229237710984}
   TBCScene: 
   fighters: []
   victoryLoot: 0

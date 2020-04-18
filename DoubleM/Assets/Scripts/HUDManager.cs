@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    public Vault vault;
     public Text moneyText;
     public CapturePointManager capturePointManager;
     public Text capturePointText;
@@ -22,9 +21,9 @@ public class HUDManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyText.text = vault.getMoney()+"";
+        moneyText.text = Vault.getMoney()+"";
         capturePointText.text = capturePointManager.getCapturedPointsAmount()+" / " + capturePointManager.getCapturePointsTotalAmount();
         levelText.text = level;
-        chancesText.text = vault.getChances() + "";
+        chancesText.text = Vault.getChances() + "";
     }
 }

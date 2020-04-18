@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ec10a83dafed16c45933bc5e50e79940
   - enabled: 1
-    path: Assets/Scenes/TBC.unity
-    guid: f3acea9dff457d94b94e48010b0c5721
-  - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: cec4595683b4b974dbc206585df5e778
+  - enabled: 1
+    path: Assets/Scenes/HeroShop.unity
+    guid: 5dec8b921f40cbe4599564ad94444367
+  - enabled: 1
+    path: Assets/Scenes/TBC.unity
+    guid: f3acea9dff457d94b94e48010b0c5721
   - enabled: 1
     path: Assets/Scenes/Level1/Stage1.unity
     guid: 558c416c17855fa4abc3484ee8a2a680

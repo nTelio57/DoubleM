@@ -51,6 +51,9 @@ public class BattleSystem : MonoBehaviour
         
         setBattleText("Defeat the <color=red> enemies </color>!", 2);
         FindObjectOfType<AudioManager>().Play("Background2");
+
+        for (int i = 0; i < Heroes.count; i++)
+            Debug.Log("Hp "+Heroes.getHero(i).currentHP);
     }
 
     IEnumerator SetupBattle()
@@ -98,7 +101,7 @@ public class BattleSystem : MonoBehaviour
                     Heroes.getHero(i).maxHP += 10;
                     Heroes.getHero(i).currentHP += 10;
                 }
-            vault.addMoney(starter.getVictoryLoot());
+            Vault.addMoney(starter.getVictoryLoot());
             CapturePoint.currentCapturePoint.Victory();
         }
         else if (state == BattleState.FLED)
@@ -112,10 +115,9 @@ public class BattleSystem : MonoBehaviour
                 fighters[i].currentHP = fighters[i].maxHP;
             for (int i = 0; i < Heroes.count; i++)
                 Heroes.getHero(i).currentHP = (int)(Heroes.getHero(i).maxHP * 0.5);
-
-            Vault v = FindObjectOfType<Vault>();
-            v.addChances(-1);
-            if (v.getChances() <= 0)
+            
+            Vault.addChances(-1);
+            if (Vault.getChances() <= 0)
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
         Heroes.ResetCooldowns();

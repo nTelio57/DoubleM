@@ -26,6 +26,7 @@ public class CapturePointManager : MonoBehaviour
         {
             Destroy(FindObjectOfType<AudioManager>().gameObject);
             SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
+            SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
         }
     }
 

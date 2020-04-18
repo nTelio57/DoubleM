@@ -4,37 +4,38 @@ using UnityEngine;
 
 public class Vault : MonoBehaviour
 {
-    public int chances = 3;
+    public static int chances = 3;
     public bool loadOnStart = false;
-    static int money;
+    public static int money;
     public int startingMoney;
+    public int startingChances;
 
-    
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         if (loadOnStart)
         {
             money = startingMoney;
+            chances = startingChances;
         }
     }
 
-    public void addMoney(int amount)
+    public static void addMoney(int amount)
     {
         money += amount;
     }
 
-    public int getMoney()
+    public static int getMoney()
     {
         return money;
     }
 
-    public int getChances()
+    public static int getChances()
     {
         return chances;
     }
 
-    public void addChances(int amount)
+    public static void addChances(int amount)
     {
         chances += amount;
     }
