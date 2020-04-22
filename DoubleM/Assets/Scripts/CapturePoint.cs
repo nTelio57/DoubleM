@@ -12,9 +12,9 @@ public class CapturePoint : MonoBehaviour
     static int attempts = 0;
     public int victories = 0;
     public BattleReward reward;
+    public int victoryLoot;
     public bool mainPoint;
     public bool isCaptured = false;
-    public bool isSending = true;
     bool loaded = false;
     public ParticleSystem particles;
     public string TBCScene;
@@ -22,7 +22,7 @@ public class CapturePoint : MonoBehaviour
     public Fighter[] fighters;
     static public Fighter[] fighterPass;
 
-    public int victoryLoot;
+    
     static int victoryLootPass;
 
     // Start is called before the first frame update
@@ -47,7 +47,8 @@ public class CapturePoint : MonoBehaviour
 
     public void Victory()
     {
-        particles.Stop();
+        if(particles != null)
+            particles.Stop();
         victories++;
         isCaptured = true;
         if(mainPoint)
@@ -61,12 +62,10 @@ public class CapturePoint : MonoBehaviour
     {
         if (!loaded && !isCaptured)
         {
-            if (isSending)
-            {
-                fighterPass = fighters;
-                victoryLootPass = victoryLoot;
-                currentCapturePoint = this;
-            }
+
+            fighterPass = fighters;
+            victoryLootPass = victoryLoot;
+            currentCapturePoint = this;
 
             loaded = true;
             attempts++;

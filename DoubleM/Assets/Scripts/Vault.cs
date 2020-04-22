@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vault : MonoBehaviour
 {
-    public static int chances = 3;
+    public static int chances;
     public bool loadOnStart = false;
     public static int money;
     public int startingMoney;

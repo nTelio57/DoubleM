@@ -4830,7 +4830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446386989300742974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96, y: 1.08, z: 4}
+  m_LocalPosition: {x: -0.96, y: -1.52, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8371181907173185141}
@@ -5032,11 +5032,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victories: 0
+  reward: 0
+  victoryLoot: 0
+  mainPoint: 0
   isCaptured: 0
-  isSending: 1
+  particles: {fileID: 0}
   TBCScene: 
   fighters: []
-  victoryLoot: 0
 --- !u!114 &7138774963722960194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5049,7 +5051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec5829d746ba704f82618e701cc4b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 0
   rendererObject: {fileID: 4617199034564475802}
   Health: {fileID: 21300000, guid: 87a7c4321fd50514c8e41d6779a071da, type: 3}
   Armor: {fileID: 21300000, guid: 567fdd2e557fefc478f8aaa7ae56fb11, type: 3}

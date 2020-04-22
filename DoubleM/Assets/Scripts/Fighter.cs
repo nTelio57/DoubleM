@@ -16,6 +16,7 @@ public class Fighter
     public int attackDamage;
     public float critChance;
     public bool isTargetable = true;
+    [HideInInspector]
     public int battleStationIndex;
     public List<Effect> effects;
     public Ability AbilityOne;
@@ -43,9 +44,7 @@ public class Fighter
 
     public void setBattleStation(int index)
     {
-        Debug.Log(currentHP + " : " + battleStationIndex);
         battleStationIndex = index;
-        Debug.Log(currentHP + " : " + battleStationIndex);
     }
 
     public bool TakeDamage(int dmg)
@@ -83,20 +82,16 @@ public class Fighter
 
         if (AbilityFour.cooldownCurrently > 0)
             AbilityFour.cooldownCurrently--;
-
-        Debug.Log(effects.Count);
+        
 
         try
         {
-            Debug.Log("----------");
             foreach (Effect e in effects)
             {
-                Debug.Log(e.name);
                 e.decrementDuration();
                 if (e.duration <= 0)
                     effects.Remove(e);
             }
-            Debug.Log("----------");
         }
         catch (UnityException e)
         {

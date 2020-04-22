@@ -120,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.37424073, y: -1.0576386}
-  m_Size: {x: 1.260342, y: 1.7159384}
+  m_Offset: {x: -0.37424073, y: 0.8087213}
+  m_Size: {x: 1.260342, y: 1.5733829}
   m_Direction: 0
 --- !u!114 &7731338215161485522
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   maxStamina: 10
   staminaGainedOnRest: 0.5
   staminaLostOnRun: 1
-  distanceFromCenterToRun: 0.98
+  distanceFromCenterToRun: 0.97
 --- !u!95 &7731338215161485523
 Animator:
   serializedVersion: 3

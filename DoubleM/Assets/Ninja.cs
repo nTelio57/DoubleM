@@ -39,7 +39,7 @@ public class Ninja : MonoBehaviour
     IEnumerator AbilityTwoEnum()
     {
         Fighter f = BattleSystem.friendlyCurrentFighter;
-        int amount = (int)(1.25 * f.maxHP);
+        int amount = (int)(0.3 * f.maxHP);
         if (f.maxHP - f.currentHP < amount)
             amount = f.maxHP - f.currentHP;
 

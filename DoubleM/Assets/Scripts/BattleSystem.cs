@@ -51,9 +51,7 @@ public class BattleSystem : MonoBehaviour
         
         setBattleText("Defeat the <color=red> enemies </color>!", 2);
         FindObjectOfType<AudioManager>().Play("Background2");
-
-        for (int i = 0; i < Heroes.count; i++)
-            Debug.Log("Hp "+Heroes.getHero(i).currentHP);
+        
     }
 
     IEnumerator SetupBattle()
@@ -128,15 +126,6 @@ public class BattleSystem : MonoBehaviour
     {
         setCurrentFighters();
         setAbilityNames();
-        //for (int i = 0; i < Heroes.count; i++)
-        //    Heroes.getHero(i).DecrementCooldowns();
-        //Heroes.getHero(playerIndex).DecrementCooldowns();
-        
-        for (int i = 0; i < Heroes.count; i++)
-        {
-            Debug.Log(Heroes.getHero(i).battleStationIndex+"");
-        }
-
 
         EnableButtons(true);
     }
@@ -170,12 +159,15 @@ public class BattleSystem : MonoBehaviour
 
         updateHuds();
 
-        if (enemyIndex < fighters.Length - 1)
+       /* if (enemyIndex < fighters.Length - 1)
             enemyIndex++;
         else
-            enemyIndex = 0;
+            enemyIndex = 0;*/
+
+        enemyIndex = nextFighterIndex(enemyIndex);
 
         removeDeadheroes();
+        removeDeadFighters();
 
         yield return new WaitForSeconds(1);
         if (isPlayerDefeated())
@@ -289,7 +281,7 @@ public class BattleSystem : MonoBehaviour
         enemyCurrentFighter = fighters[enemyIndex];
 
         friendlyCurrentPrefab = player[Heroes.getHero(playerIndex).battleStationIndex];
-        enemyCurrentPrefab = enemy[enemyIndex];
+        enemyCurrentPrefab = enemy[fighters[enemyIndex].battleStationIndex];
     }
 
     public void OnFleeButton()
@@ -335,12 +327,23 @@ public class BattleSystem : MonoBehaviour
         return nextHeroIndex(currentIndex);
     }
 
+    int nextFighterIndex(int currentIndex)
+    {
+        if (currentIndex < fighters.Length - 1)
+            currentIndex++;
+        else
+            currentIndex = 0;
+
+        if (fighters[currentIndex].currentHP > 0)
+            return currentIndex;
+
+        return nextFighterIndex(currentIndex);
+    }
+
     void updateHuds()
     {
         playerHUD.SetHP(Heroes.getHero(playerIndex).currentHP);
         enemyHUD.SetHP(fighters[enemyIndex].currentHP);
-
-        printInfo();
     }
 
     void PlaySound(string name)
@@ -393,9 +396,6 @@ public class BattleSystem : MonoBehaviour
                 continue;
             else
             {
-                //friendlySelectButtons[i].gameObject.SetActive(value);
-                //heroBattleStation[i].GetComponent<SpriteRenderer>().enabled = value;
-                Debug.Log("Index: " + Heroes.getHero(i).battleStationIndex);
                 friendlySelectButtons[Heroes.getHero(i).battleStationIndex].gameObject.SetActive(value);
                 heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
             }
@@ -405,9 +405,6 @@ public class BattleSystem : MonoBehaviour
 
     void setSelfSelectionButtonVisible(bool value)
     {
-        // friendlySelectButtons[playerIndex].gameObject.SetActive(value);
-        //heroBattleStation[playerIndex].GetComponent<SpriteRenderer>().enabled = value;
-        Debug.Log(playerIndex + " : " + Heroes.getHero(playerIndex).battleStationIndex);
         friendlySelectButtons[Heroes.getHero(playerIndex).battleStationIndex].gameObject.SetActive(value);
         heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
     }
@@ -442,20 +439,6 @@ public class BattleSystem : MonoBehaviour
         return index;
     }
 
-    void printInfo()
-    {
-        Debug.Log("Heroes");
-        for (int i = 0; i < Heroes.count; i++)
-        {
-            Debug.Log(i + " Health: " + Heroes.getHero(i).currentHP);
-            Debug.Log(i + " Station: " + Heroes.getHero(i).battleStationIndex);
-            Debug.Log(i + " Cooldown 1: " + Heroes.getHero(i).AbilityOne.cooldownCurrently);
-            Debug.Log(i + " Cooldown 2: " + Heroes.getHero(i).AbilityTwo.cooldownCurrently);
-            Debug.Log(i + " Cooldown 3: " + Heroes.getHero(i).AbilityThree.cooldownCurrently);
-            Debug.Log(i + " Cooldown 4: " + Heroes.getHero(i).AbilityFour.cooldownCurrently);
-        }
-    }
-
     void removeDeadheroes()
     {
         for (int i = 0; i < Heroes.count; i++)
@@ -469,12 +452,27 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    void removeDeadFighters()
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            if (fighters[i].currentHP <= 0)
+            {
+                Destroy(enemy[i]);
+            }
+        }
+    }
+
     void setBattleStationIndexes()
     {
-        Debug.Log("Count " + Heroes.count);
         for (int i = 0; i < Heroes.count; i++)
         {
             Heroes.getHero(i).setBattleStation(i);
+        }
+
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i].setBattleStation(i);
         }
     }
 
