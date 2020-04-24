@@ -13,6 +13,11 @@ public class PauseMenu : MonoBehaviour
 
     public void onMenuClick()
     {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Destroy(FindObjectOfType<AllHeros>().gameObject);
+        Destroy(FindObjectOfType<Vault>().gameObject);
+        Destroy(FindObjectOfType<AudioManager>().gameObject);
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 

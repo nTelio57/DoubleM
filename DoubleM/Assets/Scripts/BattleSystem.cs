@@ -47,6 +47,7 @@ public class BattleSystem : MonoBehaviour
         //heroes = Heroes.getHeroArray();
         vault = FindObjectOfType<Vault>();
         state = BattleState.START;
+        GameStatus.isMainLevelPaused = true;
         StartCoroutine(SetupBattle());
         
         setBattleText("Defeat the <color=red> enemies </color>!", 2);
@@ -76,7 +77,7 @@ public class BattleSystem : MonoBehaviour
         EnableButtons(false);
 
         yield return new WaitForSeconds(2);
-
+        
         setBattleStationIndexes();
         battleText.fontSize = 30;
         
@@ -118,6 +119,7 @@ public class BattleSystem : MonoBehaviour
             if (Vault.getChances() <= 0)
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
+        GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
         SceneManager.UnloadSceneAsync("TBC");
     }

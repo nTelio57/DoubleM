@@ -81,6 +81,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("Ejimas");
         if (isRunning && !resetNeeded)
         {
             rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
