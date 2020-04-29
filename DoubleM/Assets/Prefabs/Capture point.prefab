@@ -4911,7 +4911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  spawningInterval: 0.99
+  maxEntitiesCount: 5
+  spawningInterval: 5
   fighters:
   - {fileID: 6447568417215739248, guid: ad3e2eae8e2cc87429b9bdd90a4b8dca, type: 3}
 --- !u!60 &626626850408885149

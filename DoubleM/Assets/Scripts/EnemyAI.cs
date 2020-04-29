@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
 
     public float speed = 200;
     public float nextWaypointDistance = 3f;
+    public float rangeFromTarget = 0;
+    public Combat combat;
 
     Path path;
     int currentWaypoint = 0;
@@ -47,9 +49,12 @@ public class EnemyAI : MonoBehaviour
         if (path == null)
             return;
 
-        if (currentWaypoint >= path.vectorPath.Count)
+        float distanceToTarget = Vector2.Distance(rb.position, target.position);
+
+        if (currentWaypoint >= path.vectorPath.Count || distanceToTarget <= rangeFromTarget)
         {
             reachedEndOfPath = true;
+            Combat();
             return;
         }
         else
@@ -60,9 +65,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = rb.mass * direction * speed * Time.deltaTime;
         Vector2 positionToAdd = rb.position + direction * speed * Time.deltaTime;
-
-        // rb.AddForce(force);
-
+        
         if(!GameStatus.isMainLevelPaused)
             rb.MovePosition(positionToAdd);
 
@@ -72,5 +75,10 @@ public class EnemyAI : MonoBehaviour
         {
             currentWaypoint++;
         }
+    }
+
+    void Combat()
+    {
+        combat.Attack();
     }
 }

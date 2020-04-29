@@ -28,6 +28,11 @@ public class CollisionChecks : MonoBehaviour
             collision.gameObject.GetComponent<Spawner>().isActive = true;
         }
 
+        if (collision.tag == "Enemy")
+        {
+          //  Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

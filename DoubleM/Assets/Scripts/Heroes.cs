@@ -60,4 +60,15 @@ public class Heroes : MonoBehaviour
         for (int i = 0; i < count; i++)
             fighters[i].resetCooldowns();
     }
+
+    public static int getCountOfHeroByID(int id)
+    {
+        int sum = 0;
+        for (int i = 0; i < count; i++)
+        {
+            if (fighters[i].ID == id)
+                sum++;
+        }
+        return sum;
+    }
 }

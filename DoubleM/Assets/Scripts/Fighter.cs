@@ -10,6 +10,8 @@ public class Fighter
     //public Sprite sprite;
     public Animator animator;
     public bool flipSpriteOnX = false;
+    [HideInInspector]
+    public int ID;
     public string name;
     public int maxHP;
     public int currentHP;
@@ -29,6 +31,7 @@ public class Fighter
         prefab = f.prefab;
         animator = f.animator;
         flipSpriteOnX = f.flipSpriteOnX;
+        ID = f.ID;
         name = f.name;
         maxHP = f.maxHP;
         currentHP = f.currentHP;
@@ -40,6 +43,11 @@ public class Fighter
         AbilityTwo = new Ability(f.AbilityTwo);
         AbilityThree = new Ability(f.AbilityThree);
         AbilityFour = new Ability(f.AbilityFour);
+    }
+
+    public void setID(int id)
+    {
+        ID = id;
     }
 
     public void setBattleStation(int index)
@@ -62,6 +70,19 @@ public class Fighter
         currentHP += amount;
         if (currentHP > maxHP)
             currentHP = maxHP;
+    }
+
+    public void Upgrade(string type, int amount)
+    {
+        if (type == "attack")
+        {
+            attackDamage += amount;
+        }
+        if(type == "health")
+        {
+            maxHP += amount;
+            Heal(amount);
+        }
     }
 
     public void addEffect(Effect e)

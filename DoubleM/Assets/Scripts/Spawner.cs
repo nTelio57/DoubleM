@@ -6,10 +6,12 @@ using UnityEngine.Tilemaps;
 public class Spawner : MonoBehaviour
 {
     public bool isActive;
+    public int maxEntitiesCount;
     [Range(0.1f, 15)]
     public float spawningInterval;
     public GameObject[] fighters;
 
+    int entitiesCount = 0;
     float timer;
     Vector3 newPosition;
 
@@ -25,7 +27,7 @@ public class Spawner : MonoBehaviour
         if(!GameStatus.isMainLevelPaused)
             timer += Time.deltaTime;
 
-        if (timer >= spawningInterval && isActive)
+        if (timer >= spawningInterval && isActive && entitiesCount < maxEntitiesCount)
         {
             RectTransform rt = GetComponent<RectTransform>();
             int fighterFromArray = Random.Range(0, fighters.Length - 1);
@@ -33,6 +35,7 @@ public class Spawner : MonoBehaviour
             newPosition.y = Random.Range(rt.position.y - rt.sizeDelta.y / 2, rt.position.y + rt.sizeDelta.y / 2);
             newPosition.z = fighters[fighterFromArray].transform.position.z;
 
+            entitiesCount++;
             Instantiate(fighters[fighterFromArray], newPosition, Quaternion.identity, transform);
 
             timer = 0;

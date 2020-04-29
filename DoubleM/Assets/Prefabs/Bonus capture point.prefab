@@ -4981,7 +4981,7 @@ GameObject:
   - component: {fileID: 7138774963722960194}
   m_Layer: 0
   m_Name: Bonus capture point
-  m_TagString: Untagged
+  m_TagString: Capture point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

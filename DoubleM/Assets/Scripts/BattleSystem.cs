@@ -61,8 +61,12 @@ public class BattleSystem : MonoBehaviour
         enemy = new GameObject[fighters.Length];
         setBattleStationIndexes();
 
-         for(int i = 0; i < Heroes.count; i++)
-           player[i] = Instantiate(Heroes.getHero(i).prefab, heroBattleStation[i]);
+        for(int i = 0; i < Heroes.count; i++)
+        {
+            player[i] = Instantiate(Heroes.getHero(i).prefab, heroBattleStation[i]);
+            player[i].GetComponent<SpriteRenderer>().flipX = Heroes.getHero(i).flipSpriteOnX;
+        }
+           
          
         for (int i = 0; i < fighters.Length; i++)
         {

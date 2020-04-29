@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Capture point
   - Spawn zone
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - Grid
   - Obstacles
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
