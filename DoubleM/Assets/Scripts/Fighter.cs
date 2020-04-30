@@ -60,7 +60,10 @@ public class Fighter
         currentHP -= dmg;
 
         if (currentHP <= 0)
+        {
+            currentHP = 0;
             return true;
+        }
         else
             return false;
     }

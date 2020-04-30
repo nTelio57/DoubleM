@@ -1335,14 +1335,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9a43190d790c4388159b03ed4867f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 1
+  price: 275
+  itemName: Archer
   stats: {fileID: 0}
   upgrades: {fileID: 0}
   priceText: {fileID: 306799548}
   quantityText: {fileID: 1138494075}
   nameText: {fileID: 1729538051}
-  ID: 1
-  price: 275
-  itemName: Archer
+  healthText: {fileID: 0}
+  attackText: {fileID: 0}
+  defenseText: {fileID: 0}
   health:
     price: 0
     priceText: {fileID: 0}
@@ -2729,14 +2732,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9a43190d790c4388159b03ed4867f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 2
+  price: 350
+  itemName: Lifestealer
   stats: {fileID: 0}
   upgrades: {fileID: 0}
   priceText: {fileID: 1652195911}
   quantityText: {fileID: 66298365}
   nameText: {fileID: 339359160}
-  ID: 2
-  price: 350
-  itemName: Lifestealer
+  healthText: {fileID: 0}
+  attackText: {fileID: 0}
+  defenseText: {fileID: 0}
   health:
     price: 0
     priceText: {fileID: 0}
@@ -6008,14 +6014,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9a43190d790c4388159b03ed4867f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 3
+  price: 150
+  itemName: Warrior
   stats: {fileID: 0}
   upgrades: {fileID: 0}
   priceText: {fileID: 1979176289}
   quantityText: {fileID: 1456337656}
   nameText: {fileID: 19181088}
-  ID: 3
-  price: 150
-  itemName: Warrior
+  healthText: {fileID: 0}
+  attackText: {fileID: 0}
+  defenseText: {fileID: 0}
   health:
     price: 0
     priceText: {fileID: 0}
@@ -7671,10 +7680,11 @@ MonoBehaviour:
   moneyPanel: {fileID: 1875367480}
   nextLevelButtonPanel: {fileID: 2068285973}
   infoPanelManager: {fileID: 1726737091}
-  upgradeButtonText: {fileID: 1288560871}
   isMandatory: 0
   nextLevelButton: {fileID: 2068285975}
+  upgradeButton: {fileID: 429468}
   balance: {fileID: 525795281}
+  upgradeButtonText: {fileID: 1288560871}
   items:
   - {fileID: 792341855}
   - {fileID: 774043610}

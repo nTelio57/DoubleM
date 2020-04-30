@@ -1105,14 +1105,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9a43190d790c4388159b03ed4867f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
+  price: 200
+  itemName: Ninja
   stats: {fileID: 3588470978139738229}
   upgrades: {fileID: 3588470978101053177}
   priceText: {fileID: 3588470978334885935}
   quantityText: {fileID: 3588470979733965848}
   nameText: {fileID: 3588470978783339964}
-  ID: 0
-  price: 200
-  itemName: Ninja
+  healthText: {fileID: 3588470978082621285}
+  attackText: {fileID: 3588470978037608538}
+  defenseText: {fileID: 3588470978560308133}
   health:
     price: 10
     priceText: {fileID: 3588470979423271417}

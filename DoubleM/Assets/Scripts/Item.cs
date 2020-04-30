@@ -5,19 +5,28 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
+    [Header("Item")]
+    public int ID;
+    public int price;
+    public string itemName;
+
+    [Header("Text fields")]
     public GameObject stats;
     public GameObject upgrades;
     public Text priceText;
     public Text quantityText;
     public Text nameText;
-    public int ID;
-    public int price;
-    public string itemName;
 
+    [Header("Statistic text fields")]
+    public Text healthText;
+    public Text attackText;
+    public Text defenseText;
+
+    [Header("Upgradables")]
     public Upgrade health;
     public Upgrade attack;
     public Upgrade defense;
-
+    
     public string name1;
     [TextArea(3,5)]
     public string text1;
@@ -40,12 +49,19 @@ public class Item : MonoBehaviour
         priceText.text = price + "";
         nameText.text = itemName;
         setUpgradePrices();
+        setStatisticText();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setStatisticText()
+    {
+        healthText.text = AllHeros.GetFighter(ID).maxHP+"";
+        attackText.text = AllHeros.GetFighter(ID).attackDamage + "";
     }
 
     public void setQuantityTexts(int quantity)
@@ -81,5 +97,6 @@ public class Item : MonoBehaviour
         AllHeros.GetFighter(ID).Upgrade(type, temp.amount);
 
         FindObjectOfType<Shop>().updateBalance();
+        setStatisticText();
     }
 }
