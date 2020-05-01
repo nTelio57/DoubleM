@@ -6,18 +6,19 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    [Header("Panel management")]
     public GameObject shopPanel;
     public GameObject infoPanel;
     public GameObject moneyPanel;
     public GameObject nextLevelButtonPanel;
-
     public InfoPanelManager infoPanelManager;
-
-    public Text upgradeButtonText;
 
     public bool isMandatory;
     public Button nextLevelButton;
+    public Button upgradeButton;
     public Text balance;
+    public Text upgradeButtonText;
+    [Header("Item list")]
     public Item[] items;
 
     bool isUpgradesVisible = false;
@@ -29,7 +30,10 @@ public class Shop : MonoBehaviour
         checkIfMandatory();
         updateBalance();
         if (isMandatory)
+        {
             nextLevelButton.interactable = false;
+            upgradeButton.interactable = false;
+        }
         setQuantityTexts();
     }
 
@@ -70,6 +74,7 @@ public class Shop : MonoBehaviour
             Heroes.AddHero(f);
             Vault.addMoney(-getItemByID(itemID).price);
             nextLevelButton.interactable = true;
+            upgradeButton.interactable = true;
             isMandatory = false;
         }
         updateBalance();
