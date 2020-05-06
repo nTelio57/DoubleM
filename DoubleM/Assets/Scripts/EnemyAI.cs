@@ -7,6 +7,9 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform target;
 
+    public int damage;
+    public float attackSpeed;
+    float attackTimer;
     public float speed = 200;
     public float nextWaypointDistance = 3f;
     public float rangeFromTarget = 0;
@@ -26,6 +29,8 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("UpdatePath", 0f, .5f);
+
+        attackTimer = 0;
     }
 
     void UpdatePath()
@@ -46,6 +51,8 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        attackTimer += Time.deltaTime;
+
         if (path == null)
             return;
 
@@ -79,6 +86,10 @@ public class EnemyAI : MonoBehaviour
 
     void Combat()
     {
-        combat.Attack();
+        if (attackTimer >= attackSpeed)
+        {
+            combat.Attack(damage);
+            attackTimer = 0;
+        }
     }
 }

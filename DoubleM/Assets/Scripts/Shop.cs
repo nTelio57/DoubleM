@@ -10,7 +10,10 @@ public class Shop : MonoBehaviour
     public GameObject shopPanel;
     public GameObject infoPanel;
     public GameObject moneyPanel;
+    [Header("Buttons")]
     public GameObject nextLevelButtonPanel;
+    public GameObject upgradeButtonPanel;
+    [Header("Misc")]
     public InfoPanelManager infoPanelManager;
 
     public bool isMandatory;
@@ -128,14 +131,16 @@ public class Shop : MonoBehaviour
         moneyPanel.SetActive(true);
         nextLevelButtonPanel.SetActive(true);
         infoPanel.SetActive(false);
+        upgradeButtonPanel.SetActive(true);
     }
 
-    public void setInfoText(int index)
+    public void onInfoPanelClick(int index)
     {
         infoPanelManager.setTextfields(getItemByID(index));
         shopPanel.SetActive(false);
         moneyPanel.SetActive(false);
         nextLevelButtonPanel.SetActive(false);
         infoPanel.SetActive(true);
+        upgradeButtonPanel.SetActive(false);
     }
 }
