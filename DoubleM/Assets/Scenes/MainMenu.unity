@@ -672,7 +672,7 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[1].AbilityThree.cooldown
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
@@ -702,7 +702,22 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[1].AbilityOne.cooldown
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityTwo.cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityTwo.name
+      value: Duoble Tap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityTwo.requiredSelection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5867767139899491007, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
