@@ -33,7 +33,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-    GameObject[] player, enemy;
+    GameObject[] player, enemies;
 
     public static Fighter enemyCurrentFighter, friendlyCurrentFighter;
     public static GameObject enemyCurrentPrefab, friendlyCurrentPrefab;
@@ -58,7 +58,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         player = new GameObject[Heroes.count];
-        enemy = new GameObject[fighters.Length];
+        enemies = new GameObject[fighters.Length];
         setBattleStationIndexes();
 
         for(int i = 0; i < Heroes.count; i++)
@@ -70,8 +70,8 @@ public class BattleSystem : MonoBehaviour
          
         for (int i = 0; i < fighters.Length; i++)
         {
-            enemy[i] = Instantiate(fighters[i].prefab, enemyBattleStation[i]);
-            enemy[i].GetComponent<SpriteRenderer>().flipX = fighters[i].flipSpriteOnX;
+            enemies[i] = Instantiate(fighters[i].prefab, enemyBattleStation[i]);
+            enemies[i].GetComponent<SpriteRenderer>().flipX = fighters[i].flipSpriteOnX;
         }
         
 
@@ -155,12 +155,12 @@ public class BattleSystem : MonoBehaviour
             
         }
         else {
-            enemy[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", true);
+            enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", true);
             int damage = fighters[enemyIndex].attackDamage;
             isDead = Heroes.getHero(targetIndex).TakeDamage(damage);
             setBattleText("<color=red>Enemy</color> hits <color=blue>" + Heroes.getHero(targetIndex).name + "</color> for <color=red>" + damage + "</color> damage", 2);
             yield return new WaitForSeconds(1);
-            enemy[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
+            enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
 
         updateHuds();
@@ -287,7 +287,7 @@ public class BattleSystem : MonoBehaviour
         enemyCurrentFighter = fighters[enemyIndex];
 
         friendlyCurrentPrefab = player[Heroes.getHero(playerIndex).battleStationIndex];
-        enemyCurrentPrefab = enemy[fighters[enemyIndex].battleStationIndex];
+        enemyCurrentPrefab = enemies[fighters[enemyIndex].battleStationIndex];
     }
 
     public void OnFleeButton()
@@ -464,7 +464,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (fighters[i].currentHP <= 0)
             {
-                Destroy(enemy[i]);
+                Destroy(enemies[i]);
             }
         }
     }
@@ -482,4 +482,13 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    public GameObject[] getAllEnemiesArray()
+    {
+        return enemies;
+    }
+
+    public Fighter[] getAllFightersArray()
+    {
+        return fighters;
+    }
 }
