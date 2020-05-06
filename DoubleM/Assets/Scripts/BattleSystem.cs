@@ -198,6 +198,7 @@ public class BattleSystem : MonoBehaviour
 
         selectedAbility.ability.Invoke();
         selectedAbility.cooldownCurrently = selectedAbility.cooldown;
+        friendlyCurrentFighter.DecrementCooldowns();
         setEnemySelectionButtonsVisible(false);
         setFriendlySelectionButtonsVisible(false);
         setSelfSelectionButtonVisible(false);
@@ -436,7 +437,7 @@ public class BattleSystem : MonoBehaviour
         int leastHp = int.MaxValue;
         for (int i = 0; i < Heroes.count; i++)
         {
-            if (Heroes.getHero(i).currentHP <= leastHp && Heroes.getHero(i).currentHP > 0 && !Heroes.getHero(i).effects.Contains(Effect.Untargetable))
+            if (Heroes.getHero(i).currentHP <= leastHp && Heroes.getHero(i).currentHP > 0 && !Heroes.getHero(i).GetEffect(Effect.Untargetable.name).isActive)
             {
                 leastHp = Heroes.getHero(i).currentHP;
                 index = i;

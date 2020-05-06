@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effect
 {
-    public static Effect Untargetable = new Effect("Untargetable", 1, true);
+    public static Effect Untargetable = new Effect("Untargetable", 2, true);
 
     public string name;
     public int duration;
@@ -16,7 +16,7 @@ public class Effect
         this.name = name;
         totalDurationInTurns = duration;
         this.isActive = isActive;
-        duration = totalDurationInTurns;
+        this.duration = totalDurationInTurns;
     }
 
     public Effect(string name)
@@ -29,7 +29,9 @@ public class Effect
 
     public void setDuration(int duration)
     {
-        totalDurationInTurns = duration;
+        this.duration = duration;
+        if (this.duration > 0)
+            isActive = true;
     }
 
     public void decrementDuration()

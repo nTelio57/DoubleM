@@ -90,7 +90,17 @@ public class Fighter
 
     public void addEffect(Effect e)
     {
-        effects.Add(e);
+        bool found = false;
+        foreach (Effect effect in effects)
+        {
+            if (effect.name == e.name) {
+                effect.duration = e.duration;
+                effect.isActive = e.isActive;
+                found = true;
+            }
+        }
+        if (!found)
+            effects.Add(new Effect(e.name, e.duration, e.isActive));
     }
 
     public void DecrementCooldowns()
@@ -114,7 +124,10 @@ public class Fighter
             {
                 e.decrementDuration();
                 if (e.duration <= 0)
-                    effects.Remove(e);
+                {
+                    e.isActive = false;
+                }
+                    
             }
         }
         catch (UnityException e)
@@ -123,6 +136,16 @@ public class Fighter
         }
         
             
+    }
+
+    public Effect GetEffect(string name)
+    {
+        foreach (Effect e in effects)
+        {
+            if (e.name == name)
+                return e;
+        }
+        return null;
     }
 
     public void resetCooldowns()
