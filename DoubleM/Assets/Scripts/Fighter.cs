@@ -26,6 +26,9 @@ public class Fighter
     public Ability AbilityThree;
     public Ability AbilityFour;
 
+    [HideInInspector]
+    public Healthbar healthbar;
+
     public Fighter(Fighter f)
     {
         prefab = f.prefab;
@@ -48,6 +51,8 @@ public class Fighter
         addEffect(Effect.Untargetable);
 
         disableAllEffects();
+
+        prefab.GetComponentInChildren<Healthbar>().SetMaxHealth(maxHP);
     }
 
     public void disableAllEffects()
@@ -72,6 +77,7 @@ public class Fighter
     public bool TakeDamage(int dmg)
     {
         currentHP -= dmg;
+        healthbar.SetHealth(currentHP);
 
         if (currentHP <= 0)
         {

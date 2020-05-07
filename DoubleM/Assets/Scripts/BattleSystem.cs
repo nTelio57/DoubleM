@@ -73,8 +73,8 @@ public class BattleSystem : MonoBehaviour
             enemies[i] = Instantiate(fighters[i].prefab, enemyBattleStation[i]);
             enemies[i].GetComponent<SpriteRenderer>().flipX = fighters[i].flipSpriteOnX;
         }
-        
 
+        setupHealthbars();
         playerHUD.setHUD(Heroes.getHero(0));
         enemyHUD.setHUD(fighters[enemyIndex]);
 
@@ -88,7 +88,23 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
-    
+
+    void setupHealthbars()
+    {
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Heroes.getHero(i).healthbar = player[i].GetComponentInChildren<Healthbar>();
+            Heroes.getHero(i).healthbar.SetHealth(Heroes.getHero(i).currentHP);
+        }
+
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i].healthbar = enemies[i].GetComponentInChildren<Healthbar>();
+            fighters[i].healthbar.SetMaxHealth(fighters[i].maxHP);
+        }
+
+    }
+
 
     void EndBattle()
     {
@@ -388,7 +404,7 @@ public class BattleSystem : MonoBehaviour
                 continue;
             else
             {
-                enemyBattleStation[i].GetComponent<SpriteRenderer>().enabled = value;
+                enemyBattleStation[i].GetComponentInChildren<SpriteRenderer>().enabled = value;
                 enemySelectButtons[i].gameObject.SetActive(value);
             }
 
@@ -404,7 +420,7 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 friendlySelectButtons[Heroes.getHero(i).battleStationIndex].gameObject.SetActive(value);
-                heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
+                heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponentInChildren<SpriteRenderer>().enabled = value;
             }
                 
         }
@@ -413,7 +429,7 @@ public class BattleSystem : MonoBehaviour
     void setSelfSelectionButtonVisible(bool value)
     {
         friendlySelectButtons[Heroes.getHero(playerIndex).battleStationIndex].gameObject.SetActive(value);
-        heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
+        heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponentInChildren<SpriteRenderer>().enabled = value;
     }
 
     void setAbilityNames()
