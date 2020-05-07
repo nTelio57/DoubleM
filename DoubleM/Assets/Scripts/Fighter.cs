@@ -43,6 +43,20 @@ public class Fighter
         AbilityTwo = new Ability(f.AbilityTwo);
         AbilityThree = new Ability(f.AbilityThree);
         AbilityFour = new Ability(f.AbilityFour);
+
+        //Effects
+        addEffect(Effect.Untargetable);
+
+        disableAllEffects();
+    }
+
+    public void disableAllEffects()
+    {
+        foreach (Effect e in effects)
+        {
+            e.isActive = false;
+            e.duration = 0;
+        }
     }
 
     public void setID(int id)

@@ -435,9 +435,11 @@ public class BattleSystem : MonoBehaviour
     {
         int index = -1;
         int leastHp = int.MaxValue;
+        Fighter h;
         for (int i = 0; i < Heroes.count; i++)
         {
-            if (Heroes.getHero(i).currentHP <= leastHp && Heroes.getHero(i).currentHP > 0 && !Heroes.getHero(i).GetEffect(Effect.Untargetable.name).isActive)
+            h = Heroes.getHero(i);
+            if (h.currentHP <= leastHp && h.currentHP > 0 && h.GetEffect(Effect.Untargetable.name) != null && !h.GetEffect(Effect.Untargetable.name).isActive)
             {
                 leastHp = Heroes.getHero(i).currentHP;
                 index = i;
