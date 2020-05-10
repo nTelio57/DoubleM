@@ -11,17 +11,40 @@ public class Combat : MonoBehaviour
     public int health;
     public int currentHealth;
 
+    float attackPointXPos;
+    float attackPointXNeg;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = health;
+        attackPointXPos = attackPoint.localPosition.x;
+        attackPointXNeg = -attackPoint.localPosition.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        updateAttackPointHorrizontal();
+    }
 
+    Vector3 newPosition;
+    float memoryJoystickHorizontal;
+
+    void updateAttackPointHorrizontal()
+    {
+        if(JoystickManager.currentJoystick.Horizontal != 0)
+            memoryJoystickHorizontal = JoystickManager.currentJoystick.Horizontal;
+
+        if (memoryJoystickHorizontal > 0)
+            newPosition.x = attackPointXPos;
+        else
+            newPosition.x = attackPointXNeg;
+        
+        newPosition.y = attackPoint.localPosition.y;
+        newPosition.z = attackPoint.localPosition.z;
+
+        attackPoint.localPosition = newPosition;
     }
 
     public void Attack(int amount)

@@ -223,7 +223,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" +Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" +Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
             
@@ -242,7 +242,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -261,7 +261,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -280,7 +280,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -441,7 +441,7 @@ public class BattleSystem : MonoBehaviour
         buttonTexts[3].text = Heroes.getHero(playerIndex).AbilityFour.name;
     }
 
-    public void setBattleText(string text, int duration)
+    public void setBattleText(string text, float duration)
     {
         battleText.text = text;
         battleTextTimer.setTimer(duration);

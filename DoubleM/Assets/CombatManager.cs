@@ -7,6 +7,7 @@ public class CombatManager : MonoBehaviour
 {
     public MainStats player;
     public Combat playerCombat;
+    public Animator playerAnimator;
     public Button attackButton;
     public Text hpText;
 
@@ -29,6 +30,7 @@ public class CombatManager : MonoBehaviour
 
     public void onAttackClick()
     {
+        playerAnimator.SetTrigger("Attack");
         playerCombat.Attack(player.damage);
     }
 

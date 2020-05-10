@@ -28,9 +28,7 @@ using UnityEngine;
             bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
             setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", true);
-            yield return new WaitForSeconds(1);
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", false);
+            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
             yield return new WaitForSeconds(1);
             critBoost = 0;
             dmgBoost = 0;
@@ -68,9 +66,7 @@ using UnityEngine;
             }
             
 
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", true);
-            yield return new WaitForSeconds(1);
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", false);
+            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
             yield return new WaitForSeconds(1);
 
         }
@@ -92,10 +88,8 @@ using UnityEngine;
 
                 
             }
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", true);
-            yield return new WaitForSeconds(1);
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", false);
-            yield return new WaitForSeconds(1);
+            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        yield return new WaitForSeconds(1);
         }
 
         public void AbilityFour()
