@@ -30,7 +30,8 @@ public class Combat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Combat>().takeDamage(amount);
+            if(enemy.isTrigger)
+                enemy.GetComponent<Combat>().takeDamage(amount);
         }
     }
 
@@ -44,6 +45,7 @@ public class Combat : MonoBehaviour
     public void takeDamage(int amount)
     {
         currentHealth -= amount;
+        
         if (currentHealth <= 0)
         {
             if (gameObject.tag == "Player")

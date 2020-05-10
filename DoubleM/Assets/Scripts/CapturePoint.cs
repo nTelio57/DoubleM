@@ -80,4 +80,15 @@ public class CapturePoint : MonoBehaviour
         loaded = false;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            StartTheFight(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            ExitedCollision(collision);
+    }
 }

@@ -36,4 +36,20 @@ public class InfoPanelManager : MonoBehaviour
         name4.text = i.name4;
         text4.text = i.text4;
     }
+
+    public void setTextfields(Fighter f)
+    {
+        Debug.Log(f.AbilityOne.describtion);
+        name1.text = f.AbilityOne.name;
+        text1.text = f.AbilityOne.describtion;
+
+        name2.text = f.AbilityTwo.name;
+        text2.text = f.AbilityTwo.describtion;
+
+        name3.text = f.AbilityThree.name;
+        text3.text = f.AbilityThree.describtion;
+
+        name4.text = f.AbilityFour.name;
+        text4.text = f.AbilityFour.describtion;
+    }
 }

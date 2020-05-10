@@ -135,7 +135,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.018588543, y: 0.7750325}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   damage: 1
-  attackSpeed: 0.75
+  attackSpeed: 2
   speed: 10
   nextWaypointDistance: 3
   rangeFromTarget: 3

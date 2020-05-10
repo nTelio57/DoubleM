@@ -719,6 +719,48 @@ PrefabInstance:
       propertyPath: heroesList.Array.data[1].AbilityTwo.requiredSelection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityOne.describtion
+      value: A simple bow shot with a chance of doing 150% more damage if it lands
+        a critical strike.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityTwo.describtion
+      value: Hits 2 lowest health enemies with a regular attack.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityThree.describtion
+      value: Does 50% damage to all enemies on the field
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[1].AbilityFour.describtion
+      value: Hero enrages, giving him self some damage and critical chance.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[0].AbilityFour.describtion
+      value: Deals more damage based on enemies missing health.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[0].AbilityThree.describtion
+      value: Turns untargetable for one turn.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[0].AbilityTwo.describtion
+      value: Heals 30% of max health.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[0].AbilityOne.describtion
+      value: A simple attack with a chance of doing 150% more damage if it lands
+        a critical strike.
+      objectReference: {fileID: 0}
     - target: {fileID: 5867767139899491007, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: m_Name
@@ -1690,6 +1732,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1823,6 +1866,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1896,6 +1940,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2029,6 +2074,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2273,6 +2319,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5863,6 +5910,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

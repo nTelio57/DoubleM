@@ -22,14 +22,15 @@ public class BattleSystem : MonoBehaviour
     public Button[] friendlySelectButtons;
     public Button[] enemySelectButtons;
 
+    [Header("Info panel management")]
+    public GameObject infoPanel;
+    public InfoPanelManager infoPanelManager;
+
     public Transform[] heroBattleStation;
     public Transform[] enemyBattleStation;
 
     public Text battleText;
     public Timer battleTextTimer;
-
-    public BattleHUD playerHUD;
-    public BattleHUD enemyHUD;
 
     public BattleState state;
 
@@ -75,8 +76,6 @@ public class BattleSystem : MonoBehaviour
         }
 
         setupHealthbars();
-        playerHUD.setHUD(Heroes.getHero(0));
-        enemyHUD.setHUD(fighters[enemyIndex]);
 
         EnableButtons(false);
 
@@ -178,8 +177,6 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(1);
             enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
-
-        updateHuds();
 
        /* if (enemyIndex < fighters.Length - 1)
             enemyIndex++;
@@ -316,9 +313,19 @@ public class BattleSystem : MonoBehaviour
         EndBattle();
     }
 
+    public void OnInfoButton()
+    {
+        infoPanelManager.setTextfields(friendlyCurrentFighter);
+        infoPanel.SetActive(true);
+    }
+
+    public void OnInfoBackButton()
+    {
+        infoPanel.SetActive(false);
+    }
+
     IEnumerator changeTurn(int waitTime)
     {
-        updateHuds();
 
         playerIndex = nextHeroIndex(playerIndex);
 
@@ -361,12 +368,6 @@ public class BattleSystem : MonoBehaviour
             return currentIndex;
 
         return nextFighterIndex(currentIndex);
-    }
-
-    void updateHuds()
-    {
-        playerHUD.SetHP(Heroes.getHero(playerIndex).currentHP);
-        enemyHUD.SetHP(fighters[enemyIndex].currentHP);
     }
 
     void PlaySound(string name)

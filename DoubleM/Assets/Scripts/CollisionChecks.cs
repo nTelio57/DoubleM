@@ -7,7 +7,7 @@ public class CollisionChecks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -15,7 +15,7 @@ public class CollisionChecks : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Capture point")

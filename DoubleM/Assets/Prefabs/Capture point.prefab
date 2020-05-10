@@ -4914,7 +4914,7 @@ MonoBehaviour:
   maxEntitiesCount: 5
   spawningInterval: 5
   fighters:
-  - {fileID: 6447568417215739248, guid: ad3e2eae8e2cc87429b9bdd90a4b8dca, type: 3}
+  - {fileID: 3350869686825282222, guid: 2e2b12bf759ef91408c22a982046c376, type: 3}
 --- !u!60 &626626850408885149
 PolygonCollider2D:
   m_ObjectHideFlags: 0
