@@ -9,21 +9,25 @@ public class CombatManager : MonoBehaviour
     public Combat playerCombat;
     public Animator playerAnimator;
     public Button attackButton;
+    public Healthbar playerHealthbar;
     public Text hpText;
 
+    string healthText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerHealthbar.SetMaxHealth(playerCombat.maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        setHpText(playerCombat.currentHealth);
+        healthText = playerCombat.currentHealth + "/" + playerCombat.maxHealth;
+        setHpText(healthText);
+        playerHealthbar.SetHealth(playerCombat.currentHealth);
     }
 
-    public void setHpText(int h)
+    public void setHpText(string h)
     {
         hpText.text = h+"";
     }

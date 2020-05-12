@@ -8,7 +8,7 @@ public class Combat : MonoBehaviour
     public LayerMask enemyLayers;
     [Header("Stats")]
     public float attackRange = 0.5f;
-    public int health;
+    public int maxHealth;
     public int currentHealth;
 
     float attackPointXPos;
@@ -17,7 +17,7 @@ public class Combat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = health;
+        currentHealth = maxHealth;
         attackPointXPos = attackPoint.localPosition.x;
         attackPointXNeg = -attackPoint.localPosition.x;
     }
@@ -74,7 +74,7 @@ public class Combat : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 Vault.addChances(-1);
-                currentHealth = health;
+                currentHealth = maxHealth;
             }
             if (gameObject.tag == "Enemy")
             {

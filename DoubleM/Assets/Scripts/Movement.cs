@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Movement : MonoBehaviour
     public Animator animator;
     public float speed;
     public float runSpeed;
+    [Header("Stamina")]
+    public Healthbar staminaBar;
+    public Text staminaText;
     public float maxStamina;
     public float staminaGainedOnRest;
     public float staminaLostOnRun;
@@ -27,10 +31,14 @@ public class Movement : MonoBehaviour
         joystick = JoystickManager.currentJoystick;
         stamina = maxStamina;
         resetNeeded = false;
+        staminaBar.SetMaxHealth((int)maxStamina);
     }
 
     void Update()
     {
+        staminaBar.SetHealth((int)stamina);
+        staminaText.text = (int)stamina + "/" + (int)maxStamina;
+
         timer += Time.deltaTime;
         movement.x = JoystickManager.currentJoystick.Horizontal;
         movement.y = JoystickManager.currentJoystick.Vertical;
