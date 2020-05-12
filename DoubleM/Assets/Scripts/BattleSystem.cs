@@ -45,6 +45,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         fighters = starter.getFighters();
+        InitEnemyFighters();
         //heroes = Heroes.getHeroArray();
         vault = FindObjectOfType<Vault>();
         state = BattleState.START;
@@ -54,6 +55,14 @@ public class BattleSystem : MonoBehaviour
         setBattleText("Defeat the <color=red> enemies </color>!", 2);
         FindObjectOfType<AudioManager>().Play("Background2");
         
+    }
+
+    void InitEnemyFighters()
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i] = new Fighter(fighters[i]);
+        }
     }
 
     IEnumerator SetupBattle()
@@ -178,23 +187,28 @@ public class BattleSystem : MonoBehaviour
             enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
 
-       /* if (enemyIndex < fighters.Length - 1)
-            enemyIndex++;
-        else
-            enemyIndex = 0;*/
-
-        enemyIndex = nextFighterIndex(enemyIndex);
-
+        yield return new WaitForSeconds(1);
+        EndOfTurn();
+        Debug.Log("YO");
         removeDeadheroes();
         removeDeadFighters();
 
+        //enemyIndex = nextFighterIndex(enemyIndex);
+
         yield return new WaitForSeconds(1);
+        
         if (isPlayerDefeated())
         {
             state = BattleState.LOST;
             EndBattle();
         }
-        else {
+        else if (isEnemyDefeated())
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
             state = BattleState.PLAYERTURN;
             PlayerTurn();
         }
@@ -326,7 +340,13 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator changeTurn(int waitTime)
     {
+        yield return new WaitForSeconds(1);
+        EndOfTurn();
 
+        removeDeadheroes();
+        removeDeadFighters();
+
+        
         playerIndex = nextHeroIndex(playerIndex);
 
         yield return new WaitForSeconds(waitTime);
@@ -338,6 +358,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+            enemyIndex = nextFighterIndex(enemyIndex);
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
@@ -463,6 +484,19 @@ public class BattleSystem : MonoBehaviour
             }
         }
         return index;
+    }
+
+    void EndOfTurn()
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i].EndOfTurn();
+        }
+
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Heroes.getHero(i).EndOfTurn();
+        }
     }
 
     void removeDeadheroes()

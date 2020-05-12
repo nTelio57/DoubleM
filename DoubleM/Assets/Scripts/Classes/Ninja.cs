@@ -22,7 +22,6 @@ public class Ninja : MonoBehaviour
         if (critChanceRoll <= BattleSystem.friendlyCurrentFighter.critChance)
             damage *= 1.5f;
         
-
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
         setBattleText("<color=blue>Ninja</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
