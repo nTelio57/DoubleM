@@ -150,6 +150,7 @@ public class BattleSystem : MonoBehaviour
         GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
         SceneManager.UnloadSceneAsync("TBC");
+        FindObjectOfType<CheckpointManager>().Respawn();
     }
 
     void PlayerTurn()

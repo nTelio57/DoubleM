@@ -7,6 +7,7 @@ public class Combat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayers;
     [Header("Stats")]
+    public int damage;
     public float attackRange = 0.5f;
     public int maxHealth;
     public int currentHealth;
@@ -75,6 +76,7 @@ public class Combat : MonoBehaviour
             {
                 Vault.addChances(-1);
                 currentHealth = maxHealth;
+                FindObjectOfType<CheckpointManager>().Respawn();
             }
             if (gameObject.tag == "Enemy")
             {

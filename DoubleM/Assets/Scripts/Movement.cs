@@ -96,7 +96,5 @@ public class Movement : MonoBehaviour
         else {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
-            
-
     }
 }

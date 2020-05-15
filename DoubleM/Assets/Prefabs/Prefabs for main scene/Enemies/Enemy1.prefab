@@ -225,8 +225,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
+  damage: 1
   attackRange: 4.05
-  health: 2
+  maxHealth: 0
   currentHealth: 0
 --- !u!1 &3964039764992867307
 GameObject:

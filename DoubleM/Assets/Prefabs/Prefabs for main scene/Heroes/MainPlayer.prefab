@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 7731338215161485523}
   - component: {fileID: 5815187916025553928}
   - component: {fileID: 5344127923328467307}
-  - component: {fileID: 3855955661166691854}
   - component: {fileID: 4410448339945660212}
   m_Layer: 0
   m_Name: MainPlayer
@@ -227,24 +226,10 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  damage: 0
   attackRange: 2
   maxHealth: 10
   currentHealth: 0
---- !u!114 &3855955661166691854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7731338215161485521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d675032bc8ce11448a133fe254998433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  currentHealth: 0
-  damage: 1
 --- !u!70 &4410448339945660212
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

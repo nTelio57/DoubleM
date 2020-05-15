@@ -13,6 +13,7 @@ public class CapturePoint : MonoBehaviour
     public int victories = 0;
     public BattleReward reward;
     public int victoryLoot;
+    public Transform checkpoint;
     public bool mainPoint;
     public bool isCaptured = false;
     bool loaded = false;
@@ -55,6 +56,12 @@ public class CapturePoint : MonoBehaviour
             manager.setCapturePointTaken();
         FindObjectOfType<AudioManager>().Stop("Background2");
         FindObjectOfType<AudioManager>().Play("Background1");
+        if (checkpoint != null)
+        {
+            CheckpointManager.currentCheckpoint = checkpoint;
+            FindObjectOfType<CheckpointManager>().Respawn();
+        }
+        
     }
     
 
