@@ -146,11 +146,11 @@ public class BattleSystem : MonoBehaviour
             Vault.addChances(-1);
             if (Vault.getChances() <= 0)
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            FindObjectOfType<CheckpointManager>().Respawn();
         }
         GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
         SceneManager.UnloadSceneAsync("TBC");
-        FindObjectOfType<CheckpointManager>().Respawn();
     }
 
     void PlayerTurn()
@@ -190,7 +190,6 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         EndOfTurn();
-        Debug.Log("YO");
         removeDeadheroes();
         removeDeadFighters();
 

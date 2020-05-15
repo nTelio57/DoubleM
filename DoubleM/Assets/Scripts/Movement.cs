@@ -24,14 +24,18 @@ public class Movement : MonoBehaviour
     float stamina;
     bool resetNeeded;
     float timer = 0;
+    AudioManager audioM;
 
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Background1");
+        audioM = FindObjectOfType<AudioManager>();
         joystick = JoystickManager.currentJoystick;
         stamina = maxStamina;
         resetNeeded = false;
         staminaBar.SetMaxHealth((int)maxStamina);
+        
+        if(audioM != null)
+            audioM.Play("Background1");
     }
 
     void Update()

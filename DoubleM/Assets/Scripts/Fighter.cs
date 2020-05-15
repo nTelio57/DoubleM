@@ -93,7 +93,7 @@ public class Fighter
         currentHP += amount;
         if (currentHP > maxHP)
             currentHP = maxHP;
-        healthbar.SetHealth(currentHP);
+        healthbar.SetHealth(currentHP);//meta klaida kai upgradinama hp shope
     }
 
     public void Upgrade(string type, int amount)

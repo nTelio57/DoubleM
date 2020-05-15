@@ -24,7 +24,6 @@ public class CapturePointManager : MonoBehaviour
         mainCapturePointCurrentCount++;
         if (mainCapturePointCurrentCount == mainCapturePointTotal)
         {
-            Destroy(FindObjectOfType<AudioManager>().gameObject);
             SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
             SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
         }
