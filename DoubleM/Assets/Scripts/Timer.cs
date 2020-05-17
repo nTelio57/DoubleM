@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public int TimeToWaitInSeconds;
+    public float TimeToWaitInSeconds;
     public float timer = 0;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    public void setTimer(int seconds)
+    public void setTimer(float seconds)
     {
         TimeToWaitInSeconds = seconds;
         gameObject.SetActive(true);

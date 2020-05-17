@@ -22,13 +22,12 @@ public class Ninja : MonoBehaviour
         if (critChanceRoll <= BattleSystem.friendlyCurrentFighter.critChance)
             damage *= 1.5f;
         
-
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
         setBattleText("<color=blue>Ninja</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
-        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", true);
+        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetInteger("attackId", 0);
+        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(1);
-        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", false);
         yield return new WaitForSeconds(1);
     }
 
@@ -77,11 +76,10 @@ public class Ninja : MonoBehaviour
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage(damage);
 
         setBattleText("<color=blue>Ninja</color> strikes for <color=red>" + damage + "</color> damage", 1);
-        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", true);
+        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetInteger("attackId", 1);
+        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(1);
-        BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetBool("IsAttacking", false);
-
-        yield return new WaitForSeconds(1);
+        
     }
 
     float missingHealthPercentage(Fighter f)

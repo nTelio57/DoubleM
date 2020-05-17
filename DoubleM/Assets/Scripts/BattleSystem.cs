@@ -22,14 +22,15 @@ public class BattleSystem : MonoBehaviour
     public Button[] friendlySelectButtons;
     public Button[] enemySelectButtons;
 
+    [Header("Info panel management")]
+    public GameObject infoPanel;
+    public InfoPanelManager infoPanelManager;
+
     public Transform[] heroBattleStation;
     public Transform[] enemyBattleStation;
 
     public Text battleText;
     public Timer battleTextTimer;
-
-    public BattleHUD playerHUD;
-    public BattleHUD enemyHUD;
 
     public BattleState state;
 
@@ -44,6 +45,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         fighters = starter.getFighters();
+        InitEnemyFighters();
         //heroes = Heroes.getHeroArray();
         vault = FindObjectOfType<Vault>();
         state = BattleState.START;
@@ -53,6 +55,14 @@ public class BattleSystem : MonoBehaviour
         setBattleText("Defeat the <color=red> enemies </color>!", 2);
         FindObjectOfType<AudioManager>().Play("Background2");
         
+    }
+
+    void InitEnemyFighters()
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i] = new Fighter(fighters[i]);
+        }
     }
 
     IEnumerator SetupBattle()
@@ -73,10 +83,8 @@ public class BattleSystem : MonoBehaviour
             enemies[i] = Instantiate(fighters[i].prefab, enemyBattleStation[i]);
             enemies[i].GetComponent<SpriteRenderer>().flipX = fighters[i].flipSpriteOnX;
         }
-        
 
-        playerHUD.setHUD(Heroes.getHero(0));
-        enemyHUD.setHUD(fighters[enemyIndex]);
+        setupHealthbars();
 
         EnableButtons(false);
 
@@ -88,7 +96,23 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
-    
+
+    void setupHealthbars()
+    {
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Heroes.getHero(i).healthbar = player[i].GetComponentInChildren<Healthbar>();
+            Heroes.getHero(i).healthbar.SetHealth(Heroes.getHero(i).currentHP);
+        }
+
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i].healthbar = enemies[i].GetComponentInChildren<Healthbar>();
+            fighters[i].healthbar.SetMaxHealth(fighters[i].maxHP);
+        }
+
+    }
+
 
     void EndBattle()
     {
@@ -122,6 +146,7 @@ public class BattleSystem : MonoBehaviour
             Vault.addChances(-1);
             if (Vault.getChances() <= 0)
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            FindObjectOfType<CheckpointManager>().Respawn();
         }
         GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
@@ -163,25 +188,27 @@ public class BattleSystem : MonoBehaviour
             enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
 
-        updateHuds();
-
-       /* if (enemyIndex < fighters.Length - 1)
-            enemyIndex++;
-        else
-            enemyIndex = 0;*/
-
-        enemyIndex = nextFighterIndex(enemyIndex);
-
+        yield return new WaitForSeconds(1);
+        EndOfTurn();
         removeDeadheroes();
         removeDeadFighters();
 
+        //enemyIndex = nextFighterIndex(enemyIndex);
+
         yield return new WaitForSeconds(1);
+        
         if (isPlayerDefeated())
         {
             state = BattleState.LOST;
             EndBattle();
         }
-        else {
+        else if (isEnemyDefeated())
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
             state = BattleState.PLAYERTURN;
             PlayerTurn();
         }
@@ -210,7 +237,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" +Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" +Heroes.getHero(playerIndex).AbilityOne.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
             
@@ -229,7 +256,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityTwo.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -248,7 +275,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityThree.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -267,7 +294,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN || Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently != 0)
         {
-            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently + "</color> turns", 1);
+            setBattleText("It's on cooldown for <color=blue>" + Heroes.getHero(playerIndex).AbilityFour.cooldownCurrently + "</color> turns", 1.7f);
             return;
         }
 
@@ -300,10 +327,26 @@ public class BattleSystem : MonoBehaviour
         EndBattle();
     }
 
+    public void OnInfoButton()
+    {
+        infoPanelManager.setTextfields(friendlyCurrentFighter);
+        infoPanel.SetActive(true);
+    }
+
+    public void OnInfoBackButton()
+    {
+        infoPanel.SetActive(false);
+    }
+
     IEnumerator changeTurn(int waitTime)
     {
-        updateHuds();
+        yield return new WaitForSeconds(1);
+        EndOfTurn();
 
+        removeDeadheroes();
+        removeDeadFighters();
+
+        
         playerIndex = nextHeroIndex(playerIndex);
 
         yield return new WaitForSeconds(waitTime);
@@ -315,6 +358,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+            enemyIndex = nextFighterIndex(enemyIndex);
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
@@ -345,12 +389,6 @@ public class BattleSystem : MonoBehaviour
             return currentIndex;
 
         return nextFighterIndex(currentIndex);
-    }
-
-    void updateHuds()
-    {
-        playerHUD.SetHP(Heroes.getHero(playerIndex).currentHP);
-        enemyHUD.SetHP(fighters[enemyIndex].currentHP);
     }
 
     void PlaySound(string name)
@@ -388,7 +426,7 @@ public class BattleSystem : MonoBehaviour
                 continue;
             else
             {
-                enemyBattleStation[i].GetComponent<SpriteRenderer>().enabled = value;
+                enemyBattleStation[i].GetComponentInChildren<SpriteRenderer>().enabled = value;
                 enemySelectButtons[i].gameObject.SetActive(value);
             }
 
@@ -404,7 +442,7 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 friendlySelectButtons[Heroes.getHero(i).battleStationIndex].gameObject.SetActive(value);
-                heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
+                heroBattleStation[Heroes.getHero(i).battleStationIndex].GetComponentInChildren<SpriteRenderer>().enabled = value;
             }
                 
         }
@@ -413,7 +451,7 @@ public class BattleSystem : MonoBehaviour
     void setSelfSelectionButtonVisible(bool value)
     {
         friendlySelectButtons[Heroes.getHero(playerIndex).battleStationIndex].gameObject.SetActive(value);
-        heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponent<SpriteRenderer>().enabled = value;
+        heroBattleStation[Heroes.getHero(playerIndex).battleStationIndex].GetComponentInChildren<SpriteRenderer>().enabled = value;
     }
 
     void setAbilityNames()
@@ -424,7 +462,7 @@ public class BattleSystem : MonoBehaviour
         buttonTexts[3].text = Heroes.getHero(playerIndex).AbilityFour.name;
     }
 
-    public void setBattleText(string text, int duration)
+    public void setBattleText(string text, float duration)
     {
         battleText.text = text;
         battleTextTimer.setTimer(duration);
@@ -446,6 +484,19 @@ public class BattleSystem : MonoBehaviour
             }
         }
         return index;
+    }
+
+    void EndOfTurn()
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            fighters[i].EndOfTurn();
+        }
+
+        for (int i = 0; i < Heroes.count; i++)
+        {
+            Heroes.getHero(i).EndOfTurn();
+        }
     }
 
     void removeDeadheroes()

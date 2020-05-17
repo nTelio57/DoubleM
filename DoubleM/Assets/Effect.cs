@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Effect
 {
-    public static Effect Untargetable = new Effect("Untargetable", 2, true);
+    public static Effect Untargetable = new Effect("Untargetable", 2, 0, true);
+    public static Effect Bleeding = new Effect("Bleeding", 4, 3, true);
+    public static Effect Rage = new Effect("Rage", 2, 0, true);
+    public static Effect Weakness = new Effect("Weakness", 2, 0, true);
 
     public string name;
     public int duration;
     int totalDurationInTurns;
     public bool isActive;
+    public float amount;
 
-    public Effect(string name, int duration, bool isActive)
+    public Effect(string name, int duration, float amount, bool isActive)
     {
         this.name = name;
         totalDurationInTurns = duration;
         this.isActive = isActive;
+        this.amount = amount;
         this.duration = totalDurationInTurns;
     }
 
@@ -24,6 +29,7 @@ public class Effect
         this.name = name;
         totalDurationInTurns = 1;
         isActive = true;
+        amount = 1;
         duration = totalDurationInTurns;
     }
 

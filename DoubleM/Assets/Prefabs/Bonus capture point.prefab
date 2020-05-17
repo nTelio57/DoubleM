@@ -5034,10 +5034,11 @@ MonoBehaviour:
   victories: 0
   reward: 0
   victoryLoot: 0
+  checkpoint: {fileID: 0}
   mainPoint: 0
   isCaptured: 0
   particles: {fileID: 0}
-  TBCScene: 
+  TBCScene: TBC
   fighters: []
 --- !u!114 &7138774963722960194
 MonoBehaviour:

@@ -26,6 +26,9 @@ public class Fighter
     public Ability AbilityThree;
     public Ability AbilityFour;
 
+    [HideInInspector]
+    public Healthbar healthbar;
+
     public Fighter(Fighter f)
     {
         prefab = f.prefab;
@@ -48,6 +51,8 @@ public class Fighter
         addEffect(Effect.Untargetable);
 
         disableAllEffects();
+
+        prefab.GetComponentInChildren<Healthbar>().SetMaxHealth(maxHP);
     }
 
     public void disableAllEffects()
@@ -72,6 +77,7 @@ public class Fighter
     public bool TakeDamage(int dmg)
     {
         currentHP -= dmg;
+        healthbar.SetHealth(currentHP);
 
         if (currentHP <= 0)
         {
@@ -87,6 +93,7 @@ public class Fighter
         currentHP += amount;
         if (currentHP > maxHP)
             currentHP = maxHP;
+        healthbar.SetHealth(currentHP);//meta klaida kai upgradinama hp shope
     }
 
     public void Upgrade(string type, int amount)
@@ -114,7 +121,7 @@ public class Fighter
             }
         }
         if (!found)
-            effects.Add(new Effect(e.name, e.duration, e.isActive));
+            effects.Add(new Effect(e.name, e.duration, e.amount, e.isActive));
     }
 
     public void DecrementCooldowns()
@@ -162,11 +169,30 @@ public class Fighter
         return null;
     }
 
+    public bool HasEffect(string name)
+    {
+        foreach (Effect e in effects)
+        {
+            if (e.name == name)
+                return true;
+        }
+        return false;
+    }
+
     public void resetCooldowns()
     {
         AbilityOne.cooldownCurrently = 0;
         AbilityTwo.cooldownCurrently = 0;
         AbilityThree.cooldownCurrently = 0;
         AbilityFour.cooldownCurrently = 0;
+    }
+
+    //Vykdomas bet kokio veiksmo pabaigoj, nesvarbu ar tai sis fighteris atlikinejo veiksmus ar kazkas kitas. BattleSystem klaseje po kiekvieno fighterio ejimo for ciklas praeis pro visus fighterius ir isauks si metoda
+    public void EndOfTurn()
+    {
+        if (HasEffect(Effect.Bleeding.name))
+        {
+            TakeDamage((int)GetEffect(Effect.Bleeding.name).amount);
+        }
     }
 }

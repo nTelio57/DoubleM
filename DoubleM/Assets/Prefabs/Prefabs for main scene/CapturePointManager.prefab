@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6375b4053149b9341b5c0f42e7469b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevelScene: 
+  mainCapturePointCurrentCount: 0
   capturePoints:
   - {fileID: 0}
   - {fileID: 0}
