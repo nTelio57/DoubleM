@@ -6,7 +6,7 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
     public Transform target;
-
+    public Animator animator;
     public int damage;
     public float attackSpeed;
     float attackTimer;
@@ -72,8 +72,13 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = rb.mass * direction * speed * Time.deltaTime;
         Vector2 positionToAdd = rb.position + direction * speed * Time.deltaTime;
-        
-        if(!GameStatus.isMainLevelPaused)
+
+        if (direction.x > 0)
+            GetComponent<SpriteRenderer>().flipX = false;
+        else
+            GetComponent<SpriteRenderer>().flipX = true;
+
+        if (!GameStatus.isMainLevelPaused)
             rb.MovePosition(positionToAdd);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -88,6 +93,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackTimer >= attackSpeed)
         {
+            animator.SetTrigger("Attack");
             combat.Attack(damage);
             attackTimer = 0;
         }

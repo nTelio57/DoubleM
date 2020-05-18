@@ -24,6 +24,7 @@ public class CapturePointManager : MonoBehaviour
         mainCapturePointCurrentCount++;
         if (mainCapturePointCurrentCount == mainCapturePointTotal)
         {
+            GameTracking.stageCount += 1;
             SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
             SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
         }

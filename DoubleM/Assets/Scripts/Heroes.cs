@@ -71,4 +71,11 @@ public class Heroes : MonoBehaviour
         }
         return sum;
     }
+
+    public static void Reset()
+    {
+        fighters = new Fighter[maxCapacity];
+        count = 0;
+    }
+
 }

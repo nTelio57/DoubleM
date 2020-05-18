@@ -52,6 +52,7 @@ public class CapturePoint : MonoBehaviour
             particles.Stop();
         victories++;
         isCaptured = true;
+        GameTracking.fightsWonCount += 1;
         if(mainPoint)
             manager.setCapturePointTaken();
         FindObjectOfType<AudioManager>().Stop("Background2");
@@ -73,7 +74,7 @@ public class CapturePoint : MonoBehaviour
             fighterPass = fighters;
             victoryLootPass = victoryLoot;
             currentCapturePoint = this;
-
+            GameTracking.fightsTotalCount += 1;
             loaded = true;
             attempts++;
             FindObjectOfType<AudioManager>().Stop("Background1");

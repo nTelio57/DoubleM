@@ -11,7 +11,8 @@ public class Spawner : MonoBehaviour
     public float spawningInterval;
     public GameObject[] fighters;
 
-    int entitiesCount = 0;
+    //[HideInInspector]
+    public int entitiesCount = 0;
     float timer;
     Vector3 newPosition;
 

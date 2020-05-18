@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Vault : MonoBehaviour
 {
@@ -37,6 +38,15 @@ public class Vault : MonoBehaviour
 
     public static void addChances(int amount)
     {
+        if (chances == 0)
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
         chances += amount;
     }
+
+    public void Reset()
+    {
+        chances = startingChances;
+        money = startingMoney;
+    }
+
 }

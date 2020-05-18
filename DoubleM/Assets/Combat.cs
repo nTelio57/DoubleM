@@ -80,6 +80,8 @@ public class Combat : MonoBehaviour
             }
             if (gameObject.tag == "Enemy")
             {
+                GameTracking.enemySlainCount += 1;
+                GetComponentInParent<Spawner>().entitiesCount--;
                 Destroy(gameObject);
             }
         }

@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  animator: {fileID: 7293285365399979850}
   damage: 1
   attackSpeed: 2
   speed: 10
