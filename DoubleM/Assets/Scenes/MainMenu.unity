@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityOne.name
-      value: Blade strike
+      value: Quick stab
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
@@ -291,7 +291,7 @@ PrefabInstance:
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityOne.ability.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1462697312}
+      objectReference: {fileID: 368590765}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityOne.ability.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -315,18 +315,18 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityTwo.name
-      value: Rest time
+      value: Healing slash
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityTwo.cooldown
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityTwo.ability.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1462697312}
+      objectReference: {fileID: 368590765}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityTwo.ability.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -350,23 +350,23 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityThree.name
-      value: Swift dodge
+      value: Consume soul
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityThree.cooldown
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityThree.requiredSelection
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityThree.ability.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1462697312}
+      objectReference: {fileID: 368590765}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityThree.ability.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -390,12 +390,12 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityFour.name
-      value: Fatal blow
+      value: Reaper
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityFour.cooldown
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
@@ -406,7 +406,7 @@ PrefabInstance:
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityFour.ability.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1462697312}
+      objectReference: {fileID: 368590765}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].AbilityFour.ability.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -761,6 +761,35 @@ PrefabInstance:
       value: A simple attack with a chance of doing 150% more damage if it lands
         a critical strike.
       objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[2].AbilityTwo.requiredSelection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[2].AbilityOne.describtion
+      value: Hits enemy with a regular attack and heals Lifestealer for 15% of dealt
+        damage.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[2].AbilityTwo.describtion
+      value: Hits enemy with regular attack and heals friendly unit, which has the
+        least amount of HP.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[2].AbilityThree.describtion
+      value: The less HP Lifestealer has, the more damage it will do, if it kills
+        an enemy Lifestealer heals for 30% of max HP, otherwise for 15%.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
+        type: 3}
+      propertyPath: heroesList.Array.data[2].AbilityFour.describtion
+      value: Deals damage to all of the enemies, the less HP Lifestealer has, the
+        more it will deal, also healing all of the friendly units.
+      objectReference: {fileID: 0}
     - target: {fileID: 5867767139899491007, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: m_Name
@@ -789,6 +818,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7aff57c6d01f3429daf4ae8e1f2c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &368590765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368590763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c017a510d56ff4c9e2f836b7c1279e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &368934903
