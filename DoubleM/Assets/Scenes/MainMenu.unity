@@ -255,7 +255,7 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[2].name
-      value: Ninja
+      value: Lifestealer
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
       propertyPath: heroesList.Array.data[3].name
-      value: Ninja
+      value: Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 2993438580178477210, guid: 12897977e05713e4c9492e2ce6870118,
         type: 3}
