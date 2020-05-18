@@ -16,7 +16,6 @@ public class Ninja : MonoBehaviour
 
 
     IEnumerator AbilityOneEnum() {
-        
         float critChanceRoll = Random.value * 100;
         float damage = BattleSystem.friendlyCurrentFighter.attackDamage;
         if (critChanceRoll <= BattleSystem.friendlyCurrentFighter.critChance)

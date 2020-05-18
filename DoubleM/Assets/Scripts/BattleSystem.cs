@@ -158,6 +158,7 @@ public class BattleSystem : MonoBehaviour
         setCurrentFighters();
         setAbilityNames();
 
+        friendlyCurrentFighter.StartOfTurn();
         EnableButtons(true);
     }
 
@@ -169,6 +170,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        enemyCurrentFighter.StartOfTurn();
         EnableButtons(false);
         PlaySound("Attack1");
         bool isDead = false;
@@ -180,16 +182,16 @@ public class BattleSystem : MonoBehaviour
             
         }
         else {
-            enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", true);
+            enemies[enemyIndex].GetComponent<Animator>().SetTrigger("Attack");
             int damage = fighters[enemyIndex].attackDamage;
             isDead = Heroes.getHero(targetIndex).TakeDamage(damage);
             setBattleText("<color=red>Enemy</color> hits <color=blue>" + Heroes.getHero(targetIndex).name + "</color> for <color=red>" + damage + "</color> damage", 2);
             yield return new WaitForSeconds(1);
-            enemies[enemyIndex].GetComponent<Animator>().SetBool("IsAttacking", false);
         }
 
         yield return new WaitForSeconds(1);
-        EndOfTurn();
+        enemyCurrentFighter.EndOfTurn();
+        enemyCurrentFighter.DecrementCooldowns();
         removeDeadheroes();
         removeDeadFighters();
 
@@ -341,7 +343,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator changeTurn(int waitTime)
     {
         yield return new WaitForSeconds(1);
-        EndOfTurn();
+        friendlyCurrentFighter.EndOfTurn();
 
         removeDeadheroes();
         removeDeadFighters();
@@ -488,7 +490,10 @@ public class BattleSystem : MonoBehaviour
 
     void EndOfTurn()
     {
-        for (int i = 0; i < fighters.Length; i++)
+        enemyCurrentFighter.EndOfTurn();
+        friendlyCurrentFighter.EndOfTurn();
+
+        /*for (int i = 0; i < fighters.Length; i++)
         {
             fighters[i].EndOfTurn();
         }
@@ -496,7 +501,7 @@ public class BattleSystem : MonoBehaviour
         for (int i = 0; i < Heroes.count; i++)
         {
             Heroes.getHero(i).EndOfTurn();
-        }
+        }*/
     }
 
     void removeDeadheroes()

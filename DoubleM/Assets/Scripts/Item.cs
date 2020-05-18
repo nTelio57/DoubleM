@@ -26,22 +26,6 @@ public class Item : MonoBehaviour
     public Upgrade health;
     public Upgrade attack;
     public Upgrade defense;
-    
-    public string name1;
-    [TextArea(3,5)]
-    public string text1;
-
-    public string name2;
-    [TextArea(3, 5)]
-    public string text2;
-
-    public string name3;
-    [TextArea(3, 5)]
-    public string text3;
-
-    public string name4;
-    [TextArea(3, 5)]
-    public string text4;
 
     // Start is called before the first frame update
     void Start()

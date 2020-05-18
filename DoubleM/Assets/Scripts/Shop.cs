@@ -136,7 +136,7 @@ public class Shop : MonoBehaviour
 
     public void onInfoPanelClick(int index)
     {
-        infoPanelManager.setTextfields(getItemByID(index));
+        infoPanelManager.setTextfields(AllHeros.GetFighter(index));
         shopPanel.SetActive(false);
         moneyPanel.SetActive(false);
         nextLevelButtonPanel.SetActive(false);

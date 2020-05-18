@@ -138,7 +138,7 @@ public class Fighter
         if (AbilityFour.cooldownCurrently > 0)
             AbilityFour.cooldownCurrently--;
         
-
+        
         try
         {
             foreach (Effect e in effects)
@@ -148,7 +148,7 @@ public class Fighter
                 {
                     e.isActive = false;
                 }
-                    
+
             }
         }
         catch (UnityException e)
@@ -187,12 +187,30 @@ public class Fighter
         AbilityFour.cooldownCurrently = 0;
     }
 
+    float tempWeaknessAd, tempWeaknessCrit;
+    public void StartOfTurn()
+    {
+        if (HasEffect(Effect.Weakness.name) && GetEffect(Effect.Weakness.name).isActive)
+        {
+            tempWeaknessAd = attackDamage;
+            tempWeaknessCrit = critChance;
+            attackDamage = (int)(attackDamage * 0.4);
+            critChance = 0;
+        }
+    }
+
     //Vykdomas bet kokio veiksmo pabaigoj, nesvarbu ar tai sis fighteris atlikinejo veiksmus ar kazkas kitas. BattleSystem klaseje po kiekvieno fighterio ejimo for ciklas praeis pro visus fighterius ir isauks si metoda
     public void EndOfTurn()
     {
-        if (HasEffect(Effect.Bleeding.name))
+        if (HasEffect(Effect.Bleeding.name) && GetEffect(Effect.Bleeding.name).isActive)
         {
             TakeDamage((int)GetEffect(Effect.Bleeding.name).amount);
+        }
+
+        if (HasEffect(Effect.Weakness.name) && GetEffect(Effect.Weakness.name).isActive)
+        {
+            attackDamage = (int)tempWeaknessAd;
+            critChance = tempWeaknessCrit;
         }
     }
 }
