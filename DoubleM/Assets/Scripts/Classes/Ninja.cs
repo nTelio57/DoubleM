@@ -16,6 +16,7 @@ public class Ninja : MonoBehaviour
 
 
     IEnumerator AbilityOneEnum() {
+        
         float critChanceRoll = Random.value * 100;
         float damage = BattleSystem.friendlyCurrentFighter.attackDamage;
         if (critChanceRoll <= BattleSystem.friendlyCurrentFighter.critChance)
@@ -41,6 +42,7 @@ public class Ninja : MonoBehaviour
         int amount = (int)(0.3 * f.maxHP);
         if (f.maxHP - f.currentHP < amount)
             amount = f.maxHP - f.currentHP;
+        BattleSystem.friendlyCurrentFighter.addEffect(Effect.Rage);
 
         setBattleText("<color=blue>Ninja</color> restores <color=green>" + amount + "</color> HP", 1);
         f.Heal(amount);

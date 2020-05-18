@@ -159,6 +159,17 @@ public class Fighter
             
     }
 
+    void activateEffects()
+    {
+        foreach (Effect e in effects)
+        {
+            if (e.duration > 0)
+                e.isActive = true;
+            else
+                e.isActive = false;
+        }
+    }
+
     public Effect GetEffect(string name)
     {
         foreach (Effect e in effects)
@@ -188,14 +199,26 @@ public class Fighter
     }
 
     float tempWeaknessAd, tempWeaknessCrit;
+    float tempRageAd, tempRageCrit;
     public void StartOfTurn()
     {
+        DecrementCooldowns();
+        activateEffects();
+
         if (HasEffect(Effect.Weakness.name) && GetEffect(Effect.Weakness.name).isActive)
         {
             tempWeaknessAd = attackDamage;
             tempWeaknessCrit = critChance;
             attackDamage = (int)(attackDamage * 0.4);
             critChance = 0;
+        }
+
+        if (HasEffect(Effect.Rage.name) && GetEffect(Effect.Rage.name).isActive)
+        {
+            tempRageAd = attackDamage;
+            tempRageCrit = critChance;
+            attackDamage = (int)(attackDamage * 1.2);
+            critChance = 100;
         }
     }
 
@@ -212,5 +235,12 @@ public class Fighter
             attackDamage = (int)tempWeaknessAd;
             critChance = tempWeaknessCrit;
         }
+
+        if (HasEffect(Effect.Rage.name) && GetEffect(Effect.Rage.name).isActive)
+        {
+            attackDamage = (int)tempRageAd;
+            critChance = tempRageCrit;
+        }
+        
     }
 }

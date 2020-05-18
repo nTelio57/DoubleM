@@ -158,6 +158,7 @@ public class BattleSystem : MonoBehaviour
         setCurrentFighters();
         setAbilityNames();
 
+        //friendlyCurrentFighter.DecrementCooldowns();
         friendlyCurrentFighter.StartOfTurn();
         EnableButtons(true);
     }
@@ -227,7 +228,7 @@ public class BattleSystem : MonoBehaviour
 
         selectedAbility.ability.Invoke();
         selectedAbility.cooldownCurrently = selectedAbility.cooldown;
-        friendlyCurrentFighter.DecrementCooldowns();
+       
         setEnemySelectionButtonsVisible(false);
         setFriendlySelectionButtonsVisible(false);
         setSelfSelectionButtonVisible(false);

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Effect
 {
-    public static Effect Untargetable = new Effect("Untargetable", 2, 0, true);
-    public static Effect Bleeding = new Effect("Bleeding", 4, 3, true);
-    public static Effect Rage = new Effect("Rage", 2, 0, true);
-    public static Effect Weakness = new Effect("Weakness", 1, 0, true);
+    public static Effect Untargetable = new Effect("Untargetable", 1, 0, true);
+    public static Effect Bleeding = new Effect("Bleeding", 4, 3, false);
+    public static Effect Rage = new Effect("Rage", 2, 0, false);
+    public static Effect Weakness = new Effect("Weakness", 1, 0, false);
 
     public string name;
     public int duration;
@@ -42,7 +42,8 @@ public class Effect
 
     public void decrementDuration()
     {
-        duration--;
+        if (isActive)
+            duration--;
     }
 
     public bool Equals(Effect e)
