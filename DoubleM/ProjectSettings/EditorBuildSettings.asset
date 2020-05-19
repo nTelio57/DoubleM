@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TBC.unity
     guid: f3acea9dff457d94b94e48010b0c5721
   - enabled: 1
+    path: Assets/Scenes/TBCSummer.unity
+    guid: da3c6657674d5a2448d2dc67ed126a42
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 5d67ce2ee6765bd409d7ec28fe6800ef
   - enabled: 1

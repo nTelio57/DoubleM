@@ -158,8 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   animator: {fileID: 7293285365399979850}
-  attackSpeed: 0.87
-  speed: 9.7
+  speed: 10.2
   nextWaypointDistance: 3
   rangeFromTarget: 3.75
   detectionRange: 18
@@ -210,9 +209,12 @@ MonoBehaviour:
     m_Bits: 1024
   damage: 1
   attackRange: 4.05
+  attackSpeed: 1
   maxHealth: 0
   currentHealth: 0
   regenerationSpeed: 10
+  isAbleToAttack: 0
+  attackSpeedTimerActive: 0
 --- !u!1 &3964039764992867307
 GameObject:
   m_ObjectHideFlags: 0
