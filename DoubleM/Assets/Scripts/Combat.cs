@@ -23,7 +23,8 @@ public class Combat : MonoBehaviour
     bool isAttacking;
 
     float timerRegeneration;
-    float timerAttackSpeed;
+    [HideInInspector]
+    public float timerAttackSpeed;
 
     // Start is called before the first frame update
     void Start()

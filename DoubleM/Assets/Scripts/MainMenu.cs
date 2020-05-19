@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public string startingSceneName;
+
     void Start()
     {
         JoystickManager.init();
@@ -12,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayClick()
     {
-        SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+        SceneManager.LoadScene(startingSceneName, LoadSceneMode.Single);
         SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
     }
 
