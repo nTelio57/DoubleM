@@ -9,7 +9,6 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, FLED }
 
 public class BattleSystem : MonoBehaviour
 {
-    public CapturePoint starter;
     Vault vault;
     
     //private Fighter[] heroes;
@@ -44,7 +43,7 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fighters = starter.getFighters();
+        fighters = CapturePoint.getFighters();
         InitEnemyFighters();
         //heroes = Heroes.getHeroArray();
         vault = FindObjectOfType<Vault>();
@@ -128,7 +127,7 @@ public class BattleSystem : MonoBehaviour
                     Heroes.getHero(i).maxHP += 10;
                     Heroes.getHero(i).currentHP += 10;
                 }
-            Vault.addMoney(starter.getVictoryLoot());
+            Vault.addMoney(CapturePoint.getVictoryLoot());
             CapturePoint.currentCapturePoint.Victory();
         }
         else if (state == BattleState.FLED)

@@ -25,7 +25,7 @@ public class CollisionChecks : MonoBehaviour
 
         if (collision.tag == "Spawn zone")
         {
-            collision.gameObject.GetComponent<Spawner>().isActive = true;
+            collision.gameObject.GetComponent<Spawner>().isEntered = true;
         }
 
         if (collision.tag == "Enemy")
@@ -44,7 +44,7 @@ public class CollisionChecks : MonoBehaviour
 
         if (collision.tag == "Spawn zone")
         {
-            collision.gameObject.GetComponent<Spawner>().isActive = false;
+            collision.gameObject.GetComponent<Spawner>().isEntered = false;
         }
     }
 }

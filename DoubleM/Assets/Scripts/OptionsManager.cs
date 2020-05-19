@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
-    static float JoystickLeftRightValue, JoystickFloatFixValue;
-    public Scrollbar JoystickPosition, JoystickType;
+    static float JoystickFloatFixValue;
+    public Scrollbar  JoystickType;
     // Start is called before the first frame update
     void Start()
     {
-        JoystickPosition.value = JoystickLeftRightValue;
         JoystickType.value = JoystickFloatFixValue;
     }
 
@@ -24,25 +23,6 @@ public class OptionsManager : MonoBehaviour
     public void onLeaveClick()
     {
         SceneManager.UnloadSceneAsync("Options");
-    }
-
-    public void onJoystickPositionChange(Scrollbar s)
-    {
-        if (s.value < 0.5)
-        {
-            JoystickManager.side = Side.Left;
-
-        }
-        else
-        {
-            JoystickManager.side = Side.Right;
-        }
-
-        JoystickLeftRightValue = s.value;
-
-        JoystickManager.setJoystickActive(false);
-        JoystickManager.reloadJoystick();
-        JoystickManager.setJoystickActive(true);
     }
 
     public void onJoystickTypeChange(Scrollbar s)

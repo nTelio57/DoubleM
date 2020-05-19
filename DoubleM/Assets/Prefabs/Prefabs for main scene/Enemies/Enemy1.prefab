@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6721177059832425347}
   - component: {fileID: 7008402689558139512}
   - component: {fileID: 7293285365399979850}
-  - component: {fileID: 3786850650622627352}
   - component: {fileID: 4470165834841734343}
   - component: {fileID: 1386460353115257442}
   - component: {fileID: 8645490067789138612}
@@ -108,23 +107,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3786850650622627352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3350869686825282222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00ad7a51c94efb40bf3dd093b66602d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  unitLevel: 0
-  damage: 0
-  maxHP: 0
-  currentHP: 0
 --- !u!70 &4470165834841734343
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,11 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   animator: {fileID: 7293285365399979850}
-  damage: 1
-  attackSpeed: 2
-  speed: 10
+  attackSpeed: 0.87
+  speed: 9.7
   nextWaypointDistance: 3
-  rangeFromTarget: 3
+  rangeFromTarget: 3.75
+  detectionRange: 18
   combat: {fileID: 2738404767495669673}
 --- !u!114 &8645490067789138613
 MonoBehaviour:
@@ -230,6 +212,7 @@ MonoBehaviour:
   attackRange: 4.05
   maxHealth: 0
   currentHealth: 0
+  regenerationSpeed: 10
 --- !u!1 &3964039764992867307
 GameObject:
   m_ObjectHideFlags: 0

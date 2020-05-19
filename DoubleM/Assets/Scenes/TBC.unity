@@ -3045,7 +3045,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935565700}
-  - component: {fileID: 935565701}
   - component: {fileID: 935565699}
   - component: {fileID: 935565702}
   m_Layer: 0
@@ -3067,7 +3066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0916fd590ccfdd640bcb6548c68c1a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starter: {fileID: 935565701}
   fighters: []
   playerIndex: 0
   enemyIndex: 0
@@ -3120,26 +3118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &935565701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935565698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8236a66889717a242982c4f079fc5c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victories: 0
-  reward: 0
-  victoryLoot: 0
-  mainPoint: 0
-  isCaptured: 0
-  particles: {fileID: 0}
-  TBCScene: 
-  fighters: []
 --- !u!114 &935565702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4531,7 +4509,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428058953}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1428058955
 Camera:
   m_ObjectHideFlags: 0

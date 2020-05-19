@@ -14,6 +14,7 @@ public class CapturePoint : MonoBehaviour
     public BattleReward reward;
     public int victoryLoot;
     public Transform checkpoint;
+    public Spawner spawner;
     public bool mainPoint;
     public bool isCaptured = false;
     bool loaded = false;
@@ -31,12 +32,12 @@ public class CapturePoint : MonoBehaviour
     {
         manager = GetComponentInParent<CapturePointManager>();
     }
-    public Fighter[] getFighters()
+    public static Fighter[] getFighters()
     {
         return fighterPass;
     }
 
-    public int getVictoryLoot()
+    public static int getVictoryLoot()
     {
         return victoryLootPass;
     }
@@ -52,6 +53,8 @@ public class CapturePoint : MonoBehaviour
             particles.Stop();
         victories++;
         isCaptured = true;
+        if(spawner != null)
+            spawner.isActive = false;
         GameTracking.fightsWonCount += 1;
         if(mainPoint)
             manager.setCapturePointTaken();
@@ -71,6 +74,7 @@ public class CapturePoint : MonoBehaviour
     {
         if (!loaded && !isCaptured)
         {
+            Debug.Log("Entered while not loaded");
             fighterPass = fighters;
             victoryLootPass = victoryLoot;
             currentCapturePoint = this;
@@ -78,17 +82,24 @@ public class CapturePoint : MonoBehaviour
             loaded = true;
             attempts++;
             FindObjectOfType<AudioManager>().Stop("Background1");
-            SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
+            if(!isTBCopen())
+                SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
             
         }
     }
 
+    bool isTBCopen()
+    {
+        return SceneManager.GetSceneByName(TBCScene).isLoaded;
+    }
+
     public void ExitedCollision(Collider2D collision)
     {
+        Debug.Log("Exited");
         loaded = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
             StartTheFight(collision);

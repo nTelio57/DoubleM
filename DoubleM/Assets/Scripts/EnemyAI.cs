@@ -7,12 +7,12 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform target;
     public Animator animator;
-    public int damage;
-    public float attackSpeed;
-    float attackTimer;
+    //public float attackSpeed;
+    //float attackTimer;
     public float speed = 200;
     public float nextWaypointDistance = 3f;
     public float rangeFromTarget = 0;
+    public float detectionRange;
     public Combat combat;
 
     Path path;
@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("UpdatePath", 0f, .5f);
 
-        attackTimer = 0;
+        //attackTimer = 0;
     }
 
     void UpdatePath()
@@ -51,21 +51,35 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        attackTimer += Time.deltaTime;
+        
 
         if (path == null)
             return;
 
         float distanceToTarget = Vector2.Distance(rb.position, target.position);
 
+        /*if (distanceToTarget <= rangeFromTarget)
+        {
+            Debug.Log("In range");
+            reachedEndOfPath = true;
+            attackTimer += Time.deltaTime;
+            Combat();
+            animator.SetBool("isWalking", false);
+            return;
+        }*/
+
         if (currentWaypoint >= path.vectorPath.Count || distanceToTarget <= rangeFromTarget)
         {
             reachedEndOfPath = true;
+            combat.attackSpeedTimerActive = true;
+            //attackTimer += Time.deltaTime;
             Combat();
+            
             return;
         }
         else
         {
+            combat.attackSpeedTimerActive = false;
             reachedEndOfPath = false;
         }
 
@@ -73,13 +87,21 @@ public class EnemyAI : MonoBehaviour
         Vector2 force = rb.mass * direction * speed * Time.deltaTime;
         Vector2 positionToAdd = rb.position + direction * speed * Time.deltaTime;
 
-        if (direction.x > 0)
+        //if (direction.x > 0)
+        if (target.position.x > transform.position.x)
             GetComponent<SpriteRenderer>().flipX = false;
         else
             GetComponent<SpriteRenderer>().flipX = true;
 
-        if (!GameStatus.isMainLevelPaused)
+        if (!GameStatus.isMainLevelPaused && distanceToTarget <= detectionRange && !reachedEndOfPath)
+        {
             rb.MovePosition(positionToAdd);
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -91,11 +113,11 @@ public class EnemyAI : MonoBehaviour
 
     void Combat()
     {
-        if (attackTimer >= attackSpeed)
+        if (combat.isAbleToAttack)
         {
             animator.SetTrigger("Attack");
-            combat.Attack(damage);
-            attackTimer = 0;
+            combat.Attack();
+            animator.SetBool("isWalking", false);
         }
     }
 }

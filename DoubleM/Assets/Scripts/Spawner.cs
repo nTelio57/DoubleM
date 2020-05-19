@@ -5,10 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
-    public bool isActive;
+    public bool isActive = true;
+    public bool isEntered;
     public int maxEntitiesCount;
     [Range(0.1f, 15)]
     public float spawningInterval;
+    public RectTransform[] spawnZones;
     public GameObject[] fighters;
 
     //[HideInInspector]
@@ -28,9 +30,11 @@ public class Spawner : MonoBehaviour
         if(!GameStatus.isMainLevelPaused)
             timer += Time.deltaTime;
 
-        if (timer >= spawningInterval && isActive && entitiesCount < maxEntitiesCount)
+        if (timer >= spawningInterval && isEntered && isActive && entitiesCount < maxEntitiesCount)
         {
-            RectTransform rt = GetComponent<RectTransform>();
+            int rand = Random.Range(0, spawnZones.Length);
+            //RectTransform rt = GetComponent<RectTransform>();
+            RectTransform rt = spawnZones[rand];
             int fighterFromArray = Random.Range(0, fighters.Length - 1);
             newPosition.x = Random.Range(rt.position.x - rt.sizeDelta.x / 2, rt.position.x + rt.sizeDelta.x / 2);
             newPosition.y = Random.Range(rt.position.y - rt.sizeDelta.y / 2, rt.position.y + rt.sizeDelta.y / 2);

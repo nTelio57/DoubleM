@@ -9,9 +9,8 @@ public enum Type { Fixed, Floating}
 
 public class JoystickManager : MonoBehaviour
 {
-    public static Joystick fixedLeft, fixedRight, floatingLeft, floatingRight, currentJoystick;
-    public Joystick fixedLeftJoystick, fixedRightJoystick, floatingLeftJoystick, floatingRightJoystick;
-    public static Side side;
+    public static Joystick fixedLeft, floatingLeft, currentJoystick;
+    public Joystick fixedLeftJoystick,  floatingLeftJoystick;
     public static Type type;
     static bool loaded = false;
 
@@ -20,22 +19,14 @@ public class JoystickManager : MonoBehaviour
     {
         loaded = true;
         fixedLeft = fixedLeftJoystick;
-        fixedRight = fixedRightJoystick;
         floatingLeft = floatingLeftJoystick;
-        floatingRight = floatingRightJoystick;
         reloadJoystick();
         setJoystickActive(true);
     }
 
     public static void init()
     {
-        side = Side.Left;
         type = Type.Fixed;
-    }
-
-    public static Side getSide()
-    {
-        return side;
     }
 
     public static Type getType()
@@ -47,14 +38,10 @@ public class JoystickManager : MonoBehaviour
     public static void reloadJoystick()
     {
 
-        if (side == Side.Left && type == Type.Fixed)
+        if ( type == Type.Fixed)
             currentJoystick = fixedLeft;
-        if (side == Side.Left && type == Type.Floating)
+        if (type == Type.Floating)
             currentJoystick = floatingLeft;
-        if (side == Side.Right && type == Type.Fixed)
-            currentJoystick = fixedRight;
-        if (side == Side.Right && type == Type.Floating)
-            currentJoystick = floatingRight;
         
     }
 
