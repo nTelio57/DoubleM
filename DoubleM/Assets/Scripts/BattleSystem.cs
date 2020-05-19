@@ -149,7 +149,7 @@ public class BattleSystem : MonoBehaviour
         }
         GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
-        SceneManager.UnloadSceneAsync("TBC");
+        SceneManager.UnloadSceneAsync(CapturePoint.TBCScenePass);
     }
 
     void PlayerTurn()

@@ -20,6 +20,7 @@ public class CapturePoint : MonoBehaviour
     bool loaded = false;
     public ParticleSystem particles;
     public string TBCScene;
+    public static string TBCScenePass;
 
     public Fighter[] fighters;
     static public Fighter[] fighterPass;
@@ -77,6 +78,7 @@ public class CapturePoint : MonoBehaviour
             Debug.Log("Entered while not loaded");
             fighterPass = fighters;
             victoryLootPass = victoryLoot;
+            TBCScenePass = TBCScene;
             currentCapturePoint = this;
             GameTracking.fightsTotalCount += 1;
             loaded = true;
