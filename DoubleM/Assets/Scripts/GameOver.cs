@@ -34,7 +34,7 @@ public class GameOver : MonoBehaviour
     public void onPlayAgainClick()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+        SceneManager.LoadScene("Stage 1", LoadSceneMode.Single);
         SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
     }
 

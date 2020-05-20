@@ -83,6 +83,13 @@ public class Shop : MonoBehaviour
         updateBalance();
         setQuantityTexts();
 
+        //Tutorial load
+        if (!Tutorial.isCompleted && !FindObjectOfType<TutorialShop>().isUpgradesCompleted)
+        {
+            FindObjectOfType<TutorialShop>().loadTutorialUpgrade();
+            FindObjectOfType<TutorialShop>().isUpgradesCompleted = true;
+        }
+
     }
 
     public void updateBalance()

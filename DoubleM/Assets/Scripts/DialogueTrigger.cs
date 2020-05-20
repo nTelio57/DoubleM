@@ -16,7 +16,7 @@ public class DialogueTrigger : MonoBehaviour
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
             dialogue.setUsed(true);
         }
-            
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
