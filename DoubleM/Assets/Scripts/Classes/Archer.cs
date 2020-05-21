@@ -51,23 +51,30 @@ using UnityEngine;
             {
                 for (int i = 0; i < 2; i++)
                 {
+                    BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+                    yield return new WaitForSeconds(1);
                     bool isDead = eArray[te[i]].TakeDamage((int)damage);
                     setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
-                    Debug.Log(te[i] + " : " + eArray[te[i]].currentHP);
                 }
             }
             else
             {
-                bool isDead = eArray[0].TakeDamage((int)damage);
-                setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
-
-                isDead = eArray[0].TakeDamage((int)damage);
-                setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
+                BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+                yield return new WaitForSeconds(1);
+                int damage1 = (int)(damage * 0.90);
+                bool isDead = eArray[0].TakeDamage(damage1);
+                setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage1 + "</color> damage", 1);
+                yield return new WaitForSeconds(1);
+                BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+                yield return new WaitForSeconds(1);
+                int damage2 = (int)(damage * 0.50);
+                isDead = eArray[0].TakeDamage(damage2);
+                setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage2 + "</color> damage", 1);
             }
             
 
-            BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
-            yield return new WaitForSeconds(1);
+            //BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+            //yield return new WaitForSeconds(1);
 
         }
 

@@ -231,7 +231,7 @@ public class BattleSystem : MonoBehaviour
         setEnemySelectionButtonsVisible(false);
         setFriendlySelectionButtonsVisible(false);
         setSelfSelectionButtonVisible(false);
-        StartCoroutine(changeTurn(2));
+        StartCoroutine(changeTurn(3));
 
     }
 
