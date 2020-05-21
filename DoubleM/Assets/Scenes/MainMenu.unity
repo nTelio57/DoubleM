@@ -2732,7 +2732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279fb95b92d1cb946a2fd4209e5a3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setIsCompleted: 0
+  setIsCompleted: 1
 --- !u!4 &1766462581
 Transform:
   m_ObjectHideFlags: 0
