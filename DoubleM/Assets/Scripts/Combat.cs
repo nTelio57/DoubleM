@@ -105,6 +105,7 @@ public class Combat : MonoBehaviour
 
     public void takeDamage(int amount)
     {
+        Debug.Log(amount + ":" + currentHealth);
         currentHealth -= amount;
         
         if (currentHealth <= 0)

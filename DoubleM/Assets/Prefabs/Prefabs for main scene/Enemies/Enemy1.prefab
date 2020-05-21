@@ -210,11 +210,12 @@ MonoBehaviour:
   damage: 1
   attackRange: 4.05
   attackSpeed: 1
-  maxHealth: 0
+  maxHealth: 1
   currentHealth: 0
   regenerationSpeed: 10
   isAbleToAttack: 0
   attackSpeedTimerActive: 0
+  timerAttackSpeed: 0
 --- !u!1 &3964039764992867307
 GameObject:
   m_ObjectHideFlags: 0

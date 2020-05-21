@@ -226,10 +226,15 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
-  damage: 0
+  damage: 1
   attackRange: 2
+  attackSpeed: 1
   maxHealth: 10
   currentHealth: 0
+  regenerationSpeed: 10
+  isAbleToAttack: 0
+  attackSpeedTimerActive: 0
+  timerAttackSpeed: 0
 --- !u!70 &4410448339945660212
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

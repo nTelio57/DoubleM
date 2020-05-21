@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
     //public float attackSpeed;
     //float attackTimer;
-    public float speed = 200;
+    public float speed = 10;
     public float nextWaypointDistance = 3f;
     public float rangeFromTarget = 0;
     public float detectionRange;
