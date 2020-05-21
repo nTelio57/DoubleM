@@ -22,4 +22,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Options", LoadSceneMode.Additive);
     }
+
+    public void OnCreditsClick()
+    {
+        SceneManager.LoadScene("Credits", LoadSceneMode.Additive);
+    }
 }

@@ -73,9 +73,8 @@ public class CapturePoint : MonoBehaviour
 
     public void StartTheFight(Collider2D collision)
     {
-        if (!loaded && !isCaptured)
+        if (!loaded && !isCaptured && !isTBCopen())
         {
-            Debug.Log("Entered while not loaded");
             fighterPass = fighters;
             victoryLootPass = victoryLoot;
             TBCScenePass = TBCScene;
@@ -84,8 +83,7 @@ public class CapturePoint : MonoBehaviour
             loaded = true;
             attempts++;
             FindObjectOfType<AudioManager>().Stop("Background1");
-            if(!isTBCopen())
-                SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
+            SceneManager.LoadScene(TBCScene, LoadSceneMode.Additive);
             
         }
     }
@@ -97,7 +95,6 @@ public class CapturePoint : MonoBehaviour
 
     public void ExitedCollision(Collider2D collision)
     {
-        Debug.Log("Exited");
         loaded = false;
     }
 
