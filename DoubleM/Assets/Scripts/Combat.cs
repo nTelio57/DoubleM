@@ -53,13 +53,18 @@ public class Combat : MonoBehaviour
 
     Vector3 newPosition;
     float memoryJoystickHorizontal;
+    float memoryX, dir = 1;
 
     void updateAttackPointHorrizontal()
     {
-        if(JoystickManager.currentJoystick.Horizontal != 0)
-            memoryJoystickHorizontal = JoystickManager.currentJoystick.Horizontal;
+        if (transform.position.x > memoryX)
+            dir = 1;
+        else if (transform.position.x < memoryX)
+            dir = -1;
 
-        if (memoryJoystickHorizontal > 0)
+        memoryX = transform.position.x;
+
+        if (dir > 0)
             newPosition.x = attackPointXPos;
         else
             newPosition.x = attackPointXNeg;
@@ -105,7 +110,6 @@ public class Combat : MonoBehaviour
 
     public void takeDamage(int amount)
     {
-        Debug.Log(amount + ":" + currentHealth);
         currentHealth -= amount;
         
         if (currentHealth <= 0)

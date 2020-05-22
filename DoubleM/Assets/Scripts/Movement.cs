@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    Joystick joystick;
+    public VariableJoystick joystick;
     public Rigidbody2D rb;
     public Animator animator;
     public float speed;
@@ -29,7 +29,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         audioM = FindObjectOfType<AudioManager>();
-        joystick = JoystickManager.currentJoystick;
         stamina = maxStamina;
         resetNeeded = false;
         staminaBar.SetMaxHealth((int)maxStamina);
@@ -44,8 +43,8 @@ public class Movement : MonoBehaviour
         staminaText.text = (int)stamina + "/" + (int)maxStamina;
 
         timer += Time.deltaTime;
-        movement.x = JoystickManager.currentJoystick.Horizontal;
-        movement.y = JoystickManager.currentJoystick.Vertical;
+        movement.x = joystick.Horizontal;
+        movement.y = joystick.Vertical;
 
         if (movement.x != 0)
         {
@@ -57,12 +56,12 @@ public class Movement : MonoBehaviour
             resetNeeded = false;
         }
 
-        if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina > 0 && !resetNeeded)
+        if (joystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina > 0 && !resetNeeded)
         {
             isRunning = true;
             animator.SetBool("isRunning", true);
         }
-        else if (JoystickManager.currentJoystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina == 0)
+        else if (joystick.Direction.sqrMagnitude >= distanceFromCenterToRun && stamina == 0)
         {
             resetNeeded = true;
             isRunning = false;
@@ -88,7 +87,9 @@ public class Movement : MonoBehaviour
             timer = 0;
         }
 
-        animator.SetFloat("Speed", JoystickManager.currentJoystick.Direction.sqrMagnitude);
+        animator.SetFloat("Speed", joystick.Direction.sqrMagnitude);
+
+        
     }
 
     private void FixedUpdate()
@@ -101,4 +102,6 @@ public class Movement : MonoBehaviour
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
     }
+
+    
 }

@@ -136666,6 +136666,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 366522721453922125, guid: 0ba75edd693d61042b2ee2023e7b1934,
+        type: 3}
+      propertyPath: level
+      value: Stage 2
+      objectReference: {fileID: 0}
     - target: {fileID: 366522722155870611, guid: 0ba75edd693d61042b2ee2023e7b1934,
         type: 3}
       propertyPath: spawn

@@ -3,52 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CurrentJoystick { FixedLeft, FixedRight, FloatingLeft, FloatingRight }
-public enum Side { Left, Right}
 public enum Type { Fixed, Floating}
 
 public class JoystickManager : MonoBehaviour
 {
-    public static Joystick fixedLeft, floatingLeft, currentJoystick;
-    public Joystick fixedLeftJoystick,  floatingLeftJoystick;
     public static Type type;
-    static bool loaded = false;
+    public VariableJoystick joystick;
+    public static bool isJoystickChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-        loaded = true;
-        fixedLeft = fixedLeftJoystick;
-        floatingLeft = floatingLeftJoystick;
-        reloadJoystick();
-        setJoystickActive(true);
+        isJoystickChanged = true;
+        updateJoystick();
     }
 
-    public static void init()
+    void Update()
     {
-        type = Type.Fixed;
+        if (isJoystickChanged)
+            updateJoystick();
     }
 
-    public static Type getType()
+    void updateJoystick()
     {
-        return type;
-    }
-    
-
-    public static void reloadJoystick()
-    {
-
-        if ( type == Type.Fixed)
-            currentJoystick = fixedLeft;
-        if (type == Type.Floating)
-            currentJoystick = floatingLeft;
-        
+        if (isJoystickChanged)
+        {
+            if (type == Type.Fixed)
+                joystick.SetMode(JoystickType.Fixed);
+            else if (type == Type.Floating)
+                joystick.SetMode(JoystickType.Floating);
+        }
+        isJoystickChanged = false;
     }
 
-    public static void setJoystickActive(bool value)
-    {
-        if(loaded)
-            currentJoystick.gameObject.SetActive(value);
-    }
-    
 }

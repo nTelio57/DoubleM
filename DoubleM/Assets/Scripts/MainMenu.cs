@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        JoystickManager.init();
+       
     }
 
     public void OnPlayClick()
