@@ -13,8 +13,9 @@ public class OptionsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        JoystickType.value = JoystickFloatFixValue;
-        TutorialBool.isOn = !Tutorial.isCompleted;
+        //JoystickType.value = JoystickFloatFixValue;
+        loadData();
+        //TutorialBool.isOn = !Tutorial.isCompleted;
     }
 
     // Update is called once per frame
@@ -26,6 +27,14 @@ public class OptionsManager : MonoBehaviour
     public void onLeaveClick()
     {
         SceneManager.UnloadSceneAsync("Options");
+    }
+
+    void loadData()
+    {
+        OptionsData data = SaveSystem.LoadOptions();
+
+        TutorialBool.isOn = !data.isTutorialCompleted;
+        JoystickType.value = data.joystickType - 1;
     }
 
     public void onJoystickTypeChange(Scrollbar s)
@@ -43,24 +52,19 @@ public class OptionsManager : MonoBehaviour
         JoystickFloatFixValue = s.value;
         JoystickManager.isJoystickChanged = true;
 
-        /*if (s.value < 0.5)
-        {
-            JoystickManager.type = Type.Fixed;
-        }
-        else
-        {
-            JoystickManager.type = Type.Floating;
-        }
-
-        JoystickFloatFixValue = s.value;
-
-        JoystickManager.setJoystickActive(false);
-        JoystickManager.reloadJoystick();
-        JoystickManager.setJoystickActive(true);*/
+        SaveSystem.SaveOptions();
     }
 
     public void onTutorialToggleChange(Toggle t)
     {
         Tutorial.isCompleted = !t.isOn;
+        SaveSystem.SaveOptions();
+    }
+
+    public void onResetClick()
+    {
+        SaveOptions.isGameSaved = false;
+        SaveSystem.SaveOptions();
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

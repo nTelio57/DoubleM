@@ -55,6 +55,7 @@ public class CombatManager : MonoBehaviour
         {
             attackSpeedBarObject.SetActive(true);
             playerAnimator.SetTrigger("Attack");
+            FindObjectOfType<AudioManager>().Play("Attack1");
             playerCombat.Attack();
         }
         

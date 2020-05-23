@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     public void onMenuClick()
     {
+        FindObjectOfType<SaveGame>().Save();
         Time.timeScale = 1f;
         GameIsPaused = false;
         Destroy(FindObjectOfType<AllHeros>().gameObject);

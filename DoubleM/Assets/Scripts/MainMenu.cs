@@ -14,8 +14,22 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayClick()
     {
-        SceneManager.LoadScene(startingSceneName, LoadSceneMode.Single);
-        SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
+        if (!SaveOptions.isGameSaved)
+        {
+            SaveOptions.currentStage = 1;
+            SceneManager.LoadScene(startingSceneName, LoadSceneMode.Single);
+        }
+        else
+        {
+            string stageName = "Stage " + SaveOptions.currentStage;
+            SceneManager.LoadScene(stageName, LoadSceneMode.Single);
+        }
+
+        if (!(SaveOptions.isGameSaved && !SaveOptions.isShopActive))
+        {
+            SceneManager.LoadScene("HeroShop", LoadSceneMode.Additive);
+        }
+            
     }
 
     public void OnOptionsClick()

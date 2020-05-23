@@ -26,6 +26,7 @@ public class Ninja : MonoBehaviour
 
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetInteger("attackId", 0);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(1);
     }
@@ -78,6 +79,7 @@ public class Ninja : MonoBehaviour
         setBattleText("<color=blue>Ninja</color> strikes for <color=red>" + damage + "</color> damage", 1);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetInteger("attackId", 1);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack2");
         yield return new WaitForSeconds(1);
         
     }

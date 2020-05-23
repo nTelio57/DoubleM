@@ -38,6 +38,7 @@ public class Shop : MonoBehaviour
             upgradeButton.interactable = false;
         }
         setQuantityTexts();
+        SaveOptions.isShopActive = true;
     }
 
     // Update is called once per frame
@@ -65,6 +66,7 @@ public class Shop : MonoBehaviour
     public void onNextLevelClick()
     {
         Time.timeScale = 1;
+        SaveOptions.isShopActive = false;
         SceneManager.UnloadSceneAsync("HeroShop");
     }
 

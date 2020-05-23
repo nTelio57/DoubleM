@@ -88,10 +88,16 @@ public class EnemyAI : MonoBehaviour
         Vector2 positionToAdd = rb.position + direction * speed * Time.deltaTime;
 
         //if (direction.x > 0)
-        if (target.position.x > transform.position.x)
+        /*if (target.position.x > transform.position.x)
+            GetComponent<SpriteRenderer>().flipX = false;
+        else
+            GetComponent<SpriteRenderer>().flipX = true;*/
+
+        if (combat.direction > 0)
             GetComponent<SpriteRenderer>().flipX = false;
         else
             GetComponent<SpriteRenderer>().flipX = true;
+
 
         if (!GameStatus.isMainLevelPaused && distanceToTarget <= detectionRange && !reachedEndOfPath)
         {
@@ -116,6 +122,7 @@ public class EnemyAI : MonoBehaviour
         if (combat.isAbleToAttack)
         {
             animator.SetTrigger("Attack");
+            combat.isAbleToAttack = false;
             combat.Attack();
             animator.SetBool("isWalking", false);
         }

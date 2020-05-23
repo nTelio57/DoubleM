@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     public Healthbar staminaBar;
     public Text staminaText;
     public float maxStamina;
+    public float stamina;
     public float staminaGainedOnRest;
     public float staminaLostOnRun;
     [Range(0.9f,1)]
@@ -21,7 +22,7 @@ public class Movement : MonoBehaviour
     Vector2 movement;
     float memoryMovementX;
     bool isRunning;
-    float stamina;
+    
     bool resetNeeded;
     float timer = 0;
     AudioManager audioM;
@@ -29,7 +30,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         audioM = FindObjectOfType<AudioManager>();
-        stamina = maxStamina;
+        if (!SaveOptions.isGameSaved)
+            stamina = maxStamina;
+
         resetNeeded = false;
         staminaBar.SetMaxHealth((int)maxStamina);
         

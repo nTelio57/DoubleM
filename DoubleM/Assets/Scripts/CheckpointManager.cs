@@ -13,7 +13,8 @@ public class CheckpointManager : MonoBehaviour
     void Start()
     {
         currentCheckpoint = spawn;
-        Respawn();
+        if(!SaveOptions.isGameSaved)
+            Respawn();
     }
     
 

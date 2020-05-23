@@ -5,7 +5,7 @@ using UnityEngine;
 public class AllHeros : MonoBehaviour
 {
     public Fighter[] heroesList;
-    static Fighter[] heroes;
+    public static Fighter[] heroes;
 
     void Awake()
     {

@@ -9,6 +9,7 @@ public class Combat : MonoBehaviour
     [Header("Stats")]
     public int damage;
     public float attackRange = 0.5f;
+    Vector2 attackRangeVector;
     public float attackSpeed = 1;
     public int maxHealth;
     public int currentHealth;
@@ -25,13 +26,18 @@ public class Combat : MonoBehaviour
     float timerRegeneration;
     [HideInInspector]
     public float timerAttackSpeed;
+    [HideInInspector]
+    public int direction = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        if(!SaveOptions.isGameSaved)
+            currentHealth = maxHealth;
         attackPointXPos = attackPoint.localPosition.x;
         attackPointXNeg = -attackPoint.localPosition.x;
+        attackRangeVector.x = attackRange * 2;
+        attackRangeVector.y = attackRange * 4;
     }
 
     // Update is called once per frame
@@ -53,18 +59,18 @@ public class Combat : MonoBehaviour
 
     Vector3 newPosition;
     float memoryJoystickHorizontal;
-    float memoryX, dir = 1;
+    float memoryX;
 
     void updateAttackPointHorrizontal()
     {
         if (transform.position.x > memoryX)
-            dir = 1;
+            direction = 1;
         else if (transform.position.x < memoryX)
-            dir = -1;
+            direction = -1;
 
         memoryX = transform.position.x;
 
-        if (dir > 0)
+        if (direction > 0)
             newPosition.x = attackPointXPos;
         else
             newPosition.x = attackPointXNeg;
@@ -77,7 +83,7 @@ public class Combat : MonoBehaviour
 
     public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, attackRangeVector, 1, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -92,7 +98,7 @@ public class Combat : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireCube(attackPoint.position, new Vector2(attackRange*2, attackRange*4));
     }
 
     public void regeneration()
