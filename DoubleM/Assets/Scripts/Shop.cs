@@ -68,6 +68,7 @@ public class Shop : MonoBehaviour
         Time.timeScale = 1;
         SaveOptions.isShopActive = false;
         SceneManager.UnloadSceneAsync("HeroShop");
+        FindObjectOfType<CheckpointManager>().Respawn();
     }
 
     public void onHeroBuyClick(int itemID)

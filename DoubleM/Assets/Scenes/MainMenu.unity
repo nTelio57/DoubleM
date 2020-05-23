@@ -961,6 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f1de7596a22014fadb8dbdd0d1e03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playText: {fileID: 687116272}
 --- !u!4 &604793608
 Transform:
   m_ObjectHideFlags: 0
@@ -1159,7 +1160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: start game
 --- !u!222 &687116273
 CanvasRenderer:
   m_ObjectHideFlags: 0
