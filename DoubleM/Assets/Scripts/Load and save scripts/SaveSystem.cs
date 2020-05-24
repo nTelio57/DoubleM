@@ -134,4 +134,100 @@ public static class SaveSystem
         }
     }
 
+    public static void SaveCP(CapturePointManager manager)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/cp.nt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        CapturePointData data = new CapturePointData(manager);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static CapturePointData LoadCP()
+    {
+        string path = Application.persistentDataPath + "/cp.nt";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            CapturePointData data = formatter.Deserialize(stream) as CapturePointData;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static void SaveGameTracking( )
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/game_tracking.nt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        GameTrackingData data = new GameTrackingData();
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static GameTrackingData LoadGameTracking()
+    {
+        string path = Application.persistentDataPath + "/game_tracking.nt";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            GameTrackingData data = formatter.Deserialize(stream) as GameTrackingData;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static void SaveEnemies(CapturePointManager manager)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/enemies.nt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        EnemyData data = new EnemyData(manager);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static EnemyData LoadEnemies()
+    {
+        string path = Application.persistentDataPath + "/enemies.nt";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            EnemyData data = formatter.Deserialize(stream) as EnemyData;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
 }

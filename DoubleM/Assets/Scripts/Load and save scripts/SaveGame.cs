@@ -7,17 +7,21 @@ public class SaveGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Save();
+        if(GameOver.status == GameOverStatus.InGame)
+            Save();
     }
 
     private void Start()
     {
         if (!SaveOptions.isGameSaved)
             return;
-
+        
         LoadPlayer();
         LoadVault();
         LoadHeroes();
+        LoadCapturePoints();
+        LoadGameTracking();
+        LoadEnemies();
     }
 
     public void Save()
@@ -27,6 +31,61 @@ public class SaveGame : MonoBehaviour
         SaveSystem.SaveVault();
         SaveSystem.SaveHeroes();
         SaveSystem.SaveOptions();
+        SaveSystem.SaveCP(FindObjectOfType<CapturePointManager>());
+        SaveSystem.SaveGameTracking();
+        SaveSystem.SaveEnemies(FindObjectOfType<CapturePointManager>());
+    }
+
+    void LoadEnemies()
+    {
+        EnemyData data = SaveSystem.LoadEnemies();
+        CapturePointManager manager = FindObjectOfType<CapturePointManager>();
+
+        Vector3 pos;
+        Spawner spawner;
+        GameObject prefab;
+        GameObject newPrefab;
+
+        for (int i = 0; i < data.count; i++)
+        {
+
+            spawner = manager.capturePoints[data.spawnerId[i]].spawner;
+            prefab = spawner.fighters[data.prefabId[i]];
+            pos.x = data.x[i];
+            pos.y = data.y[i];
+            pos.z = data.z[i];
+
+            newPrefab = Instantiate(prefab, pos, Quaternion.identity, spawner.transform);
+            newPrefab.GetComponent<ParentSpawnerInfo>().prefabId = data.prefabId[i];
+            newPrefab.GetComponent<ParentSpawnerInfo>().spawnerId = data.spawnerId[i];
+            spawner.entitiesCount++;
+        }
+        
+    }
+
+    void LoadGameTracking()
+    {
+        GameTrackingData data = SaveSystem.LoadGameTracking();
+
+        GameTracking.enemySlainCount = data.enemySlainCount;
+        GameTracking.fightsTotalCount = data.fightsTotalCount;
+        GameTracking.fightsWonCount = data.fightsWonCount;
+        GameTracking.stageCount = data.stageCount;
+    }
+
+    void LoadCapturePoints()
+    {
+        CapturePointData data = SaveSystem.LoadCP();
+        CapturePointManager manager = FindObjectOfType<CapturePointManager>();
+        int count = 0;
+
+        for (int i = 0; i < manager.capturePoints.Length; i++)
+        {
+            manager.capturePoints[i].isCaptured = data.isCaptured[i];
+            if (data.isCaptured[i])
+                count++;
+        }
+        manager.mainCapturePointCurrentCount = count;
     }
 
     void LoadPlayer()

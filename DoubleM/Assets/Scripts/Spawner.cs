@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
+    public int spawnerId;
     public bool isActive = true;
     public bool isEntered;
     public int maxEntitiesCount;
@@ -41,9 +42,34 @@ public class Spawner : MonoBehaviour
             newPosition.z = fighters[fighterFromArray].transform.position.z;
 
             entitiesCount++;
-            Instantiate(fighters[fighterFromArray], newPosition, Quaternion.identity, transform);
+            GameObject prefab = Instantiate(fighters[fighterFromArray], newPosition, Quaternion.identity, transform);
+            prefab.GetComponent<ParentSpawnerInfo>().prefabId = fighterFromArray;
+            prefab.GetComponent<ParentSpawnerInfo>().spawnerId = spawnerId;
 
             timer = 0;
         }
+    }
+
+    public void setParentSpawnerInfo()
+    {
+        ParentSpawnerInfo[] infos = GetComponentsInChildren<ParentSpawnerInfo>();
+        int prefabId;
+
+        for (int i = 0; i < infos.Length; i++)
+        {
+            prefabId = getPrefabsId(infos[i].gameObject);
+            infos[i].spawnerId = spawnerId;
+
+        }
+    }
+
+    int getPrefabsId(GameObject prefab)
+    {
+        for (int i = 0; i < fighters.Length; i++)
+        {
+            if (fighters[i] == prefab)
+                return i;
+        }
+        return -1;
     }
 }

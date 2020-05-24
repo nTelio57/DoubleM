@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7071381632333569998}
   - component: {fileID: 3023250162987753676}
   - component: {fileID: 1626810416398578375}
+  - component: {fileID: -8994881254640056138}
   m_Layer: 11
   m_Name: Enemy5
   m_TagString: Enemy
@@ -160,7 +161,7 @@ MonoBehaviour:
   animator: {fileID: 3294487704719696452}
   speed: 10.2
   nextWaypointDistance: 3
-  rangeFromTarget: 3.75
+  rangeFromTarget: 2.25
   detectionRange: 18
   combat: {fileID: 1626810416398578375}
 --- !u!114 &3023250162987753676
@@ -216,6 +217,21 @@ MonoBehaviour:
   isAbleToAttack: 0
   attackSpeedTimerActive: 0
   timerAttackSpeed: 0
+  direction: 1
+--- !u!114 &-8994881254640056138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926102495060977836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee08e64ffb3bbff4d821038b8afaba39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 0
+  spawnerId: 0
 --- !u!1 &6259734352977498541
 GameObject:
   m_ObjectHideFlags: 0

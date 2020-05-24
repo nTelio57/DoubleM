@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2036308171378006360}
   - component: {fileID: 6117342208563549913}
   - component: {fileID: 5906910584305987679}
+  - component: {fileID: 7943927058045809238}
   m_Layer: 11
   m_Name: Enemy4
   m_TagString: Enemy
@@ -190,7 +191,7 @@ MonoBehaviour:
   animator: {fileID: 4913559805510187084}
   speed: 10.2
   nextWaypointDistance: 3
-  rangeFromTarget: 3.75
+  rangeFromTarget: 2.25
   detectionRange: 18
   combat: {fileID: 5906910584305987679}
 --- !u!114 &6117342208563549913
@@ -246,3 +247,18 @@ MonoBehaviour:
   isAbleToAttack: 0
   attackSpeedTimerActive: 0
   timerAttackSpeed: 0
+  direction: 1
+--- !u!114 &7943927058045809238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4309411153092732637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee08e64ffb3bbff4d821038b8afaba39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 0
+  spawnerId: 0

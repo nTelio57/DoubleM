@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayClick()
     {
+        GameOver.status = GameOverStatus.InGame;
         if (!SaveOptions.isGameSaved)
         {
             SaveOptions.currentStage = 1;

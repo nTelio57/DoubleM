@@ -39,7 +39,10 @@ public class Vault : MonoBehaviour
     public static void addChances(int amount)
     {
         if (chances == 0)
+        {
+            GameOver.status = GameOverStatus.Defeat;
             SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        }
         chances += amount;
     }
 

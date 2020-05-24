@@ -599,6 +599,11 @@ MonoBehaviour:
   enemiesCount: {fileID: 603108234}
   fightsCount: {fileID: 450171656}
   totalCount: {fileID: 1439606417}
+  statusText: {fileID: 641474933}
+  victoryText: Victory
+  victoryColor: {r: 0, g: 1, b: 0.12042332, a: 1}
+  defeatText: Game over
+  defeatColor: {r: 1, g: 0.32400048, b: 0, a: 1}
 --- !u!4 &591508590
 Transform:
   m_ObjectHideFlags: 0
@@ -741,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9927449, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.16038904, b: 0.023584902, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
