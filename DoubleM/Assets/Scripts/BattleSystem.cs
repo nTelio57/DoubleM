@@ -101,6 +101,7 @@ public class BattleSystem : MonoBehaviour
         for (int i = 0; i < Heroes.count; i++)
         {
             Heroes.getHero(i).healthbar = player[i].GetComponentInChildren<Healthbar>();
+            Heroes.getHero(i).healthbar.SetMaxHealth(Heroes.getHero(i).maxHP);
             Heroes.getHero(i).healthbar.SetHealth(Heroes.getHero(i).currentHP);
         }
 

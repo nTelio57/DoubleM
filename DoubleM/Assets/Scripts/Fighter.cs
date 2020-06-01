@@ -107,6 +107,8 @@ public class Fighter
         {
             maxHP += amount;
             Heal(amount);
+            if (healthbar != null)
+                healthbar.SetMaxHealth(maxHP);
         }
     }
 
