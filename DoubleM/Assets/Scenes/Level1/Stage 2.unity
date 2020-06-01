@@ -136470,7 +136470,7 @@ PrefabInstance:
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
@@ -136502,26 +136502,68 @@ PrefabInstance:
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.data[0].maxHP
-      value: 23
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.data[0].currentHP
-      value: 23
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.data[0].attackDamage
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.data[0].critChance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.data[0].isTargetable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 8983752009125072069, guid: 7df36c9447a675141b1f5b0ee94c948e,
+        type: 3}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].animator
+      value: 
+      objectReference: {fileID: 1534009867661592109, guid: 7df36c9447a675141b1f5b0ee94c948e,
+        type: 3}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].name
+      value: Bay defender
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].maxHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].currentHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].attackDamage
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].critChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: fighters.Array.data[1].isTargetable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3901851556823262568, guid: dd930b91396e417438ac16d94977418b,
@@ -136871,12 +136913,12 @@ PrefabInstance:
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].maxHP
-      value: 31
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].currentHP
-      value: 31
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
@@ -137142,22 +137184,22 @@ PrefabInstance:
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].maxHP
-      value: 24
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].currentHP
-      value: 24
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].attackDamage
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].critChance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}

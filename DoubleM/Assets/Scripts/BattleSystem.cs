@@ -120,7 +120,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (CapturePoint.currentCapturePoint.reward == BattleReward.Attack)
                 for (int i = 0; i < Heroes.count; i++)
-                    Heroes.getHero(i).attackDamage += 7;
+                    Heroes.getHero(i).attackDamage += 3;
 
             if (CapturePoint.currentCapturePoint.reward == BattleReward.Health)
                 for (int i = 0; i < Heroes.count; i++)
