@@ -74,6 +74,9 @@ public class Item : MonoBehaviour
         if (Vault.money < temp.price)
             return;
         Vault.addMoney(-temp.price);
+        float newPrice = temp.price * temp.priceMultiplier;
+        temp.price = (int)newPrice;
+
 
         for (int i = 0; i < Heroes.count; i++)
             Heroes.getHero(i).Upgrade(type, temp.amount);
@@ -82,5 +85,6 @@ public class Item : MonoBehaviour
 
         FindObjectOfType<Shop>().updateBalance();
         setStatisticText();
+        setUpgradePrices();
     }
 }

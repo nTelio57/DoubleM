@@ -9,6 +9,6 @@ public class Upgrade
     public int price;
     public Text priceText;
     public int amount;
-    
+    public float priceMultiplier;
 
 }

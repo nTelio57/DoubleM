@@ -209,7 +209,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   damage: 1
-  attackRange: 2.5
+  attackRange: 1.66
   attackSpeed: 1
   maxHealth: 1
   currentHealth: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee08e64ffb3bbff4d821038b8afaba39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabId: 0
+  spawnerId: 0
 --- !u!1 &3964039764992867307
 GameObject:
   m_ObjectHideFlags: 0

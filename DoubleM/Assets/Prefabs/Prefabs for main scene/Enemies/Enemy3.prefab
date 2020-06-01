@@ -209,7 +209,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   damage: 1
-  attackRange: 2.5
+  attackRange: 1.42
   attackSpeed: 1
   maxHealth: 1
   currentHealth: 0

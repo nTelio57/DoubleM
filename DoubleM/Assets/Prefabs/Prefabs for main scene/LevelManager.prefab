@@ -1887,7 +1887,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Main menu
+  m_Text: Save & quit
 --- !u!1 &639640658623809710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,6 +4555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6375b4053149b9341b5c0f42e7469b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFinalStage: 0
   nextLevelScene: 
   mainCapturePointCurrentCount: 0
   capturePoints:

@@ -589,6 +589,21 @@ PrefabInstance:
       propertyPath: text3
       value: Does 50% DMG to all enemies on the field
       objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: health.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: attack.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: defense.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993724, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_Name
@@ -632,7 +647,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -652,7 +667,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1132.5
+      value: 1887.5
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -1284,6 +1299,21 @@ PrefabInstance:
       propertyPath: itemName
       value: Warrior
       objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: health.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: attack.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: defense.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993724, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_Name
@@ -1327,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -1347,7 +1377,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2642.5
+      value: 1132.5
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -2797,9 +2827,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 792341854}
+  - {fileID: 1862445910}
   - {fileID: 774043609}
   - {fileID: 1125693972}
-  - {fileID: 1862445910}
   - {fileID: 271572175}
   - {fileID: 283557905}
   m_Father: {fileID: 1754378230}
@@ -4974,6 +5004,21 @@ PrefabInstance:
       propertyPath: itemName
       value: Lifestealer
       objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: health.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: attack.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: defense.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993724, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_Name
@@ -5017,7 +5062,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -5037,7 +5082,7 @@ PrefabInstance:
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1887.5
+      value: 2642.5
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993725, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
@@ -5356,6 +5401,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: onInfoPanelClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: health.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: attack.priceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588470978556993712, guid: a714f55eebcd23843820f24649fd3747,
+        type: 3}
+      propertyPath: defense.priceMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3588470978556993724, guid: a714f55eebcd23843820f24649fd3747,
         type: 3}
