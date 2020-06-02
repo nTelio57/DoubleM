@@ -6,7 +6,7 @@ public class Effect
 {
     public static Effect Untargetable = new Effect("Untargetable", 1, 0, true);
     public static Effect Bleeding = new Effect("Bleeding", 4, 3, false);
-    public static Effect Rage = new Effect("Rage", 2, 0, false);
+    public static Effect Rage = new Effect("Rage", 1, 0, false);
     public static Effect Weakness = new Effect("Weakness", 1, 0, false);
 
     public string name;

@@ -221,7 +221,7 @@ public class Fighter
             tempRageAd = attackDamage;
             tempRageCrit = critChance;
             attackDamage = (int)(attackDamage * 1.2);
-            critChance = 100;
+            critChance = 50;
         }
     }
 

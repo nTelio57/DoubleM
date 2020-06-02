@@ -25,6 +25,7 @@ public class Warrior : MonoBehaviour
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
         setBattleText("<color=blue>Warrior</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
 
         BattleSystem.enemyCurrentFighter.addEffect(Effect.Weakness);
@@ -47,6 +48,7 @@ public class Warrior : MonoBehaviour
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
         setBattleText("<color=blue>Warrior</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
 
         BattleSystem.enemyCurrentFighter.addEffect(Effect.Bleeding);
@@ -66,6 +68,7 @@ public class Warrior : MonoBehaviour
         bool isDead = BattleSystem.enemyCurrentFighter.TakeDamage((int)damage);
         setBattleText("<color=blue>Warrior</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack2");
         yield return new WaitForSeconds(1);
         f.TakeDamage((int)damage / 2);
         setBattleText("<color=blue>Warrior</color> takes <color=red>" + (int)damage / 2 + "</color> damage", 1);

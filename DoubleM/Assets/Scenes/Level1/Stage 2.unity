@@ -136467,6 +136467,11 @@ PrefabInstance:
       propertyPath: spawnZones.Array.data[2]
       value: 
       objectReference: {fileID: 609052977}
+    - target: {fileID: 1104828638076205551, guid: dd930b91396e417438ac16d94977418b,
+        type: 3}
+      propertyPath: maxEntitiesCount
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2423905343053325216, guid: dd930b91396e417438ac16d94977418b,
         type: 3}
       propertyPath: fighters.Array.size

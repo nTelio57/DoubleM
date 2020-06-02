@@ -27,6 +27,7 @@ public class Lifestealer : MonoBehaviour
         setBattleText("<color=blue>Lifestealer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
 
         int amount = (int)(0.15 * damage);
@@ -56,6 +57,7 @@ public class Lifestealer : MonoBehaviour
         setBattleText("<color=blue>Lifestealer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
 
         int amount = (int)(0.03 * Heroes.getHero(lowestHpFriendly).maxHP);
@@ -83,6 +85,7 @@ public class Lifestealer : MonoBehaviour
         setBattleText("<color=blue>Lifestealer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
         BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
+        FindObjectOfType<AudioManager>().Play("Attack1");
         yield return new WaitForSeconds(1);
         int amount = 0;
         if (isDead)
@@ -114,7 +117,9 @@ public class Lifestealer : MonoBehaviour
 
             BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
             
+
         }
+        FindObjectOfType<AudioManager>().Play("Attack2");
         yield return new WaitForSeconds(1);
         for (int i=0; i<Heroes.count; i++)
         {
