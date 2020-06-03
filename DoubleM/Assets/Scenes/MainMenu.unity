@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadOnStart: 1
-  startingMoney: 400
+  startingMoney: 250
   startingChances: 3
 --- !u!4 &1244741726
 Transform:
