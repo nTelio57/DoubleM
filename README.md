@@ -14,6 +14,7 @@ This is a turn based game, with a lot of adventuring features. You play as a cha
 
 Joystick - controls hero movement.
 Sword button - slash with the sword, to kill enemies chasing you.
+
 Turn based combat:
 4 abilities buttons - press to use ability.
 Flee button - press to flee from combat.
