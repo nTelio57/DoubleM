@@ -32,6 +32,6 @@ Sofware management - Jira.
 
 # DoubleM
 
-Marius Gindriūnas - level designer and game balancing.
+Marius Gindriūnas - level designer, game balancing.
 
 Mantas Pabalys - script writer, GUI designer.
