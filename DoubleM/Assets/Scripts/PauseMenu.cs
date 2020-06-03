@@ -16,9 +16,7 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<SaveGame>().Save();
         Time.timeScale = 1f;
         GameIsPaused = false;
-        Destroy(FindObjectOfType<AllHeros>().gameObject);
-        Destroy(FindObjectOfType<Vault>().gameObject);
-        Destroy(FindObjectOfType<AudioManager>().gameObject);
+        MainMenu.DestroyStaticObjects();
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 

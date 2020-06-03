@@ -46,6 +46,7 @@ public class Item : MonoBehaviour
     {
         healthText.text = AllHeros.GetFighter(ID).maxHP+"";
         attackText.text = AllHeros.GetFighter(ID).attackDamage + "";
+        defenseText.text = AllHeros.GetFighter(ID).defense + "";
     }
 
     public void setQuantityTexts(int quantity)

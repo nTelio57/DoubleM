@@ -38,13 +38,14 @@ public class Shop : MonoBehaviour
             upgradeButton.interactable = false;
         }
         setQuantityTexts();
+        loadUpgradePrices();
         SaveOptions.isShopActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void setQuantityTexts()
@@ -66,6 +67,7 @@ public class Shop : MonoBehaviour
     public void onNextLevelClick()
     {
         Time.timeScale = 1;
+        saveUpgradePrices();
         SaveOptions.isShopActive = false;
         SceneManager.UnloadSceneAsync("HeroShop");
         FindObjectOfType<CheckpointManager>().Respawn();
@@ -153,4 +155,34 @@ public class Shop : MonoBehaviour
         infoPanel.SetActive(true);
         upgradeButtonPanel.SetActive(false);
     }
+
+    public void loadUpgradePrices()
+    {
+        ShopData data = SaveSystem.LoadShop();
+
+        if (data == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].health.price = data.upgradePrices[i, 0];
+            items[i].attack.price = data.upgradePrices[i, 1];
+            items[i].defense.price = data.upgradePrices[i, 2];
+            items[i].setUpgradePrices();
+        }
+    }
+
+    public void saveUpgradePrices()
+    {
+        SaveSystem.SaveShop(items, 3);
+    }
+
+    public static void Reset()
+    {
+        SaveSystem.ResetShop();
+    }
+
 }
+

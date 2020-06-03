@@ -230,4 +230,48 @@ public static class SaveSystem
         }
     }
 
+    public static void SaveShop(Item[] items, int attributeCount)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/shop.nt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        ShopData data = new ShopData(items, attributeCount);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static ShopData LoadShop()
+    {
+        string path = Application.persistentDataPath + "/shop.nt";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            ShopData data = formatter.Deserialize(stream) as ShopData;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static bool ResetShop()
+    {
+        string path = Application.persistentDataPath + "/shop.nt";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            return true;
+        }
+        else
+            return false;
+    }
+
 }

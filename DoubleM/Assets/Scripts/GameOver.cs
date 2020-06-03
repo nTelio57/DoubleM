@@ -47,6 +47,7 @@ public class GameOver : MonoBehaviour
         SaveSystem.SaveOptions();
 
         GameTracking.Reset();
+        Shop.Reset();
         FindObjectOfType<Vault>().Reset();
         Heroes.Reset();
     }
@@ -54,6 +55,7 @@ public class GameOver : MonoBehaviour
     public void onMainMenuClick()
     {
         Time.timeScale = 1f;
+        MainMenu.DestroyStaticObjects();
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 

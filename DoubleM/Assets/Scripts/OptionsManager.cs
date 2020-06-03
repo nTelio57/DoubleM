@@ -65,6 +65,9 @@ public class OptionsManager : MonoBehaviour
     {
         SaveOptions.isGameSaved = false;
         SaveSystem.SaveOptions();
+        GameTracking.Reset();
+        Shop.Reset();
+        MainMenu.DestroyStaticObjects();
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

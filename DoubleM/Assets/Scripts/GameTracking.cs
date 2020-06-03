@@ -12,7 +12,9 @@ public class GameTracking
 
     public static int getTotalScore()
     {
-        return 0;
+        int temp;
+        temp = stageCount * (fightsWonCount) + enemySlainCount/2;
+        return temp;
     }
 
     public static void Reset()

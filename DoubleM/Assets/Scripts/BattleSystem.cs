@@ -135,6 +135,8 @@ public class BattleSystem : MonoBehaviour
         {
             for (int i = 0; i < fighters.Length; i++)
                 fighters[i].currentHP = fighters[i].maxHP;
+
+
         }
         else if (state == BattleState.LOST)
         {
@@ -148,6 +150,8 @@ public class BattleSystem : MonoBehaviour
                 SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             FindObjectOfType<CheckpointManager>().Respawn();
         }
+        FindObjectOfType<AudioManager>().Stop("Background2");
+        FindObjectOfType<AudioManager>().Play("Background1");
         GameStatus.isMainLevelPaused = false;
         Heroes.ResetCooldowns();
         SceneManager.UnloadSceneAsync(CapturePoint.TBCScenePass);
@@ -186,7 +190,7 @@ public class BattleSystem : MonoBehaviour
             enemies[enemyIndex].GetComponent<Animator>().SetTrigger("Attack");
             int damage = fighters[enemyIndex].attackDamage;
             isDead = Heroes.getHero(targetIndex).TakeDamage(damage);
-            setBattleText("<color=red>Enemy</color> hits <color=blue>" + Heroes.getHero(targetIndex).name + "</color> for <color=red>" + damage + "</color> damage", 2);
+            setBattleText("<color=red>Enemy</color> hits <color=blue>" + Heroes.getHero(targetIndex).name + "</color> for <color=red>" + (damage - fighters[enemyIndex].defense) + "</color> damage", 2);
             yield return new WaitForSeconds(1);
         }
 

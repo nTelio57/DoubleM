@@ -5460,6 +5460,7 @@ MonoBehaviour:
     maxHP: 50
     currentHP: 50
     attackDamage: 12
+    defense: 1
     critChance: 10
     isTargetable: 0
     battleStationIndex: 0
@@ -5555,6 +5556,7 @@ MonoBehaviour:
     maxHP: 50
     currentHP: 50
     attackDamage: 12
+    defense: 1
     critChance: 10
     isTargetable: 0
     battleStationIndex: 0
@@ -5650,6 +5652,7 @@ MonoBehaviour:
     maxHP: 50
     currentHP: 50
     attackDamage: 12
+    defense: 1
     critChance: 10
     isTargetable: 0
     battleStationIndex: 0
@@ -5747,6 +5750,7 @@ MonoBehaviour:
     maxHP: 50
     currentHP: 50
     attackDamage: 12
+    defense: 1
     critChance: 10
     isTargetable: 0
     battleStationIndex: 0

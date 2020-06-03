@@ -42,4 +42,11 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Credits", LoadSceneMode.Additive);
     }
+
+    public static void DestroyStaticObjects()
+    {
+        Destroy(FindObjectOfType<AllHeros>().gameObject);
+        Destroy(FindObjectOfType<Vault>().gameObject);
+        Destroy(FindObjectOfType<AudioManager>().gameObject);
+    }
 }

@@ -16,6 +16,7 @@ public class Fighter
     public int maxHP;
     public int currentHP;
     public int attackDamage;
+    public int defense;
     public float critChance;
     public bool isTargetable = true;
     [HideInInspector]
@@ -39,6 +40,7 @@ public class Fighter
         maxHP = f.maxHP;
         currentHP = f.currentHP;
         attackDamage = f.attackDamage;
+        defense = f.defense;
         critChance = f.critChance;
         isTargetable = f.isTargetable;
         effects = new List<Effect>();
@@ -76,6 +78,11 @@ public class Fighter
 
     public bool TakeDamage(int dmg)
     {
+        if (dmg - defense <= 0)
+            dmg = 1;
+        else
+            dmg = dmg - defense;
+        
         currentHP -= dmg;
         healthbar.SetHealth(currentHP);
 
@@ -109,6 +116,10 @@ public class Fighter
             Heal(amount);
             if (healthbar != null)
                 healthbar.SetMaxHealth(maxHP);
+        }
+        if (type == "defense")
+        {
+            defense += amount;
         }
     }
 

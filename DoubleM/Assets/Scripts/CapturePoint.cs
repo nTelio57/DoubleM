@@ -59,8 +59,7 @@ public class CapturePoint : MonoBehaviour
         GameTracking.fightsWonCount += 1;
         if(mainPoint)
             manager.setCapturePointTaken();
-        FindObjectOfType<AudioManager>().Stop("Background2");
-        FindObjectOfType<AudioManager>().Play("Background1");
+        
         if (checkpoint != null)
         {
             CheckpointManager.currentCheckpoint = checkpoint;
