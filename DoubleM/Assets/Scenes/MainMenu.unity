@@ -5438,6 +5438,36 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Heal1
+    clip: {fileID: 8300000, guid: 437d8b1239f38764dafe403ad443a58e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin1
+    clip: {fileID: 8300000, guid: 7823c2302a393f148afcfed94078ef7e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Stealth1
+    clip: {fileID: 8300000, guid: c5205c3e49c7e6a478deeb98b9887611, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bow1
+    clip: {fileID: 8300000, guid: bdc1e47f051ec694da4ccd7b5a86942f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rage1
+    clip: {fileID: 8300000, guid: c577686e6812f254ba4c22b3054c3ad0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &2993438580153671497
 MonoBehaviour:
   m_ObjectHideFlags: 0

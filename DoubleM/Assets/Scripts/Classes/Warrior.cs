@@ -91,6 +91,7 @@ public class Warrior : MonoBehaviour
         }
         else
             setBattleText("Coin flip <color=red>failed</color>", 1);
+        FindObjectOfType<AudioManager>().Play("Coin1");
         yield return new WaitForSeconds(1);
     }
 
