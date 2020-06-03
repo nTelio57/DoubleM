@@ -136902,13 +136902,13 @@ PrefabInstance:
         type: 3}
       propertyPath: fighters.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 6671464986168659627, guid: fa19dd26b2524354db836daef5bdd9b8,
+      objectReference: {fileID: 4799985875093561923, guid: f22c1ad4c07183c4fad62735ce5e9496,
         type: 3}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
       propertyPath: fighters.Array.data[0].animator
       value: 
-      objectReference: {fileID: 2552322791930761274, guid: fa19dd26b2524354db836daef5bdd9b8,
+      objectReference: {fileID: 4799985875093562044, guid: f22c1ad4c07183c4fad62735ce5e9496,
         type: 3}
     - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
@@ -136934,6 +136934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fighters.Array.data[0].critChance
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
+        type: 3}
+      propertyPath: fighters.Array.data[0].flipSpriteOnX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371181907173185141, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
@@ -137210,6 +137215,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TBCScene
       value: TBCSummer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074296240426643830, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
+        type: 3}
+      propertyPath: fighters.Array.data[0].flipSpriteOnX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371181907173185141, guid: 33600d1f8a1c7ab44b679fbfff0d0516,
         type: 3}
