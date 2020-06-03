@@ -46,6 +46,7 @@ public class Ninja : MonoBehaviour
 
         setBattleText("<color=blue>Ninja</color> restores <color=green>" + amount + "</color> HP", 1);
         f.Heal(amount);
+        FindObjectOfType<AudioManager>().Play("Heal1");
 
         yield return new WaitForSeconds(1);
     }
@@ -60,6 +61,7 @@ public class Ninja : MonoBehaviour
         Fighter f = BattleSystem.friendlyCurrentFighter;
         f.addEffect(Effect.Untargetable);
         setBattleText("<color=blue>Ninja</color> is untargetable for one turn", 1);
+        FindObjectOfType<AudioManager>().Play("Stealth1");
         yield return new WaitForSeconds(1);
     }
 

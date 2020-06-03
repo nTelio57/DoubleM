@@ -29,7 +29,7 @@ using UnityEngine;
             setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
 
             BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
-            FindObjectOfType<AudioManager>().Play("Attack1");
+            FindObjectOfType<AudioManager>().Play("Bow1");
             yield return new WaitForSeconds(1);
             critBoost = 0;
             dmgBoost = 0;
@@ -57,19 +57,19 @@ using UnityEngine;
                     bool isDead = eArray[te[i]].TakeDamage((int)damage);
                     setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage + "</color> damage", 1);
                 }
-                FindObjectOfType<AudioManager>().Play("Attack1");
+                FindObjectOfType<AudioManager>().Play("Bow1");
             }
             else
             {
                 BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
-                FindObjectOfType<AudioManager>().Play("Attack1");
+                FindObjectOfType<AudioManager>().Play("Bow1");
                 yield return new WaitForSeconds(1);
                 int damage1 = (int)(damage * 0.90);
                 bool isDead = eArray[0].TakeDamage(damage1);
                 setBattleText("<color=blue>Archer</color> hits for <color=red>" + (int)damage1 + "</color> damage", 1);
                 yield return new WaitForSeconds(1);
                 BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
-                FindObjectOfType<AudioManager>().Play("Attack1");
+                FindObjectOfType<AudioManager>().Play("Bow1");
                 yield return new WaitForSeconds(1);
                 int damage2 = (int)(damage * 0.50);
                 isDead = eArray[0].TakeDamage(damage2);
@@ -100,7 +100,7 @@ using UnityEngine;
                 
             }
             BattleSystem.friendlyCurrentPrefab.GetComponent<Animator>().SetTrigger("Attack");
-            FindObjectOfType<AudioManager>().Play("Attack1");
+            FindObjectOfType<AudioManager>().Play("Bow1");
             yield return new WaitForSeconds(1);
         }
 
@@ -116,7 +116,7 @@ using UnityEngine;
             critBoost = critBoost + 2;
 
             setBattleText("<color=blue>Archer</color> enraged <color=red>+Crit +Dmg</color>", 1);
-
+            FindObjectOfType<AudioManager>().Play("Rage1");
             yield return new WaitForSeconds(1);
         }
 

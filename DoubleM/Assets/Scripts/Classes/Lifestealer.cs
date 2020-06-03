@@ -34,6 +34,7 @@ public class Lifestealer : MonoBehaviour
 
         setBattleText("<color=blue>Lifestealer</color> restores <color=green>" + amount + "</color> HP", 1);
         f.Heal(amount);
+        FindObjectOfType<AudioManager>().Play("Heal1");
 
         yield return new WaitForSeconds(1);
 
@@ -63,7 +64,7 @@ public class Lifestealer : MonoBehaviour
         int amount = (int)(0.03 * Heroes.getHero(lowestHpFriendly).maxHP);
         Heroes.getHero(lowestHpFriendly).Heal(amount);
         setBattleText("<color=blue>Lifestealer</color> restores <color=green>" + amount + "</color> HP", 1);
-
+        FindObjectOfType<AudioManager>().Play("Heal1");
         yield return new WaitForSeconds(1);
 
     }
@@ -94,6 +95,7 @@ public class Lifestealer : MonoBehaviour
             amount = (int)(0.15 * f.maxHP);
         f.Heal(amount);
         setBattleText("<color=blue>Lifestealer</color> restores <color=green>" + amount + "</color> HP", 1);
+        FindObjectOfType<AudioManager>().Play("Heal1");
         yield return new WaitForSeconds(1);
     }
 
@@ -127,6 +129,7 @@ public class Lifestealer : MonoBehaviour
             Heroes.getHero(i).Heal(amount);
             setBattleText("<color=blue>All alies</color> restores <color=green>" + amount + "</color> HP", 1);
         }
+        FindObjectOfType<AudioManager>().Play("Heal1");
         yield return new WaitForSeconds(1);
     }
 
