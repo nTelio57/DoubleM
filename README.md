@@ -6,6 +6,7 @@ This is a turn based game, with a lot of adventuring features. You play as a cha
 
 # Instalation
 
+https://doublemktu.itch.io/quest-of-alteration
 1. Download .apk file.
 2. Install game.
 3. Lauch quest of alteration.
@@ -15,14 +16,6 @@ This is a turn based game, with a lot of adventuring features. You play as a cha
 Joystick - controls hero movement.
 
 Sword button - slash with the sword, to kill enemies chasing you.
-
-Turn based combat:
-
-4 abilities buttons - press to use ability.
-
-Flee button - press to flee from combat.
-
-Info button - press to see info about heroes abilities.
 
 # Game engine and project management software
 
