@@ -13,19 +13,25 @@ This is a turn based game, with a lot of adventuring features. You play as a cha
 # Controls
 
 Joystick - controls hero movement.
+
 Sword button - slash with the sword, to kill enemies chasing you.
 
 Turn based combat:
+
 4 abilities buttons - press to use ability.
+
 Flee button - press to flee from combat.
+
 Info button - press to see info about heroes abilities.
 
 # Game engine and project management software
 
 Game created on unity 2019.04.14f.
+
 Sofware management - Jira.
 
 # DoubleM
 
 Marius Gindriūnas - level designer and game balancing.
+
 Mantas Pabalys - script writer, GUI designer.
