@@ -19,7 +19,7 @@ Sword button - slash with the sword, to kill enemies chasing you.
 
 # Game engine and project management software
 
-Game created on unity 2019.04.14f.
+Game created on unity 2019.3.15f1.
 
 Sofware management system - Jira.
 
