@@ -28,7 +28,7 @@ Info button - press to see info about heroes abilities.
 
 Game created on unity 2019.04.14f.
 
-Sofware management - Jira.
+Sofware management system - Jira.
 
 # DoubleM
 
